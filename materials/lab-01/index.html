@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Лабораторная работа № 1: требования к системе каталога книг.">
+    <title>Лабораторная работа № 1 · Каталог книг</title>
+    <link rel="stylesheet" href="../../assets/styles.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="/">denrad.dev <span>/ course</span></a>
+      <nav aria-label="Основная навигация">
+        <a href="/">Материалы</a>
+        <a href="#result">Результат</a>
+      </nav>
+    </header>
+
+    <main class="lab-page">
+      <section class="lab-intro" aria-labelledby="page-title">
+        <p class="eyebrow">Лабораторная работа № 1</p>
+        <h1 id="page-title">Лабораторная работа № 1:<br>каталог книг</h1>
+        <p class="lead">Командная работа о том, как превратить неполное исходное задание в ясное описание поведения системы.</p>
+      </section>
+
+      <section class="lab-section" aria-labelledby="goal-title">
+        <p class="eyebrow">Цель</p>
+        <h2 id="goal-title">Опишите, что должна делать система</h2>
+        <p>Ваша задача — не предлагать способ реализации, а выяснить и зафиксировать ожидаемое поведение: кто выполняет действие, при каких условиях и что происходит в результате.</p>
+        <p>Если информации недостаточно, не делайте молчаливых предположений. Сформулируйте вопрос заказчику и запишите, какое правило появится после ответа.</p>
+      </section>
+
+      <section class="lab-section" aria-labelledby="brief-title">
+        <p class="eyebrow">Исходное задание</p>
+        <h2 id="brief-title">Система каталога книг</h2>
+        <p>Нужно описать поведение системы для работы с каталогом книг.</p>
+        <div class="lab-grid">
+          <article class="lab-panel">
+            <h3>Книги</h3>
+            <p>Для книги известны название, год выпуска, описание, ISBN и изображение обложки. У одной книги может быть несколько авторов.</p>
+          </article>
+          <article class="lab-panel">
+            <h3>Авторы</h3>
+            <p>Для автора известно ФИО.</p>
+          </article>
+          <article class="lab-panel">
+            <h3>Гость</h3>
+            <p>Просматривает каталог и подписывается на новые книги выбранного автора.</p>
+          </article>
+          <article class="lab-panel">
+            <h3>Пользователь</h3>
+            <p>Просматривает каталог, добавляет, изменяет и удаляет книги и авторов.</p>
+          </article>
+        </div>
+        <div class="lab-callout">
+          <h3>Отчёт</h3>
+          <p>Система показывает ТОП-10 авторов, выпустивших больше всего книг за выбранный год. Отчёт доступен всем.</p>
+        </div>
+        <div class="lab-callout">
+          <h3>Уведомления</h3>
+          <p>Когда появляется новая книга автора, на которого подписался гость, этому гостю приходит SMS-уведомление.</p>
+        </div>
+      </section>
+
+      <section class="lab-section" aria-labelledby="rules-title">
+        <p class="eyebrow">Правило работы</p>
+        <h2 id="rules-title">Не выбирайте способ реализации</h2>
+        <p>Сосредоточьтесь на правилах и последствиях действий. Важна точность поведения, а не названия инструментов.</p>
+        <blockquote>Кто → что делает → при каких условиях → что должно произойти.</blockquote>
+      </section>
+
+      <section class="lab-section" aria-labelledby="process-title">
+        <p class="eyebrow">Как выполнять</p>
+        <h2 id="process-title">Работайте командой из 3–4 человек</h2>
+        <ol class="lab-steps">
+          <li><strong>Выделите факты.</strong> Запишите только то, что прямо сказано в задании или подтверждено заказчиком.</li>
+          <li><strong>Найдите неоднозначности.</strong> Отметьте случаи, где допустимо больше одного разумного толкования.</li>
+          <li><strong>Задайте вопросы заказчику.</strong> Для каждого объясните, почему ответ важен и какое поведение он изменит.</li>
+          <li><strong>Зафиксируйте решения.</strong> Полученный ответ превратите в правило системы. Если ответа нет — так и напишите: «Не определено. Нужно решение заказчика».</li>
+          <li><strong>Придумайте сценарии.</strong> Проверьте правила на конкретных ситуациях, включая пограничные случаи.</li>
+        </ol>
+      </section>
+
+      <section class="lab-section" id="result" aria-labelledby="result-title">
+        <p class="eyebrow">Результат команды</p>
+        <h2 id="result-title">Сдайте единый документ</h2>
+        <ol class="lab-deliverables">
+          <li>Учебная группа, команда и ФИО участников.</li>
+          <li>Краткое понимание задачи своими словами.</li>
+          <li>Факты, известные на старте.</li>
+          <li>Вопросы заказчику: вопрос, причина важности и возможное изменение поведения.</li>
+          <li>Полученные решения заказчика как правила системы.</li>
+          <li>Оставшиеся неопределённости.</li>
+          <li>Проверяемые сценарии: обычные и пограничные.</li>
+        </ol>
+      </section>
+
+      <section class="lab-section" aria-labelledby="checks-title">
+        <p class="eyebrow">Самопроверка</p>
+        <h2 id="checks-title">Когда работа готова</h2>
+        <ul class="lab-checklist">
+          <li>Факты отделены от предположений и неизвестного.</li>
+          <li>Существенные неоднозначности замечены и превращены в вопросы.</li>
+          <li>Полученные ответы записаны как правила, а не остались в устной форме.</li>
+          <li>Есть конкретные сценарии, в том числе пограничные.</li>
+          <li>По документу другая команда поймёт ожидаемое поведение без пояснений авторов.</li>
+        </ul>
+      </section>
+
+      <section class="lab-qr" aria-labelledby="qr-title">
+        <div>
+          <p class="eyebrow">Ссылка на задание</p>
+          <h2 id="qr-title">Откройте с телефона</h2>
+          <p>QR-код ведёт на эту страницу. Можно также открыть <a href="https://course.denrad.dev/materials/lab-01/">прямую ссылку</a>.</p>
+        </div>
+        <img src="../../assets/qr-lab-01.svg" alt="QR-код со ссылкой на лабораторную работу № 1">
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>Материалы курса · <a href="https://denrad.dev">denrad.dev</a></p>
+    </footer>
+  </body>
+</html>
