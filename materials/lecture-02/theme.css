@@ -28,6 +28,7 @@ blockquote { max-width:900px; margin:5vh 0 0; padding:1.8vh 2vw; border-left:5px
 .layout-three h2 + p { font-size:clamp(19px,2vw,28px); }
 .layout-split:has(.slide-image) .content { max-width:49vw; }
 .layout-split .slide-image { position:absolute; z-index:0; top:16vh; right:4vw; width:42vw; height:68vh; object-fit:contain; object-position:center; filter:saturate(.76) contrast(.96); }
+.layout-split:has(.slide-image) h2 { margin:2vh 0 0; }
 .layout-four .content { max-width:1120px; display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:4vh 5vw; }
 .layout-four h1 { margin-bottom:7vh; }
 .layout-four h1 { grid-column:1/-1; }
