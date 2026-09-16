@@ -33,7 +33,7 @@ blockquote { max-width:900px; margin:5vh 0 0; padding:1.8vh 2vw; border-left:5px
 .layout-raft-bottom .content { max-width:940px; height:55vh; }
 .layout-raft-bottom .raft-photo { position:absolute; z-index:0; inset:auto 0 0 0; width:100vw; height:40vh; object-fit:cover; object-position:50% 68%; filter:saturate(.8) contrast(.96); }
 .layout-raft-bottom .page { color:rgba(255,255,255,.9); text-shadow:0 1px 5px rgba(0,0,0,.55); }
-.layout-raft-contain .content { max-width:51vw; padding-top:8vh; }
+.layout-raft-contain .content { max-width:42vw; padding-top:8vh; }
 .layout-raft-contain .raft-photo { position:absolute; z-index:0; top:5vh; right:4vw; width:42vw; height:88vh; object-fit:contain; object-position:center; background:var(--ivory); filter:saturate(.84) contrast(.97); }
 .layout-questions .content { max-width:none; display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); column-gap:7vw; }
 .layout-questions h1 { grid-column:1/-1; }
