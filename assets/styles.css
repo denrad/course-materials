@@ -79,6 +79,35 @@ h2 { font-size: clamp(2rem, 4vw, 3.4rem); line-height: 1.04; letter-spacing: -.0
 .lab-qr { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 32px; padding: 42px 0 70px; border-top: 1px solid var(--line); }
 .lab-qr img { width: min(180px, 35vw); border: 1px solid var(--line); }
 
+.guide-page { max-width: 900px; }
+.guide-intro { padding: clamp(64px, 10vw, 120px) 0 62px; }
+.guide-intro h1 { max-width: 820px; }
+.guide-section { padding: 50px 0; border-top: 1px solid var(--line); }
+.guide-section h2 { margin-bottom: 22px; }
+.guide-section > p, .guide-section li { max-width: 740px; font-size: 1.08rem; }
+.guide-section p:last-child { margin-bottom: 0; }
+.guide-callout { margin: 28px 0 0; padding: 23px 27px; border-left: 4px solid var(--accent); background: #efeee8; font-size: 1.16rem; font-weight: 650; }
+.guide-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin: 26px 0; }
+.guide-panel { border: 1px solid var(--line); padding: 26px; }
+.guide-panel h3 { font-size: 1.2rem; margin-bottom: 13px; }
+.guide-panel p { color: var(--muted); margin-bottom: 0; }
+.guide-flow { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin: 30px 0 22px; padding: 0; list-style: none; }
+.guide-flow li { min-height: 128px; padding: 19px; background: var(--deep); color: white; font-weight: 650; font-size: 1.02rem; }
+.guide-flow li span { display: block; margin-bottom: 14px; color: #b9d3cc; font-size: .8rem; letter-spacing: .09em; }
+.guide-small { color: var(--muted); font-size: .96rem !important; }
+
+@media (max-width: 800px) {
+  .guide-flow { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media print {
+  body { background: white; }
+  .site-header, .site-footer { display: none; }
+  .guide-intro { padding: 24px 0 35px; }
+  .guide-section { padding: 28px 0; }
+  .guide-flow li { color: var(--ink); background: #efeee8; }
+}
+
 @media (max-width: 620px) {
   .site-header, main, .site-footer { width: min(100% - 32px, 1120px); }
   .site-header { min-height: 64px; }
@@ -89,4 +118,7 @@ h2 { font-size: clamp(2rem, 4vw, 3.4rem); line-height: 1.04; letter-spacing: -.0
   .lab-section { padding: 44px 0; }
   .lab-grid, .lab-qr { grid-template-columns: 1fr; }
   .lab-qr img { width: 180px; }
+  .guide-grid { grid-template-columns: 1fr; }
+  .guide-flow { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .guide-flow li { min-height: 115px; }
 }
