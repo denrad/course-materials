@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Учебная поддержка</title>
+  <style>
+    :root { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; color: #1c2b3c; background: #f4f6f8; }
+    * { box-sizing: border-box; }
+    body { margin: 0; }
+    button, input, select, textarea { font: inherit; }
+    button { cursor: pointer; }
+    .wrap { max-width: 1020px; margin: 0 auto; padding: 32px 22px 60px; }
+    header { display: flex; justify-content: space-between; gap: 16px; align-items: center; margin-bottom: 34px; }
+    .brand { font-weight: 800; color: #244766; letter-spacing: .02em; }
+    .brand span { display: inline-grid; place-items: center; width: 34px; height: 34px; margin-right: 8px; border-radius: 10px; background: #244766; color: #fff; }
+    .account { color: #6c7c89; font-size: 13px; }
+    .intro { margin-bottom: 28px; }
+    .eyebrow { color: #327778; font-size: 12px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
+    h1 { margin: 8px 0 10px; font-size: clamp(30px, 4vw, 43px); letter-spacing: -.035em; }
+    .intro p:last-child { max-width: 680px; color: #607386; line-height: 1.5; }
+    .layout { display: grid; grid-template-columns: minmax(0, 1fr) 350px; gap: 22px; align-items: start; }
+    .panel { border: 1px solid #dce4e9; border-radius: 16px; background: #fff; box-shadow: 0 8px 30px rgba(28, 52, 72, .035); }
+    .list-panel { padding: 23px; }
+    .form-panel { padding: 23px; }
+    .panel-head { display: flex; justify-content: space-between; gap: 10px; align-items: center; margin-bottom: 18px; }
+    h2 { margin: 0; font-size: 21px; }
+    .count { color: #758796; font-size: 13px; }
+    .filters { display: flex; gap: 6px; padding: 4px; width: max-content; max-width: 100%; margin-bottom: 18px; border-radius: 10px; background: #f0f4f6; }
+    .filters button { padding: 8px 11px; border: 0; border-radius: 7px; background: transparent; color: #657786; font-size: 12px; font-weight: 700; }
+    .filters button[aria-pressed="true"] { background: #fff; color: #1f4b68; box-shadow: 0 1px 5px rgba(30, 50, 70, .11); }
+    .tickets { display: grid; gap: 11px; }
+    .ticket { padding: 16px; border: 1px solid #e4eaf0; border-radius: 12px; }
+    .ticket-top { display: flex; justify-content: space-between; gap: 10px; align-items: flex-start; }
+    .ticket-title { margin: 0; font-size: 16px; font-weight: 750; }
+    .ticket-meta { margin: 5px 0 10px; color: #718291; font-size: 12px; }
+    .ticket-description { margin: 0; color: #465c6d; font-size: 13px; line-height: 1.45; }
+    .status { flex: none; padding: 5px 8px; border-radius: 6px; background: #edf3fa; color: #38628a; font-size: 11px; font-weight: 750; }
+    .status.progress { background: #fff2df; color: #936523; }
+    .status.done { background: #e7f5ed; color: #2d7556; }
+    .empty { padding: 20px; border: 1px dashed #d3dee6; border-radius: 10px; color: #788a97; font-size: 14px; }
+    .form-panel p { margin: 8px 0 20px; color: #6e8090; font-size: 13px; line-height: 1.45; }
+    label { display: block; margin-bottom: 15px; color: #344a5a; font-size: 13px; font-weight: 700; }
+    input, select, textarea { display: block; width: 100%; margin-top: 7px; padding: 10px 11px; border: 1px solid #cad6de; border-radius: 9px; background: #fff; color: #1c2b3c; font-weight: 400; }
+    textarea { min-height: 102px; resize: vertical; }
+    input:focus, select:focus, textarea:focus { outline: 3px solid #c5e4e8; border-color: #34838a; }
+    .primary { width: 100%; min-height: 42px; border: 0; border-radius: 9px; background: #244f70; color: #fff; font-size: 14px; font-weight: 750; }
+    .primary:hover { background: #183d58; }
+    .reset { display: block; margin: 18px 0 0 auto; border: 0; background: transparent; color: #647989; font-size: 12px; text-decoration: underline; text-underline-offset: 3px; }
+    .message { position: fixed; right: 22px; bottom: 22px; max-width: 340px; padding: 13px 16px; border-radius: 10px; background: #1d4b62; color: #fff; box-shadow: 0 10px 30px rgba(20, 45, 65, .2); font-size: 13px; }
+    .message[hidden] { display: none; }
+    @media (max-width: 760px) { .layout { grid-template-columns: 1fr; } .form-panel { order: -1; } }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header><div class="brand"><span aria-hidden="true">?</span>Учебная поддержка</div><div class="account">Личный кабинет студента</div></header>
+    <div class="intro">
+      <div class="eyebrow">Обращения</div>
+      <h1>Сообщить о проблеме</h1>
+      <p>Если в аудитории не работает оборудование или сеть, оставьте заявку. Здесь можно посмотреть состояние ваших обращений.</p>
+    </div>
+
+    <main class="layout">
+      <section class="panel list-panel" aria-labelledby="list-title">
+        <div class="panel-head"><h2 id="list-title">Мои заявки</h2><span id="count" class="count"></span></div>
+        <div class="filters" aria-label="Фильтр заявок">
+          <button type="button" data-filter="all" aria-pressed="true">Все</button>
+          <button type="button" data-filter="active" aria-pressed="false">Активные</button>
+          <button type="button" data-filter="done" aria-pressed="false">Решённые</button>
+        </div>
+        <div class="tickets" id="tickets"></div>
+      </section>
+
+      <section class="panel form-panel" aria-labelledby="form-title">
+        <h2 id="form-title">Новая заявка</h2>
+        <p>Укажите место и опишите, что произошло. Поля с отметкой * обязательны.</p>
+        <form id="ticket-form">
+          <label>Аудитория *<input name="room" required maxlength="20" placeholder="Например, 214"></label>
+          <label>Категория
+            <select name="category">
+              <option value="Оборудование">Оборудование</option>
+              <option value="Сеть">Сеть</option>
+              <option value="Другое">Другое</option>
+            </select>
+          </label>
+          <label>Описание проблемы *<textarea name="description" required maxlength="300" placeholder="Что именно не работает?"></textarea></label>
+          <button class="primary" type="submit">Отправить заявку</button>
+        </form>
+        <button type="button" class="reset" id="reset">Восстановить примерные данные</button>
+      </section>
+    </main>
+  </div>
+  <div class="message" id="message" role="status" aria-live="polite" hidden></div>
+
+  <script>
+    const storageKey = "lab02-support-reference-v1";
+    const initialTickets = [
+      { id: 101, room: "214", category: "Оборудование", description: "Проектор включается, но изображение с ноутбука не появляется.", status: "В работе" },
+      { id: 102, room: "117", category: "Сеть", description: "На рабочем компьютере не открываются сайты.", status: "Решена" }
+    ];
+    const form = document.querySelector("#ticket-form");
+    const ticketsElement = document.querySelector("#tickets");
+    const countElement = document.querySelector("#count");
+    const messageElement = document.querySelector("#message");
+    let filter = "all";
+    let messageTimer;
+
+    function loadTickets() {
+      try {
+        const data = JSON.parse(localStorage.getItem(storageKey));
+        if (Array.isArray(data) && data.every(item =>
+          Number.isInteger(item.id) && typeof item.room === "string" &&
+          typeof item.category === "string" && typeof item.description === "string" &&
+          ["Получена", "В работе", "Решена"].includes(item.status))) return data;
+      } catch (_) { /* Use the example data if browser storage is unavailable. */ }
+      return initialTickets.map(item => ({ ...item }));
+    }
+
+    let tickets = loadTickets();
+
+    function save() {
+      try { localStorage.setItem(storageKey, JSON.stringify(tickets)); }
+      catch (_) { /* The page still works until reload. */ }
+    }
+
+    function announce(text) {
+      messageElement.textContent = text;
+      messageElement.hidden = false;
+      clearTimeout(messageTimer);
+      messageTimer = setTimeout(() => { messageElement.hidden = true; }, 4000);
+    }
+
+    function ticketNode(ticket) {
+      const article = document.createElement("article");
+      article.className = "ticket";
+      const top = document.createElement("div");
+      top.className = "ticket-top";
+      const left = document.createElement("div");
+      const title = document.createElement("h3");
+      title.className = "ticket-title";
+      title.textContent = `Заявка №${ticket.id} · аудитория ${ticket.room}`;
+      const meta = document.createElement("p");
+      meta.className = "ticket-meta";
+      meta.textContent = ticket.category;
+      const status = document.createElement("span");
+      status.className = `status${ticket.status === "В работе" ? " progress" : ticket.status === "Решена" ? " done" : ""}`;
+      status.textContent = ticket.status;
+      const description = document.createElement("p");
+      description.className = "ticket-description";
+      description.textContent = ticket.description;
+      left.append(title, meta);
+      top.append(left, status);
+      article.append(top, description);
+      return article;
+    }
+
+    function render() {
+      const shown = tickets.filter(ticket => filter === "all" ||
+        (filter === "done" ? ticket.status === "Решена" : ticket.status !== "Решена"));
+      countElement.textContent = `${tickets.length} всего`;
+      ticketsElement.replaceChildren();
+      if (!shown.length) {
+        const empty = document.createElement("p");
+        empty.className = "empty";
+        empty.textContent = "Заявок с таким состоянием пока нет.";
+        ticketsElement.append(empty);
+      } else shown.forEach(ticket => ticketsElement.append(ticketNode(ticket)));
+      document.querySelectorAll("[data-filter]").forEach(button =>
+        button.setAttribute("aria-pressed", String(button.dataset.filter === filter)));
+    }
+
+    document.querySelector(".filters").addEventListener("click", event => {
+      const button = event.target.closest("button[data-filter]");
+      if (!button) return;
+      filter = button.dataset.filter;
+      render();
+    });
+
+    form.addEventListener("submit", event => {
+      event.preventDefault();
+      const data = new FormData(form);
+      const room = String(data.get("room") || "").trim();
+      const description = String(data.get("description") || "").trim();
+      if (!room || !description) {
+        announce("Укажите аудиторию и описание проблемы.");
+        return;
+      }
+      const nextId = Math.max(100, ...tickets.map(ticket => ticket.id)) + 1;
+      tickets.unshift({ id: nextId, room, category: String(data.get("category")), description, status: "Получена" });
+      save();
+      form.reset();
+      filter = "all";
+      render();
+      announce(`Заявка №${nextId} отправлена.`);
+    });
+
+    document.querySelector("#reset").addEventListener("click", () => {
+      tickets = initialTickets.map(item => ({ ...item }));
+      filter = "all";
+      form.reset();
+      save();
+      render();
+      announce("Примерные данные восстановлены.");
+    });
+
+    render();
+  </script>
+</body>
+</html>

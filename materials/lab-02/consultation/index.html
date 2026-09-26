@@ -1,0 +1,446 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Запись на консультацию</title>
+  <style>
+    :root {
+      color-scheme: light;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      color: #152537;
+      background: #f3f6f8;
+    }
+
+    * { box-sizing: border-box; }
+
+    body { margin: 0; }
+
+    button, select { font: inherit; }
+
+    button { cursor: pointer; }
+
+    .page {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 34px 24px 64px;
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      margin-bottom: 30px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      font-size: 15px;
+      font-weight: 750;
+      letter-spacing: .01em;
+    }
+
+    .brand-mark {
+      display: grid;
+      place-items: center;
+      width: 36px;
+      height: 36px;
+      border-radius: 11px;
+      color: white;
+      background: #254b71;
+      font-size: 19px;
+    }
+
+    .student-picker {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #536679;
+      font-size: 14px;
+    }
+
+    .student-picker select {
+      min-width: 204px;
+      border: 1px solid #d0dbe3;
+      border-radius: 10px;
+      background: white;
+      color: #152537;
+      padding: 9px 34px 9px 12px;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 280px;
+      gap: 36px;
+      align-items: end;
+      padding-bottom: 28px;
+      border-bottom: 1px solid #dbe4ea;
+    }
+
+    .eyebrow {
+      margin: 0 0 10px;
+      color: #3c7182;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0 0 13px;
+      max-width: 650px;
+      font-size: clamp(32px, 4vw, 48px);
+      letter-spacing: -.04em;
+      line-height: 1.1;
+    }
+
+    .lede {
+      max-width: 660px;
+      margin: 0;
+      color: #52667a;
+      font-size: 17px;
+      line-height: 1.5;
+    }
+
+    .teacher-card {
+      padding: 17px 19px;
+      border: 1px solid #d6e2e7;
+      border-radius: 16px;
+      background: #eaf2f3;
+    }
+
+    .teacher-card small {
+      display: block;
+      margin-bottom: 6px;
+      color: #617584;
+      font-size: 12px;
+    }
+
+    .teacher-card strong { display: block; font-size: 17px; }
+    .teacher-card span { display: block; margin-top: 6px; color: #536c75; font-size: 13px; }
+
+    .content {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 306px;
+      gap: 26px;
+      margin-top: 30px;
+    }
+
+    .section-heading {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 16px;
+      margin-bottom: 18px;
+    }
+
+    h2 { margin: 0; font-size: 23px; letter-spacing: -.025em; }
+    .section-heading p { margin: 0; color: #738598; font-size: 13px; }
+
+    .days { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+
+    .day {
+      min-width: 0;
+      overflow: hidden;
+      border: 1px solid #dce5eb;
+      border-radius: 16px;
+      background: #fff;
+      box-shadow: 0 8px 25px rgba(28, 57, 79, .035);
+    }
+
+    .day-header { padding: 18px 18px 15px; border-bottom: 1px solid #e8eef2; }
+    .day-header strong { display: block; font-size: 16px; }
+    .day-header span { display: block; margin-top: 3px; color: #748596; font-size: 12px; }
+    .slots { display: grid; gap: 10px; padding: 12px; }
+
+    .slot {
+      padding: 13px;
+      border: 1px solid #e5ebef;
+      border-radius: 12px;
+      background: #fbfcfd;
+    }
+
+    .slot.mine { border-color: #91c8b4; background: #eff9f4; }
+    .slot-top { display: flex; align-items: center; justify-content: space-between; gap: 6px; }
+    .slot-time { font-size: 19px; font-weight: 750; letter-spacing: -.02em; }
+
+    .badge {
+      font-size: 11px;
+      font-weight: 750;
+      white-space: nowrap;
+      color: #357867;
+    }
+
+    .badge.busy { color: #8a6d55; }
+    .badge.mine { color: #24725a; }
+    .slot p { min-height: 32px; margin: 9px 0 12px; color: #708293; font-size: 12px; line-height: 1.35; }
+
+    .slot button {
+      width: 100%;
+      min-height: 34px;
+      border: 1px solid #254b71;
+      border-radius: 8px;
+      background: #254b71;
+      color: #fff;
+      font-size: 12px;
+      font-weight: 750;
+    }
+
+    .slot button:hover:not(:disabled) { background: #173957; }
+    .slot button:disabled { cursor: default; border-color: #e1e8ec; background: #e9eef1; color: #8494a1; }
+    .slot.mine button:disabled { border-color: #d0eadc; background: #dff2e8; color: #267458; }
+
+    .side { display: grid; align-content: start; gap: 14px; }
+
+    .panel {
+      padding: 22px;
+      border: 1px solid #dce5eb;
+      border-radius: 16px;
+      background: white;
+      box-shadow: 0 8px 25px rgba(28, 57, 79, .035);
+    }
+
+    .panel h2 { margin-bottom: 17px; font-size: 19px; }
+    .empty { margin: 0; color: #718394; font-size: 14px; line-height: 1.5; }
+    .booking-date { display: block; margin-bottom: 6px; color: #487b80; font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: .08em; }
+    .booking-time { display: block; font-size: 24px; font-weight: 800; }
+    .booking-meta { margin: 8px 0 18px; color: #617688; font-size: 13px; line-height: 1.5; }
+
+    .outline-button {
+      min-height: 38px;
+      padding: 8px 12px;
+      border: 1px solid #cbd9e0;
+      border-radius: 9px;
+      background: white;
+      color: #244966;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .outline-button:hover { background: #f2f7f9; }
+    .hint { margin: 0; color: #738596; font-size: 13px; line-height: 1.5; }
+
+    .reset {
+      justify-self: start;
+      border: 0;
+      background: transparent;
+      color: #5f7586;
+      padding: 4px 0;
+      font-size: 12px;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    .notice {
+      position: fixed;
+      right: 24px;
+      bottom: 24px;
+      max-width: min(380px, calc(100vw - 48px));
+      padding: 14px 18px;
+      border-radius: 12px;
+      background: #173b58;
+      color: white;
+      box-shadow: 0 12px 32px rgba(20, 45, 65, .25);
+      font-size: 14px;
+      line-height: 1.4;
+    }
+
+    .notice[hidden] { display: none; }
+
+    @media (max-width: 900px) {
+      .hero, .content { grid-template-columns: 1fr; }
+      .teacher-card { max-width: 360px; }
+      .side { grid-template-columns: 1fr 1fr; }
+      .reset { grid-column: 1 / -1; }
+    }
+
+    @media (max-width: 650px) {
+      .page { padding: 22px 16px 48px; }
+      .topbar { align-items: start; flex-direction: column; }
+      .student-picker { width: 100%; justify-content: space-between; }
+      .student-picker select { min-width: 0; flex: 1; }
+      .days, .side { grid-template-columns: 1fr; }
+      .reset { grid-column: auto; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header class="topbar">
+      <div class="brand"><span class="brand-mark" aria-hidden="true">К</span><span>Консультации</span></div>
+      <label class="student-picker">Студент
+        <select id="student" aria-label="Выберите студента">
+          <option value="maria">Мария Смирнова</option>
+          <option value="anna">Анна Морозова</option>
+          <option value="dmitry">Дмитрий Орлов</option>
+        </select>
+      </label>
+    </header>
+
+    <section class="hero" aria-labelledby="page-title">
+      <div>
+        <p class="eyebrow">Индивидуальные встречи</p>
+        <h1 id="page-title">Запись на консультацию</h1>
+        <p class="lede">Выберите удобное время для обсуждения учебного проекта. Продолжительность встречи — 30 минут.</p>
+      </div>
+      <div class="teacher-card">
+        <small>Преподаватель</small>
+        <strong>Елена Викторовна Соколова</strong>
+        <span>Кабинет 214 · очная встреча</span>
+      </div>
+    </section>
+
+    <main class="content">
+      <section aria-labelledby="slots-title">
+        <div class="section-heading">
+          <h2 id="slots-title">Доступное время</h2>
+          <p>29 сентября — 1 октября</p>
+        </div>
+        <div class="days" id="days"></div>
+      </section>
+
+      <aside class="side" aria-label="Ваша запись">
+        <div class="panel" id="my-booking"></div>
+        <div class="panel">
+          <h2>Перед встречей</h2>
+          <p class="hint">Подготовьте вопрос или покажите часть проекта, которую хотите обсудить.</p>
+        </div>
+        <button type="button" class="reset" id="reset">Вернуть исходные данные</button>
+      </aside>
+    </main>
+  </div>
+
+  <div id="notice" class="notice" role="status" aria-live="polite" hidden></div>
+
+  <script>
+    const storageKey = "consultation-booking-lab-v1";
+    const days = [
+      { date: "2026-09-29", title: "Вторник, 29 сентября", note: "2 консультации" },
+      { date: "2026-09-30", title: "Среда, 30 сентября", note: "2 консультации" },
+      { date: "2026-10-01", title: "Четверг, 1 октября", note: "2 консультации" }
+    ];
+    const slots = [
+      { id: "tue-1400", date: "2026-09-29", time: "14:00" },
+      { id: "tue-1430", date: "2026-09-29", time: "14:30" },
+      { id: "wed-1200", date: "2026-09-30", time: "12:00" },
+      { id: "wed-1230", date: "2026-09-30", time: "12:30" },
+      { id: "thu-1600", date: "2026-10-01", time: "16:00" },
+      { id: "thu-1630", date: "2026-10-01", time: "16:30" }
+    ];
+    const initialBookings = { "tue-1430": "dmitry", "wed-1230": "anna" };
+    const studentSelect = document.querySelector("#student");
+    const daysElement = document.querySelector("#days");
+    const bookingElement = document.querySelector("#my-booking");
+    const noticeElement = document.querySelector("#notice");
+    let noticeTimer;
+
+    function loadBookings() {
+      try {
+        const saved = JSON.parse(localStorage.getItem(storageKey));
+        if (saved && typeof saved === "object" && !Array.isArray(saved)) {
+          const valid = Object.entries(saved).every(([slotId, studentId]) =>
+            slots.some(slot => slot.id === slotId) && ["maria", "anna", "dmitry"].includes(studentId)
+          );
+          if (valid) return saved;
+        }
+      } catch (_) { /* Damaged demonstration data is replaced below. */ }
+      return { ...initialBookings };
+    }
+
+    let bookings = loadBookings();
+
+    function save() {
+      try { localStorage.setItem(storageKey, JSON.stringify(bookings)); }
+      catch (_) { /* The mockup remains usable when storage is unavailable. */ }
+    }
+
+    function notify(message) {
+      noticeElement.textContent = message;
+      noticeElement.hidden = false;
+      clearTimeout(noticeTimer);
+      noticeTimer = setTimeout(() => { noticeElement.hidden = true; }, 4300);
+    }
+
+    function currentBooking() {
+      return slots.find(slot => bookings[slot.id] === studentSelect.value);
+    }
+
+    function render() {
+      const selectedStudent = studentSelect.value;
+      const mine = currentBooking();
+      daysElement.innerHTML = days.map(day => `
+        <div class="day">
+          <div class="day-header"><strong>${day.title}</strong><span>${day.note}</span></div>
+          <div class="slots">
+            ${slots.filter(slot => slot.date === day.date).map(slot => {
+              const owner = bookings[slot.id];
+              const isMine = owner === selectedStudent;
+              const status = isMine ? "Ваша запись" : owner ? "Занято" : "Свободно";
+              const button = isMine ? "Вы записаны" : owner ? "Недоступно" : "Записаться";
+              return `<div class="slot${isMine ? " mine" : ""}">
+                <div class="slot-top"><span class="slot-time">${slot.time}</span><span class="badge${owner && !isMine ? " busy" : ""}${isMine ? " mine" : ""}">${status}</span></div>
+                <p>Консультация по учебному проекту</p>
+                <button type="button" data-book="${slot.id}" ${owner ? "disabled" : ""}>${button}</button>
+              </div>`;
+            }).join("")}
+          </div>
+        </div>`).join("");
+
+      if (!mine) {
+        bookingElement.innerHTML = `<h2>Моя запись</h2><p class="empty">Вы пока не записаны на консультацию.</p>`;
+        return;
+      }
+
+      const day = days.find(item => item.date === mine.date);
+      bookingElement.innerHTML = `
+        <h2>Моя запись</h2>
+        <span class="booking-date">${day.title}</span>
+        <span class="booking-time">${mine.time}</span>
+        <p class="booking-meta">Елена Викторовна Соколова<br>Кабинет 214 · 30 минут</p>
+        <button type="button" class="outline-button" id="cancel">Отменить запись</button>`;
+    }
+
+    daysElement.addEventListener("click", event => {
+      const button = event.target.closest("button[data-book]");
+      if (!button) return;
+      const slotId = button.dataset.book;
+      if (bookings[slotId]) {
+        notify("Это время уже занято.");
+        return;
+      }
+      if (currentBooking()) {
+        notify("У вас уже есть запись. Сначала отмените её, чтобы выбрать другое время.");
+        return;
+      }
+      bookings[slotId] = studentSelect.value;
+      save();
+      render();
+      notify("Вы записаны на консультацию.");
+    });
+
+    bookingElement.addEventListener("click", event => {
+      if (!event.target.closest("#cancel")) return;
+      const booking = currentBooking();
+      if (!booking) return;
+      delete bookings[booking.id];
+      save();
+      render();
+      notify("Запись отменена. Время снова доступно.");
+    });
+
+    studentSelect.addEventListener("change", render);
+    document.querySelector("#reset").addEventListener("click", () => {
+      bookings = { ...initialBookings };
+      save();
+      studentSelect.value = "maria";
+      render();
+      notify("Исходные данные восстановлены.");
+    });
+
+    render();
+  </script>
+</body>
+</html>
