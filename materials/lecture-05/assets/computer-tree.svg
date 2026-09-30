@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 520" role="img" aria-labelledby="title desc">
+  <title id="title">Дерево вопросов при жалобе «компьютер не работает»</title>
+  <desc id="desc">После рисунка компьютера следуют вопросы о питании, изображении и загрузке системы. Ответ «нет» ведёт к следующей проверке соответствующего участка.</desc>
+  <rect width="1280" height="520" fill="none"/>
+  <g fill="none" stroke="#788786" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="56" y="180" width="245" height="162" rx="8" fill="#EAE7D6"/>
+    <path d="M78 206H279V315H78Z" fill="#EEF4F4"/>
+    <path d="M30 359H327L300 385H57Z" fill="#A7BDC0"/>
+    <path d="M301 260H363"/>
+    <path d="M558 260H632"/>
+    <path d="M830 260H889"/>
+    <path d="M459 295V365"/>
+    <path d="M731 295V365"/>
+    <path d="M1019 295V365"/>
+  </g>
+  <g fill="#BDD3BA" stroke="#788786" stroke-width="4">
+    <rect x="360" y="220" width="200" height="80" rx="8"/>
+    <rect x="632" y="220" width="200" height="80" rx="8"/>
+    <rect x="889" y="220" width="260" height="80" rx="8"/>
+  </g>
+  <g fill="#EAE7D6" stroke="#788786" stroke-width="3">
+    <rect x="354" y="365" width="210" height="85" rx="7"/>
+    <rect x="625" y="365" width="215" height="85" rx="7"/>
+    <rect x="901" y="365" width="235" height="85" rx="7"/>
+  </g>
+  <g fill="#1F3433" font-family="Manrope,Arial,sans-serif" text-anchor="middle">
+    <text x="460" y="270" font-size="25" font-weight="700">Есть питание?</text>
+    <text x="732" y="255" font-size="23" font-weight="700">Есть</text>
+    <text x="732" y="282" font-size="23" font-weight="700">изображение?</text>
+    <text x="1019" y="255" font-size="24" font-weight="700">Система</text>
+    <text x="1019" y="283" font-size="24" font-weight="700">загрузилась?</text>
+    <text x="459" y="400" font-size="22">Проверить</text>
+    <text x="459" y="427" font-size="22">питание</text>
+    <text x="732" y="400" font-size="22">Проверить экран</text>
+    <text x="732" y="427" font-size="22">и подключение</text>
+    <text x="1019" y="400" font-size="22">Проверить этап</text>
+    <text x="1019" y="427" font-size="22">загрузки</text>
+  </g>
+  <g fill="#5F7473" font-family="Manrope,Arial,sans-serif" font-size="20" font-weight="700">
+    <text x="578" y="246">да</text>
+    <text x="845" y="246">да</text>
+    <text x="470" y="342">нет</text>
+    <text x="740" y="342">нет</text>
+    <text x="1027" y="342">нет</text>
+  </g>
+</svg>

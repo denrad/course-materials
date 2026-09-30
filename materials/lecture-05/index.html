@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Лекция 5. Отладка: как найти причину сбоя</title>
+  <link rel="stylesheet" href="theme.css?v=d6a2b039d613">
+</head>
+<body>
+  <section class="slide layout-diagram" data-index="1"><div class="grid"></div><img class="slide-image" src="assets/computer-tree.svg" alt="Компьютер и дерево последовательных вопросов о питании, изображении и загрузке"><div class="content"><h1>«Компьютер не работает»</h1><p>Какой вопрос зададите первым?</p></div><span class="page">01</span></section>
+<section class="slide layout-split" data-index="2"><div class="grid"></div><img class="slide-image" src="assets/book-form.svg" alt="Условная форма добавления книги с полями названия, автора и выбора обложки"><div class="content"><h1>«Книга не добавляется»</h1><p>Пользователь заполнил форму и нажал «Добавить».</p><p>Что именно произошло?</p></div><span class="page">02</span></section>
+<section class="slide layout-mapping" data-index="3"><div class="grid"></div><div class="content"><h1>Меняем одно условие</h1><table><tr><th>Попытка</th><th>Обложка</th><th>Результат</th></tr><tr><td>А</td><td>Не выбрана</td><td>Книга добавлена</td></tr><tr><td>Б</td><td>Выбрана</td><td>Книга не добавлена</td></tr></table><blockquote>Остальные поля и исходное состояние каталога одинаковы.</blockquote></div><span class="page">03</span></section>
+<section class="slide layout-mapping" data-index="4"><div class="grid"></div><div class="content"><h1>Где пути расходятся?</h1><table><tr><th>Без обложки</th><th>С обложкой</th></tr><tr><td>Форма → добавление</td><td>Форма → добавление</td></tr><tr><td>Сохранение книги</td><td>Подготовка обложки → ?</td></tr><tr><td>Книга в каталоге</td><td>Сохранение было вызвано?</td></tr></table><blockquote>Какое наблюдение отличит сбой сохранения от того, что до него не дошли?</blockquote></div><span class="page">04</span></section>
+<section class="slide layout-code" data-index="5"><div class="grid"></div><div class="content"><h1>Код до исправления</h1><p>Пройдём его дважды: без обложки и с обложкой.</p><pre><code>function addBook(book, coverFile) {
+  if (coverFile) {
+    book.cover = prepareCover(coverFile);
+    return;
+  }
+
+  saveBook(book);
+  showCatalog();
+}</code></pre></div><span class="page">05</span></section>
+<section class="slide layout-mapping" data-index="6"><div class="grid"></div><div class="content"><h1>До сохранения дошли?</h1><table><tr><th>Шаг</th><th>Без обложки</th><th>С обложкой</th></tr><tr><td>Условие <code>if</code></td><td>Нет</td><td>Да</td></tr><tr><td>Подготовка обложки</td><td>Пропущена</td><td>Выполнена</td></tr><tr><td><code>saveBook(book)</code></td><td>Вызвана</td><td>Не вызвана</td></tr></table><blockquote><code>return</code> завершил функцию раньше сохранения.</blockquote></div><span class="page">06</span></section>
+<section class="slide layout-mapping" data-index="7"><div class="grid"></div><div class="content"><h1>Инструмент отвечает на вопрос</h1><table><tr><th>Инструмент</th><th>Что хотим узнать</th></tr><tr><td>Журнал событий</td><td>Какие этапы попытки записаны?</td></tr><tr><td>Отладчик</td><td>Куда пошло выполнение после обложки?</td></tr><tr><td>Статистика</td><td>Сбой только у книг с обложкой?</td></tr><tr><td>История Git</td><td>Когда и зачем добавили эту ветку?</td></tr></table></div><span class="page">07</span></section>
+<section class="slide layout-code" data-index="8"><div class="grid"></div><div class="content"><h1>Исправление</h1><p>После подготовки обложки выполнение продолжается.</p><pre><code>function addBook(book, coverFile) {
+  if (coverFile) {
+    book.cover = prepareCover(coverFile);
+  }
+
+  saveBook(book);
+  showCatalog();
+}</code></pre></div><span class="page">08</span></section>
+<section class="slide layout-mapping" data-index="9"><div class="grid"></div><div class="content"><h1>Проверяем обе попытки</h1><table><tr><th>Попытка</th><th>После исправления</th></tr><tr><td>Без обложки</td><td>Книга по-прежнему добавляется</td></tr><tr><td>С обложкой</td><td>Книга добавляется вместе с обложкой</td></tr></table><blockquote>Обновить каталог и проверить, что результат сохранился.</blockquote></div><span class="page">09</span></section>
+<section class="slide layout-closing" data-index="10"><div class="grid"></div><div class="content"><h1>Отладка — поиск по наблюдениям</h1><p>Точный симптом → сравнение попыток → первое расхождение</p><p>Проверка причины → исправление → повтор обеих попыток</p><blockquote>Сначала ищем, где поведение разошлось. Потом меняем код.</blockquote></div><span class="page">10</span></section>
+  <div class="help">← → листать · F полный экран</div>
+  <script>
+    const slides = [...document.querySelectorAll('.slide')]; let current = 0;
+    function show(index) { current = Math.max(0, Math.min(slides.length - 1, index)); slides.forEach((s, i) => s.classList.toggle('active', i === current)); location.hash = current + 1; }
+    function fromHash() { const n = Number(location.hash.slice(1)); show(Number.isInteger(n) && n > 0 ? n - 1 : 0); }
+    document.addEventListener('keydown', e => { if (['ArrowRight','PageDown',' '].includes(e.key)) show(current + 1); if (['ArrowLeft','PageUp'].includes(e.key)) show(current - 1); if (e.key.toLowerCase() === 'n') document.body.classList.toggle('show-notes'); if (e.key.toLowerCase() === 'f') document.documentElement.requestFullscreen?.(); });
+    window.addEventListener('hashchange', fromHash); fromHash();
+  </script>
+</body>
+</html>
