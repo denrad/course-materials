@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 520" role="img" aria-labelledby="title desc">
+  <title id="title">Ветви проекта с общей историей</title>
+  <desc id="desc">Коммиты A и B общие. После B основная ветка ведёт к C, а отдельная ветка ведёт к D и E.</desc>
+  <rect width="1280" height="520" fill="none"/>
+  <path d="M130 250H990" fill="none" stroke="#788786" stroke-width="8" stroke-linecap="round"/>
+  <path d="M530 250C650 250 635 385 765 385H1060" fill="none" stroke="#A7BDC0" stroke-width="8" stroke-linecap="round"/>
+  <g font-family="Manrope,Arial,sans-serif" text-anchor="middle" font-weight="700" font-size="38">
+    <circle cx="170" cy="250" r="48" fill="#EAE7D6" stroke="#788786" stroke-width="4"/>
+    <circle cx="530" cy="250" r="48" fill="#EAE7D6" stroke="#788786" stroke-width="4"/>
+    <circle cx="925" cy="250" r="48" fill="#BDD3BA" stroke="#788786" stroke-width="4"/>
+    <circle cx="765" cy="385" r="48" fill="#A7BDC0" stroke="#788786" stroke-width="4"/>
+    <circle cx="1060" cy="385" r="48" fill="#A7BDC0" stroke="#788786" stroke-width="4"/>
+    <text x="170" y="264" fill="#1F3433">A</text>
+    <text x="530" y="264" fill="#1F3433">B</text>
+    <text x="925" y="264" fill="#1F3433">C</text>
+    <text x="765" y="399" fill="#1F3433">D</text>
+    <text x="1060" y="399" fill="#1F3433">E</text>
+  </g>
+  <g fill="#1F3433" font-family="Manrope,Arial,sans-serif" font-size="30" font-weight="600">
+    <text x="1010" y="171">основная</text>
+    <text x="900" y="485">новая ветка</text>
+  </g>
+  <text x="340" y="140" fill="#5F7473" font-family="Manrope,Arial,sans-serif" font-size="28">общая история</text>
+</svg>

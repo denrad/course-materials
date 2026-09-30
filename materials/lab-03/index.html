@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Лабораторная работа № 3: добавление карточки книги через GitHub fork и pull request.">
+    <title>Лабораторная работа № 3 · Git и каталог книг</title>
+    <link rel="stylesheet" href="../../assets/styles.css?v=20260930">
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="/">denrad.dev <span>/ course</span></a>
+      <nav aria-label="Основная навигация">
+        <a href="/">Материалы</a>
+        <a href="#result">Результат</a>
+      </nav>
+    </header>
+
+    <main class="lab-page">
+      <section class="lab-intro" aria-labelledby="page-title">
+        <p class="eyebrow">Лабораторная работа № 3</p>
+        <h1 id="page-title">Git и каталог книг</h1>
+        <p class="lead">Добавьте карточку книги в общий проект через fork и pull request. Затем исправьте её по замечанию в том же pull request.</p>
+        <a class="button" href="https://github.com/denrad/book-catalog-git-lab">Открыть учебный репозиторий</a>
+      </section>
+
+      <section class="lab-section" aria-labelledby="task-title">
+        <p class="eyebrow">Задача</p>
+        <h2 id="task-title">Предложите изменение команде</h2>
+        <p>Команда ведёт учебный каталог книг на GitHub. Вам нужно добавить отдельный Markdown-файл с карточкой книги, показать изменение на проверку и исправить его по замечанию. Программировать приложение не требуется.</p>
+        <p>Работа выполняется индивидуально. Ориентир по времени — 90 минут. Если замечание преподавателя придёт позже, завершите исправление после занятия.</p>
+        <p>Понадобятся Git, учётная запись GitHub и <a href="https://github.com/denrad/book-catalog-git-lab">учебный репозиторий</a>.</p>
+      </section>
+
+      <section class="lab-section" aria-labelledby="start-title">
+        <p class="eyebrow">Перед началом</p>
+        <h2 id="start-title">Посмотрите устройство проекта</h2>
+        <p>Откройте репозиторий на GitHub. Найдите <code>README.md</code>, шаблон карточки, готовый пример, папку <code>books/</code> и <code>.gitignore</code>. Посмотрите историю одного файла: кто и когда внёс изменение.</p>
+        <p>Получите у преподавателя номер или тему своей книги. Каждый участник создаёт свой файл: общий список редактировать не нужно.</p>
+      </section>
+
+      <section class="lab-section" aria-labelledby="process-title">
+        <p class="eyebrow">Порядок работы</p>
+        <h2 id="process-title">Пройдите путь от fork до pull request</h2>
+        <ol class="lab-steps">
+          <li><strong>Получите копию.</strong> Зарегистрируйтесь на GitHub, если нужно. Сделайте fork учебного репозитория, склонируйте свой fork на компьютер и создайте отдельную ветку, например <code>add-book-17</code>.</li>
+          <li><strong>Добавьте карточку.</strong> Создайте в <code>books/</code> Markdown-файл по образцу. Укажите название, автора или авторов, год и короткое описание. Можно выбрать реальную книгу или придумать учебный пример; описание напишите своими словами.</li>
+          <li><strong>Проверьте изменение.</strong> Посмотрите <code>git status</code>. Добавьте только нужный файл в индекс и посмотрите <code>git diff --cached</code>. Убедитесь, что в коммит попадёт именно ваша карточка, затем сделайте коммит с понятным сообщением.</li>
+          <li><strong>Проверьте .gitignore.</strong> Создайте учебный черновик в папке <code>scratch/</code> и убедитесь, что он не появляется среди файлов для коммита. После проверки черновик можно удалить.</li>
+          <li><strong>Предложите изменение.</strong> Отправьте ветку в свой fork и откройте pull request из этой ветки в основной репозиторий. Назовите книгу в заголовке и кратко напишите, что добавили и что проверили.</li>
+          <li><strong>Исправьте замечание.</strong> Прочитайте комментарий преподавателя, измените карточку в той же ветке, сделайте второй коммит и отправьте ветку снова. Исправление появится в уже открытом pull request.</li>
+        </ol>
+        <p>Fork — ваша копия проекта на GitHub; clone — копия на компьютере. Pull request позволяет показать разницу и обсудить её до включения в основной проект.</p>
+      </section>
+
+      <section class="lab-section" aria-labelledby="commands-title">
+        <p class="eyebrow">Подсказка</p>
+        <h2 id="commands-title">Команды для работы</h2>
+        <p>Замените адрес, номер и имя файла на свои. Не копируйте угловые скобки из примера буквально.</p>
+        <pre class="lab-code"><code>git clone &lt;адрес-вашего-fork&gt;
+git switch -c add-book-17
+git status
+git add books/&lt;имя-файла&gt;.md
+git diff --cached
+git commit -m "Добавить карточку книги № 17"
+git push -u origin add-book-17</code></pre>
+        <p>После исправления замечания:</p>
+        <pre class="lab-code"><code>git diff
+git add books/&lt;имя-файла&gt;.md
+git commit -m "Исправить карточку книги № 17"
+git push</code></pre>
+        <p>Если Git просит указать имя и электронную почту автора коммита, настройте их по инструкции преподавателя. Перед первым коммитом проверьте, какой адрес будет виден в истории публичного репозитория.</p>
+      </section>
+
+      <section class="lab-section" id="result" aria-labelledby="result-title">
+        <p class="eyebrow">Результат</p>
+        <h2 id="result-title">Ссылка на ваш pull request</h2>
+        <p>Передайте преподавателю ссылку на pull request способом, который он укажет. В нём должны быть видны:</p>
+        <ol class="lab-deliverables">
+          <li>Карточка книги в отдельном Markdown-файле.</li>
+          <li>Первый коммит с добавлением карточки.</li>
+          <li>Замечание преподавателя и второй коммит с исправлением в том же pull request.</li>
+          <li>Отсутствие случайных файлов и локального черновика в изменениях.</li>
+        </ol>
+        <p>Не закрывайте и не создавайте новый pull request ради исправления. Если замечание непонятно, уточните его в обсуждении. Скриншот или отдельный документ не заменяют ссылку: результат работы — сам репозиторий и история изменения.</p>
+      </section>
+
+      <section class="lab-section" aria-labelledby="checks-title">
+        <p class="eyebrow">Самопроверка</p>
+        <h2 id="checks-title">Что важно проверить</h2>
+        <ul class="lab-checklist">
+          <li>Pull request направлен из вашей ветки и fork в исходный репозиторий.</li>
+          <li>Карточка находится в нужной папке и оформлена по образцу.</li>
+          <li>Сообщения коммитов объясняют добавление и исправление.</li>
+          <li>В изменении нет случайных файлов, настоящих паролей, токенов и личных данных.</li>
+        </ul>
+        <p><code>.gitignore</code> помогает не добавлять локальные файлы, но не удаляет из истории то, что уже попало в коммит.</p>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>Материалы курса · <a href="https://denrad.dev">denrad.dev</a></p>
+    </footer>
+  </body>
+</html>

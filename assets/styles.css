@@ -76,6 +76,7 @@ h2 { font-size: clamp(2rem, 4vw, 3.4rem); line-height: 1.04; letter-spacing: -.0
 .lab-callout { margin-top: 16px; background: #efeee8; }
 .lab-steps, .lab-deliverables, .lab-checklist { display: grid; gap: 17px; padding-left: 24px; }
 .lab-checklist { list-style: "✓  "; }
+.lab-code { overflow-x: auto; padding: 20px 24px; background: var(--deep); color: white; border-radius: 5px; font-size: .96rem; line-height: 1.55; }
 .lab-qr { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 32px; padding: 42px 0 70px; border-top: 1px solid var(--line); }
 .lab-qr img { width: min(180px, 35vw); border: 1px solid var(--line); }
 

@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 550" role="img" aria-labelledby="title desc">
+  <title id="title">Разница между двумя версиями текстового файла</title>
+  <desc id="desc">Строка «Сдать работу в пятницу» заменена на «Сдать работу до 18:00 пятницы».</desc>
+  <rect x="26" y="84" width="708" height="382" rx="10" fill="#EAE7D6" stroke="#788786" stroke-width="4"/>
+  <rect x="26" y="84" width="708" height="70" rx="10" fill="#BDD3BA"/>
+  <path d="M26 154H734" stroke="#788786" stroke-width="3"/>
+  <g fill="#1F3433" font-family="Manrope,Arial,sans-serif">
+    <text x="64" y="130" font-size="29" font-weight="700">Заметка.md</text>
+    <text x="60" y="225" font-size="27" fill="#876A68">− Сдать работу</text>
+    <text x="86" y="264" font-size="27" fill="#876A68">в пятницу</text>
+    <text x="60" y="344" font-size="27" fill="#355B59">+ Сдать работу</text>
+    <text x="86" y="383" font-size="27" fill="#355B59">до 18:00 пятницы</text>
+  </g>
+</svg>

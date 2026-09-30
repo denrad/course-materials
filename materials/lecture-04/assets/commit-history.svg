@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 550" role="img" aria-labelledby="title desc">
+  <title id="title">Два коммита в истории проекта</title>
+  <desc id="desc">Коммит A связан с более поздним коммитом B. Каждый представляет сохранённое состояние проекта.</desc>
+  <rect width="760" height="550" fill="none"/>
+  <path d="M163 249H565" stroke="#788786" stroke-width="7" stroke-linecap="round"/>
+  <path d="M551 235l23 14-23 14" fill="none" stroke="#788786" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="170" cy="249" r="69" fill="#EAE7D6" stroke="#788786" stroke-width="5"/>
+  <circle cx="568" cy="249" r="69" fill="#BDD3BA" stroke="#788786" stroke-width="5"/>
+  <g fill="#1F3433" font-family="Manrope,Arial,sans-serif" text-anchor="middle">
+    <text x="170" y="266" font-size="47" font-weight="700">A</text>
+    <text x="568" y="266" font-size="47" font-weight="700">B</text>
+    <text x="170" y="373" font-size="31" font-weight="700">Было</text>
+    <text x="568" y="373" font-size="31" font-weight="700">Стало</text>
+    <text x="368" y="133" font-size="27" fill="#5F7473">общая история</text>
+  </g>
+</svg>

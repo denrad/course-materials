@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Лекция 4. Репозиторий проекта и совместная работа с Git</title>
+  <link rel="stylesheet" href="theme.css?v=79c85882408a">
+</head>
+<body>
+  <section class="slide layout-statement" data-index="1"><div class="grid"></div><div class="content"><h1>Какой файл последний?</h1><p>«итог» · «итог_новый» · «итог_точно_последний»</p><blockquote>Что изменилось между версиями — и зачем?</blockquote></div><span class="page">01</span></section>
+<section class="slide layout-three" data-index="2"><div class="grid"></div><div class="content"><h1>Одна история — три ситуации</h1><div class="concept"><h2>Работаю один</h2><p>Хочу сравнить прошлую и нынешнюю версию заметки.</p></div><div class="concept"><h2>Работаем вместе</h2><p>Хочу понять, кто и зачем изменил общий проект.</p></div><div class="concept"><h2>Работаю с агентом</h2><p>Хочу увидеть его правки и дать ему контекст прежних решений.</p></div></div><span class="page">02</span></section>
+<section class="slide layout-mapping" data-index="3"><div class="grid"></div><div class="content"><h1>Что хранить в репозитории?</h1><table><tr><th>В истории проекта</th><th>Оставить локально</th></tr></table><p>|---|---|</p><table><tr><th>Исходники, тесты, README</th><th>Кеши и временные файлы</th></tr><tr><td>Правила сборки и пример настроек</td><td>Результаты сборки, которые легко повторить</td></tr><tr><td>Описание структуры данных</td><td>Рабочую базу с реальными данными</td></tr></table><blockquote>.gitignore помогает исключить ненужные файлы до их добавления.</blockquote></div><span class="page">03</span></section>
+<section class="slide layout-split" data-index="4"><div class="grid"></div><img class="slide-image" src="assets/commit-history.svg" alt="Два коммита связаны в общей истории проекта"><div class="content"><h1>Коммит — сохранённый шаг</h1><p>Файлы изменились.</p><p>Мы выбрали, что сохранить.</p><p>Коммит зафиксировал состояние и объяснение.</p></div><span class="page">04</span></section>
+<section class="slide layout-split" data-index="5"><div class="grid"></div><img class="slide-image" src="assets/diff-demo.svg" alt="Одна строка заметки до и после уточнения времени сдачи"><div class="content"><h1>Один коммит на экране</h1><p>Что изменено?</p><p>Что именно?</p><p>Что войдёт в историю?</p><blockquote>Сначала смотрим разницу. Потом сохраняем шаг.</blockquote></div><span class="page">05</span></section>
+<section class="slide layout-diagram" data-index="6"><div class="grid"></div><img class="slide-image" src="assets/branches.svg" alt="Две ветки расходятся от общего коммита B и продолжаются независимо"><div class="content"><h1>Ветки имеют общую историю</h1><p>После общего коммита работа может пойти в двух направлениях.</p></div><span class="page">06</span></section>
+<section class="slide layout-diagram" data-index="7"><div class="grid"></div><img class="slide-image" src="assets/local-remote.svg" alt="Локальный репозиторий с коммитом передаёт его удалённому репозиторию через push"><div class="content"><h1>Коммит локален. Push отправляет его</h1><p>Участники могут работать со своей историей без общего сервера.</p></div><span class="page">07</span></section>
+<section class="slide layout-flow" data-index="8"><div class="grid"></div><div class="content"><h1>Pull request — предложение изменений</h1><p>Ветка → push → просмотр разницы → обсуждение → решение</p><blockquote>Отправить работу ≠ принять её в общую ветку.</blockquote></div><span class="page">08</span></section>
+<section class="slide layout-closing" data-index="9"><div class="grid"></div><div class="content"><h1>История помогает принять результат</h1><p>Агент читает прежние коммиты, чтобы понять проект.</p><p>Агент или человек меняет файлы.</p><p>Мы смотрим разницу и проверяем результат.</p><blockquote>История видна. Решение о приёмке остаётся за человеком.</blockquote></div><span class="page">09</span></section>
+  <div class="help">← → листать · F полный экран</div>
+  <script>
+    const slides = [...document.querySelectorAll('.slide')]; let current = 0;
+    function show(index) { current = Math.max(0, Math.min(slides.length - 1, index)); slides.forEach((s, i) => s.classList.toggle('active', i === current)); location.hash = current + 1; }
+    function fromHash() { const n = Number(location.hash.slice(1)); show(Number.isInteger(n) && n > 0 ? n - 1 : 0); }
+    document.addEventListener('keydown', e => { if (['ArrowRight','PageDown',' '].includes(e.key)) show(current + 1); if (['ArrowLeft','PageUp'].includes(e.key)) show(current - 1); if (e.key.toLowerCase() === 'n') document.body.classList.toggle('show-notes'); if (e.key.toLowerCase() === 'f') document.documentElement.requestFullscreen?.(); });
+    window.addEventListener('hashchange', fromHash); fromHash();
+  </script>
+</body>
+</html>
