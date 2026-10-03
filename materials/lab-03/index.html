@@ -6,6 +6,10 @@
     <meta name="description" content="Лабораторная работа № 3: добавление карточки книги через GitHub fork и pull request.">
     <title>Лабораторная работа № 3 · Git и каталог книг</title>
     <link rel="stylesheet" href="../../assets/styles.css?v=20260930">
+  <style>
+      .browser-guide img { display:block; width:100%; height:auto; border:1px solid #d1d9e0; border-radius:8px; margin:24px 0 12px; }
+      .browser-guide code { overflow-wrap:anywhere; }
+    </style>
   </head>
   <body>
     <header class="site-header">
@@ -29,7 +33,7 @@
         <h2 id="task-title">Предложите изменение команде</h2>
         <p>Команда ведёт учебный каталог книг на GitHub. Вам нужно добавить отдельный Markdown-файл с карточкой книги, показать изменение на проверку и исправить его по замечанию. Цель — показать, что вы умеете создать fork, предложить изменение через pull request и доработать его после review. Программировать приложение не требуется.</p>
         <p>Работа выполняется индивидуально. Ориентир по времени — 90 минут. Если замечание преподавателя придёт позже, завершите исправление после занятия.</p>
-        <p>Понадобятся Git, учётная запись GitHub и <a href="https://github.com/denrad/book-catalog-git-lab">учебный репозиторий</a>.</p>
+        <p>Понадобятся учётная запись GitHub и <a href="https://github.com/denrad/book-catalog-git-lab">учебный репозиторий</a>.</p>
       </section>
 
       <section class="lab-section" aria-labelledby="start-title">
@@ -39,9 +43,14 @@
         <p>Придумайте название вымышленной книги в духе классической литературы. Каждый участник создаёт отдельный файл для своей книги; общий список редактировать не нужно.</p>
       </section>
 
+      <section class="lab-section" aria-labelledby="choice-title">
+        <h2 id="choice-title">Выберите один способ</h2>
+        <p><a href="#process-title">Вариант А — локальный Git</a>: работа на компьютере с командами. <a href="#browser-title">Вариант Б — сайт GitHub</a>: достаточно браузера, устанавливать Git не нужно. Выполните один вариант; карточка, оформление PR и критерии проверки одинаковые.</p>
+      </section>
+
       <section class="lab-section" aria-labelledby="process-title">
-        <p class="eyebrow">Порядок работы</p>
-        <h2 id="process-title">Пройдите путь от fork до pull request</h2>
+        <p class="eyebrow">Вариант А · Локальный Git</p>
+        <h2 id="process-title">Через Git на компьютере</h2>
         <ol class="lab-steps">
           <li><strong>Получите копию.</strong> Зарегистрируйтесь на GitHub, если нужно. Сделайте fork учебного репозитория, склонируйте свой fork на компьютер и создайте отдельную ветку, например <code>add-my-book</code>.</li>
           <li><strong>Добавьте карточку.</strong> Создайте в <code>books/</code> Markdown-файл по образцу. В качестве имени файла используйте свой логин GitHub, например <code>books/your-github-login.md</code>. Укажите придуманное название книги, автора или авторов, год и короткое описание. Автора, год и описание тоже придумайте: это учебная карточка вымышленной книги.</li>
@@ -59,7 +68,7 @@
         <p>Преподаватель проверяет изменения во вкладке <strong>Files changed</strong> и оставляет review:</p>
         <ul class="lab-checklist">
           <li><strong>Comment</strong> — вопрос или пояснение. Ответьте в обсуждении.</li>
-          <li><strong>Request changes</strong> — требуется доработка. PR остаётся открытым: исправьте файл в той же ветке, создайте новый коммит и сделайте push.</li>
+          <li><strong>Request changes</strong> — требуется доработка. PR остаётся открытым: исправьте файл в той же ветке, создайте новый коммит. В варианте А выполните push; в варианте Б сохраните изменение через Commit changes в ту же ветку.</li>
           <li><strong>Approve</strong> — работа одобрена. Затем преподаватель отдельно выполняет <strong>Merge pull request</strong>, чтобы добавить карточку в основной репозиторий.</li>
         </ul>
         <p>Если PR имеет статус <strong>Closed</strong> без <strong>Merged</strong>, изменение закрыто без добавления. Прочитайте причину и уточните дальнейшие действия у преподавателя.</p>
@@ -67,7 +76,7 @@
 
       <section class="lab-section" aria-labelledby="commands-title">
         <p class="eyebrow">Подсказка</p>
-        <h2 id="commands-title">Команды для работы</h2>
+        <h2 id="commands-title">Команды для варианта А</h2>
         <p>Замените адрес, название ветки и имя файла на свои. Не копируйте угловые скобки из примера буквально.</p>
         <pre class="lab-code"><code>git clone &lt;адрес-вашего-fork&gt;
 git switch -c add-my-book
@@ -83,6 +92,55 @@ git commit -m "Исправить карточку вымышленной кни
 git push</code></pre>
         <p>Если Git просит указать имя и электронную почту автора коммита, настройте их по инструкции преподавателя. Перед первым коммитом проверьте, какой адрес будет виден в истории публичного репозитория.</p>
       </section>
+
+<section class="lab-section browser-guide" aria-labelledby="browser-title"><p class="eyebrow">Вариант Б · Без терминала</p><h2 id="browser-title">Через сайт GitHub</h2>
+<p>Установка Git и терминал не нужны. Выполните этот вариант вместо локальных
+команд варианта А. Карточка книги и требования к PR одинаковые для обоих способов.</p>
+<ol class="lab-steps" start="1">
+<li><strong>Создайте fork.</strong> Войдите в GitHub, откройте учебный репозиторий,
+   нажмите <strong>Fork → Create fork</strong>. Дальше работайте в копии под своим логином.</li>
+<li><strong>Создайте ветку.</strong> В своём fork откройте переключатель <code>main</code>, введите
+   <code>add-my-book</code> и выберите создание новой ветки. Убедитесь, что выбрана она.</li>
+<li><strong>Создайте карточку.</strong> Скопируйте содержимое <code>BOOK_TEMPLATE.md</code>. В своей
+   ветке откройте <code>books/</code>, затем <strong>Add file → Create new file</strong>. Имя файла —
+   <code>ваш-логин.md</code>; вставьте шаблон и заполните поля вымышленной книги.</li>
+<li><strong>Сохраните коммит.</strong> Просмотрите карточку через <strong>Preview</strong>, нажмите
+   <strong>Commit changes…</strong>, напишите понятное сообщение и сохраните изменение
+   в текущую ветку <code>add-my-book</code>. Фамилию, имя и группу можно добавить в сообщение.</li>
+</ol>
+<p><img alt="Где находится Add file в интерфейсе GitHub" src="assets/github-add-file.png" /></p>
+<p><strong>Скриншот 1.</strong> Кнопка <strong>Add file</strong> открывает меню создания файла.
+На примере показаны чужой репозиторий, папка <code>.github</code> и ветка <code>main</code>;
+в вашей работе нужны <strong>свой fork → add-my-book → books/</strong>.
+После заполнения карточки сохраните её через <strong>Commit changes</strong>.
+<a href="https://docs.github.com/en/repositories/working-with-files/managing-files/creating-new-files">Источник: GitHub Docs — создание файлов</a>.</p>
+<ol class="lab-steps" start="5">
+<li><strong>Откройте PR.</strong> В своём fork с выбранной веткой нажмите
+   <strong>Contribute → Open pull request</strong>. Если этой кнопки нет, откройте
+   <strong>Pull requests → New pull request → compare across forks</strong> в исходном репозитории.</li>
+<li><strong>Проверьте направление.</strong> Слева, в <strong>base repository</strong>, должен быть
+   <code>denrad/book-catalog-git-lab</code>, ветка <strong>base: main</strong>. Справа, в
+   <strong>head repository / head fork</strong>, — ваш fork, <strong>compare: add-my-book</strong>.
+   Просмотрите разницу: должна добавляться только ваша карточка.</li>
+<li><strong>Заполните PR.</strong> Нажмите <strong>Create pull request</strong>. Заголовок — название
+   книги; описание — фамилия, имя, группа, что добавлено и что проверено.
+   Отправьте PR кнопкой <strong>Create pull request</strong>. Не оставляйте его черновиком.</li>
+</ol>
+<p><img alt="Выбор репозиториев и веток при создании pull request" src="assets/github-pull-request.png" /></p>
+<p><strong>Скриншот 2.</strong> Слева — куда предлагается изменение, справа — откуда.
+Названия на изображении приведены для примера. Для ЛР-3 выберите
+<strong>denrad/book-catalog-git-lab:main ← ваш-fork:add-my-book</strong>.
+<a href="https://docs.github.com/en/pull-requests/how-tos/create-pull-requests/creating-a-pull-request-from-a-fork">Источник: GitHub Docs — PR из fork</a>.</p>
+<ol class="lab-steps" start="8">
+<li><strong>Исправьте замечание.</strong> После review откройте свой fork, выберите
+   <strong>ту же ветку add-my-book</strong>, откройте карточку и нажмите карандаш
+   (<strong>Edit this file</strong>). Исправьте текст, нажмите <strong>Commit changes…</strong>
+   и сохраните новый коммит <strong>в текущую ветку</strong>. Новый PR и новая ветка не нужны;
+   отдельный <code>push</code> при работе на сайте не требуется.</li>
+<li><strong>Проверьте обновление и результат.</strong> Вернитесь в прежний PR: проверьте новый
+   коммит и изменения в <strong>Files changed</strong>, ответьте на замечание преподавателя.
+   После одобрения и merge найдите карточку в <code>main</code> исходного репозитория.</li>
+</ol></section>
 
       <section class="lab-section" id="result" aria-labelledby="result-title">
         <p class="eyebrow">Результат</p>
@@ -108,7 +166,7 @@ git push</code></pre>
           <li>Сообщения коммитов объясняют добавление и исправление.</li>
           <li>В изменении нет случайных файлов, настоящих паролей, токенов и посторонних личных данных.</li>
         </ul>
-        <p>Будьте готовы объяснить: чем fork отличается от clone и ветки; куда отправляется ваш push; почему новый коммит обновляет тот же PR; чем Approve отличается от Merge.</p>
+        <p>Будьте готовы объяснить: чем fork отличается от clone и ветки; где находится ваш коммит до merge; почему новый коммит обновляет тот же PR; чем Approve отличается от Merge.</p>
         <p><code>.gitignore</code> помогает не добавлять локальные файлы, но не удаляет из истории то, что уже попало в коммит.</p>
       </section>
     </main>
