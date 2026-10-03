@@ -7,7 +7,9 @@
     <title>Лабораторная работа № 3 · Git и каталог книг</title>
     <link rel="stylesheet" href="../../assets/styles.css?v=20260930">
   <style>
-      .browser-guide img { display:block; width:100%; height:auto; border:1px solid #d1d9e0; border-radius:8px; margin:24px 0 12px; }
+      .browser-guide figure { margin:24px 0 32px; }
+      .browser-guide figure img { display:block; width:100%; height:auto; border:1px solid #d1d9e0; border-radius:8px; }
+      .browser-guide figcaption { margin-top:10px; color:#525b66; font-size:.94rem; line-height:1.5; }
       .browser-guide code { overflow-wrap:anywhere; }
     </style>
   </head>
@@ -108,12 +110,8 @@ git push</code></pre>
    <strong>Commit changes…</strong>, напишите понятное сообщение и сохраните изменение
    в текущую ветку <code>add-my-book</code>. Фамилию, имя и группу можно добавить в сообщение.</li>
 </ol>
-<p><img alt="Где находится Add file в интерфейсе GitHub" src="assets/github-add-file.png" /></p>
-<p><strong>Скриншот 1.</strong> Кнопка <strong>Add file</strong> открывает меню создания файла.
-На примере показаны чужой репозиторий, папка <code>.github</code> и ветка <code>main</code>;
-в вашей работе нужны <strong>свой fork → add-my-book → books/</strong>.
-После заполнения карточки сохраните её через <strong>Commit changes</strong>.
-<a href="https://docs.github.com/en/repositories/working-with-files/managing-files/creating-new-files">Источник: GitHub Docs — создание файлов</a>.</p>
+<figure id="shot-create-file"><a href="assets/github-create-file.jpg"><img alt="Форма создания файла книги в папке books и выбранной ветке GitHub" src="assets/github-create-file.jpg" loading="lazy"></a><figcaption><strong>Скриншот 1.</strong> В папке <code>books/</code> укажите имя файла и заполните карточку. На снимке учебная ветка преподавателя; у вас должна быть ветка <code>add-my-book</code> в собственном fork. Нажмите на изображение, чтобы увеличить.</figcaption></figure>
+<figure id="shot-commit"><a href="assets/github-commit.jpg"><img alt="Окно Commit changes с примером сообщения и сохранением в текущую ветку" src="assets/github-commit.jpg" loading="lazy"></a><figcaption><strong>Скриншот 2.</strong> Укажите сообщение коммита и выберите <strong>Commit directly to the … branch</strong>, чтобы сохранить изменение в текущую ветку. Адрес автора коммита на снимке скрыт.</figcaption></figure>
 <ol class="lab-steps" start="5">
 <li><strong>Откройте PR.</strong> В своём fork с выбранной веткой нажмите
    <strong>Contribute → Open pull request</strong>. Если этой кнопки нет, откройте
@@ -126,11 +124,8 @@ git push</code></pre>
    книги; описание — фамилия, имя, группа, что добавлено и что проверено.
    Отправьте PR кнопкой <strong>Create pull request</strong>. Не оставляйте его черновиком.</li>
 </ol>
-<p><img alt="Выбор репозиториев и веток при создании pull request" src="assets/github-pull-request.png" /></p>
-<p><strong>Скриншот 2.</strong> Слева — куда предлагается изменение, справа — откуда.
-Названия на изображении приведены для примера. Для ЛР-3 выберите
-<strong>denrad/book-catalog-git-lab:main ← ваш-fork:add-my-book</strong>.
-<a href="https://docs.github.com/en/pull-requests/how-tos/create-pull-requests/creating-a-pull-request-from-a-fork">Источник: GitHub Docs — PR из fork</a>.</p>
+<figure id="shot-compare"><a href="assets/github-compare.jpg"><img alt="Сравнение base main и учебной ветки с одной изменённой карточкой" src="assets/github-compare.jpg" loading="lazy"></a><figcaption><strong>Скриншот 3.</strong> Проверьте направление <strong>base: main ← compare: add-my-book</strong> и список изменений. На снимке обе ветки в репозитории преподавателя, потому что это демонстрация. В вашей работе выберите свой fork как источник изменений.</figcaption></figure>
+<figure id="shot-pr-form"><a href="assets/github-pr-form.jpg"><img alt="Форма pull request с названием книги и сведениями о студенте в описании" src="assets/github-pr-form.jpg" loading="lazy"></a><figcaption><strong>Скриншот 4.</strong> В заголовке PR укажите название книги. В описании напишите фамилию, имя, группу, что добавили и проверили. Данные на снимке приведены только для примера.</figcaption></figure>
 <ol class="lab-steps" start="8">
 <li><strong>Исправьте замечание.</strong> После review откройте свой fork, выберите
    <strong>ту же ветку add-my-book</strong>, откройте карточку и нажмите карандаш
