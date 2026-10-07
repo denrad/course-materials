@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600" role="img" aria-label="Выбранные уровни OSI и разные среды передачи">
+  <g font-family="Manrope,Arial,sans-serif" fill="#1f3433">
+    <rect x="70" y="28" width="1060" height="105" rx="18" fill="#bdd3ba" stroke="#667f7b" stroke-width="3"/>
+    <rect x="70" y="153" width="1060" height="105" rx="18" fill="#eae7d6" stroke="#667f7b" stroke-width="3"/>
+    <rect x="70" y="278" width="1060" height="105" rx="18" fill="#cbb7b4" stroke="#667f7b" stroke-width="3"/>
+    <text x="105" y="95" font-size="37" font-weight="700">7 · Прикладной</text>
+    <text x="680" y="95" font-size="30">DNS · HTTP</text>
+    <text x="105" y="220" font-size="37" font-weight="700">4 · Транспортный</text>
+    <text x="680" y="220" font-size="30">TCP · UDP</text>
+    <text x="105" y="345" font-size="37" font-weight="700">3 · Сетевой</text>
+    <text x="680" y="345" font-size="30">IP</text>
+    <path d="M600 390v44" stroke="#355b59" stroke-width="5"/>
+    <text x="600" y="475" text-anchor="middle" font-size="26" fill="#5f7473">Способ передачи может меняться</text>
+    <g font-size="25" font-weight="600" text-anchor="middle">
+      <text x="190" y="548">медь</text>
+      <text x="455" y="548">оптика</text>
+      <text x="720" y="548">Wi-Fi</text>
+      <text x="985" y="548">радиосеть</text>
+    </g>
+  </g>
+</svg>

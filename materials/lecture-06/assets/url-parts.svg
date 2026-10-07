@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 500" role="img" aria-label="Схема, имя и путь в учебном URL">
+  <g font-family="Manrope,Arial,sans-serif" fill="#1f3433">
+    <rect x="72" y="92" width="258" height="150" rx="20" fill="#bdd3ba"/>
+    <rect x="337" y="92" width="535" height="150" rx="20" fill="#eae7d6"/>
+    <rect x="879" y="92" width="250" height="150" rx="20" fill="#cbb7b4"/>
+    <text x="200" y="183" text-anchor="middle" font-size="45" font-weight="700">https://</text>
+    <text x="605" y="183" text-anchor="middle" font-size="45" font-weight="700">blog.example.org</text>
+    <text x="1004" y="183" text-anchor="middle" font-size="45" font-weight="700">/hello</text>
+    <path d="M200 254v72M605 254v72M1004 254v72" stroke="#667f7b" stroke-width="3"/>
+    <g text-anchor="middle" font-size="30">
+      <text x="200" y="375">схема</text>
+      <text x="605" y="375">имя сервиса</text>
+      <text x="1004" y="375">путь</text>
+    </g>
+    <text x="605" y="452" text-anchor="middle" font-size="24" fill="#5f7473">URL указывает не только на сервер, но и на нужный ресурс</text>
+  </g>
+</svg>

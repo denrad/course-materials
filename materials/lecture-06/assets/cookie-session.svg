@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 560" role="img" aria-label="Два запроса с идентификатором сессии">
+  <defs><marker id="arr" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M1 1l10 5-10 5" fill="none" stroke="#355b59" stroke-width="2"/></marker></defs>
+  <g fill="none" stroke="#667f7b" stroke-width="3" stroke-linejoin="round">
+    <rect x="60" y="120" width="235" height="315" rx="20" fill="#eae7d6"/>
+    <rect x="870" y="120" width="265" height="315" rx="20" fill="#bdd3ba"/>
+    <path d="M325 220h500" stroke="#355b59" stroke-width="5" marker-end="url(#arr)"/>
+    <path d="M325 335h500" stroke="#355b59" stroke-width="5" marker-end="url(#arr)"/>
+    <rect x="470" y="450" width="430" height="72" rx="14" fill="#f8f8f1"/>
+    <path d="M1000 435v51h-95" stroke="#667f7b" stroke-width="3"/>
+  </g>
+  <g font-family="Manrope,Arial,sans-serif" fill="#1f3433" text-anchor="middle">
+    <text x="177" y="185" font-size="37" font-weight="700">Браузер</text>
+    <text x="177" y="285" font-size="26">cookie</text>
+    <text x="177" y="327" font-size="28" font-weight="700">id = 42</text>
+    <text x="1002" y="185" font-size="37" font-weight="700">Приложение</text>
+    <text x="1002" y="285" font-size="25">связывает запросы</text>
+    <text x="1002" y="330" font-size="28" font-weight="700">по id</text>
+    <text x="560" y="196" font-size="27">запрос 1</text>
+    <text x="560" y="311" font-size="27">запрос 2 + cookie</text>
+    <text x="685" y="496" font-size="25">сессия 42 → корзина</text>
+  </g>
+</svg>

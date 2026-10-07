@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>DNS и HTTP. Как браузер находит сервер и разговаривает с ним</title>
+  <link rel="stylesheet" href="theme.css?v=46b1b2b72ee7">
+</head>
+<body>
+  <section class="slide layout-opening" data-index="1"><div class="grid"></div><div class="content"><h1>Что происходит после ввода адреса?</h1><p><code>https://blog.example.org/hello</code></p><blockquote>Сегодня разберём путь от имени до ответа сервера.</blockquote></div><span class="page">01</span></section>
+<section class="slide layout-diagram" data-index="2"><div class="grid"></div><img class="slide-image" src="assets/hosts-dns.svg" alt="Переход от отдельных списков имён на компьютерах к общей распределённой системе DNS"><div class="content"><h1>Почему одного списка адресов мало</h1><p>Если сервис переехал, кто исправит записи на каждом компьютере?</p></div><span class="page">02</span></section>
+<section class="slide layout-diagram" data-index="3"><div class="grid"></div><img class="slide-image" src="assets/domain-cname.svg" alt="Иерархия имени blog.example.org и учебная запись CNAME на имя платформы"><div class="content"><h1>Имя читается справа налево</h1><p><code>blog.example.org</code> — поддомен внутри управляемой DNS-зоны.</p></div><span class="page">03</span></section>
+<section class="slide layout-diagram" data-index="4"><div class="grid"></div><img class="slide-image" src="assets/layers-media.svg" alt="Три выбранных уровня модели OSI над медным кабелем, оптикой, Wi-Fi и радиосетью"><div class="content"><h1>Зачем сети уровни</h1><p>Приложению не нужно знать, по чему идёт сигнал: по кабелю, оптике или радио.</p></div><span class="page">04</span></section>
+<section class="slide layout-diagram" data-index="5"><div class="grid"></div><img class="slide-image" src="assets/rfc1149-dove.svg" alt="Один белый голубь в позе голубя мира летит с бумажной IP-датаграммой вместо оливковой ветви"><div class="content"><h1>IP по голубиной почте</h1><p>Первоапрельский RFC 1149 · IP-датаграммы на птицах</p></div><span class="page">05</span></section>
+<section class="slide layout-diagram" data-index="6"><div class="grid"></div><img class="slide-image" src="assets/url-parts.svg" alt="Три части учебного URL: схема HTTPS, имя blog.example.org и путь hello"><div class="content"><h1>В адресе есть имя и путь</h1><p><code>https://blog.example.org/hello</code></p></div><span class="page">06</span></section>
+<section class="slide layout-code" data-index="7"><div class="grid"></div><div class="content"><h1>GET просит, POST передаёт данные</h1><pre><code>GET /hello HTTP/1.1
+Host: blog.example.org
+
+POST /message HTTP/1.1
+Host: blog.example.org
+Content-Type: text/plain; charset=utf-8
+Content-Length: 13
+
+Привет!</code></pre><blockquote>Сервис определяет, что делать с полученным запросом.</blockquote></div><span class="page">07</span></section>
+<section class="slide layout-response" data-index="8"><div class="grid"></div><div class="content"><h1>Ответ содержит результат и данные</h1><pre><code>HTTP/1.1 200 OK
+Content-Type: text/html
+
+&lt;h1&gt;Привет!&lt;/h1&gt;</code></pre><p><code>/missing</code> → <code>404 Not Found</code></p></div><span class="page">08</span></section>
+<section class="slide layout-diagram" data-index="9"><div class="grid"></div><img class="slide-image" src="assets/cookie-session.svg" alt="Два отдельных HTTP-запроса, cookie с идентификатором и состояние сессии на стороне приложения"><div class="content"><h1>Как сайт узнаёт пользователя снова</h1><p>HTTP сам не хранит историю предыдущих запросов.</p></div><span class="page">09</span></section>
+<section class="slide layout-diagram" data-index="10"><div class="grid"></div><img class="slide-image" src="assets/magic-cookie.svg" alt="Название magic cookie предшествовало Web; сайт задаёт cookie, браузер возвращает его позже, а кнопка «Разрешить cookies» относится к сохранению и использованию этих данных"><div class="content"><h1>Почему это «печенье»?</h1><p>Magic cookie — старое название небольшого фрагмента данных, который получают и предъявляют снова.</p></div><span class="page">10</span></section>
+<section class="slide layout-diagram" data-index="11"><div class="grid"></div><img class="slide-image" src="assets/https-sequence.svg" alt="Последовательность DNS, установления защищённого соединения и обмена HTTP-запросом и ответом"><div class="content"><h1>HTTPS защищает обмен</h1><p>Сначала защищённое соединение, затем HTTP-запрос и ответ.</p></div><span class="page">11</span></section>
+<section class="slide layout-closing" data-index="12"><div class="grid"></div><div class="content"><h1>Соберите путь целиком</h1><p>Имя → DNS → адрес → соединение → HTTP-запрос → HTTP-ответ</p><p>Где возникнет ошибка, если имя не найдено? А если пришёл <code>404</code>?</p><blockquote>На следующей неделе вы опубликуете блог и подключите к нему свой поддомен.</blockquote></div><span class="page">12</span></section>
+  <div class="help">← → листать · F полный экран</div>
+  <script>
+    const slides = [...document.querySelectorAll('.slide')]; let current = 0;
+    function show(index) { current = Math.max(0, Math.min(slides.length - 1, index)); slides.forEach((s, i) => s.classList.toggle('active', i === current)); location.hash = current + 1; }
+    function fromHash() { const n = Number(location.hash.slice(1)); show(Number.isInteger(n) && n > 0 ? n - 1 : 0); }
+    document.addEventListener('keydown', e => { if (['ArrowRight','PageDown',' '].includes(e.key)) show(current + 1); if (['ArrowLeft','PageUp'].includes(e.key)) show(current - 1); if (e.key.toLowerCase() === 'n') document.body.classList.toggle('show-notes'); if (e.key.toLowerCase() === 'f') document.documentElement.requestFullscreen?.(); });
+    window.addEventListener('hashchange', fromHash); fromHash();
+  </script>
+</body>
+</html>

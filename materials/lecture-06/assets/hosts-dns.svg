@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 520" role="img" aria-label="От локальных списков адресов к DNS">
+  <defs>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M1 1l10 5-10 5" fill="none" stroke="#355b59" stroke-width="2"/></marker>
+  </defs>
+  <g fill="none" stroke="#667f7b" stroke-width="3" stroke-linejoin="round">
+    <rect x="65" y="80" width="300" height="310" rx="22" fill="#eae7d6"/>
+    <rect x="98" y="125" width="235" height="62" rx="10" fill="#f8f8f1"/>
+    <rect x="98" y="205" width="235" height="62" rx="10" fill="#f8f8f1"/>
+    <rect x="98" y="285" width="235" height="62" rx="10" fill="#f8f8f1"/>
+    <path d="M415 235h125" stroke="#355b59" stroke-width="6" marker-end="url(#arrow)"/>
+    <rect x="650" y="165" width="220" height="140" rx="22" fill="#bdd3ba"/>
+    <path d="M870 235h92M982 235v-125M982 235v125" stroke="#667f7b" stroke-width="4"/>
+    <rect x="967" y="58" width="165" height="92" rx="17" fill="#f8f8f1"/>
+    <rect x="967" y="328" width="165" height="92" rx="17" fill="#f8f8f1"/>
+  </g>
+  <g font-family="Manrope,Arial,sans-serif" fill="#1f3433" text-anchor="middle">
+    <text x="215" y="112" font-size="28" font-weight="700">Личные списки</text>
+    <text x="215" y="164" font-size="22">имя → адрес</text>
+    <text x="215" y="244" font-size="22">имя → адрес</text>
+    <text x="215" y="324" font-size="22">имя → адрес</text>
+    <text x="760" y="250" font-size="48" font-weight="700">DNS</text>
+    <text x="1050" y="112" font-size="25">зона A</text>
+    <text x="1050" y="382" font-size="25">зона B</text>
+    <text x="470" y="300" font-size="26">масштаб</text>
+  </g>
+  <text x="600" y="482" text-anchor="middle" font-family="Manrope,Arial,sans-serif" font-size="25" fill="#5f7473">Изменение в одном месте должно стать доступно многим клиентам</text>
+</svg>

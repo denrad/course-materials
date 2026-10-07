@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 560" role="img" aria-label="DNS, защищённое соединение, запрос и ответ HTTP">
+  <defs><marker id="arr" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M1 1l10 5-10 5" fill="none" stroke="#355b59" stroke-width="2"/></marker></defs>
+  <g fill="none" stroke="#667f7b" stroke-width="3">
+    <rect x="40" y="145" width="245" height="230" rx="20" fill="#eae7d6"/>
+    <rect x="340" y="145" width="245" height="230" rx="20" fill="#bdd3ba"/>
+    <rect x="640" y="145" width="245" height="230" rx="20" fill="#eae7d6"/>
+    <rect x="940" y="145" width="220" height="230" rx="20" fill="#cbb7b4"/>
+    <path d="M290 260h37m-14-13 14 13-14 13M590 260h37m-14-13 14 13-14 13M890 260h37m-14-13 14 13-14 13" stroke="#355b59" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <g font-family="Manrope,Arial,sans-serif" fill="#1f3433" text-anchor="middle">
+    <text x="162" y="232" font-size="38" font-weight="700">DNS</text>
+    <text x="162" y="290" font-size="24">найти адрес</text>
+    <text x="462" y="232" font-size="38" font-weight="700">TLS</text>
+    <text x="462" y="290" font-size="24">защитить связь</text>
+    <text x="762" y="232" font-size="38" font-weight="700">HTTP</text>
+    <text x="762" y="290" font-size="24">запрос</text>
+    <text x="1050" y="232" font-size="38" font-weight="700">HTTP</text>
+    <text x="1050" y="290" font-size="24">ответ</text>
+    <text x="600" y="462" font-size="27" fill="#5f7473">Для HTTPS защита появляется до передачи HTTP-запроса</text>
+  </g>
+</svg>

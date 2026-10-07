@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 520" role="img" aria-label="Иерархия домена и запись CNAME">
+  <g fill="none" stroke="#667f7b" stroke-width="3" stroke-linejoin="round">
+    <path d="M242 125v73h150v74h150"/>
+    <rect x="110" y="55" width="265" height="100" rx="20" fill="#eae7d6"/>
+    <rect x="370" y="165" width="265" height="100" rx="20" fill="#bdd3ba"/>
+    <rect x="625" y="275" width="265" height="100" rx="20" fill="#eae7d6"/>
+    <path d="M890 326h100" stroke="#355b59" stroke-width="5" stroke-dasharray="10 10"/>
+    <rect x="988" y="275" width="170" height="100" rx="20" fill="#f8f8f1"/>
+  </g>
+  <g font-family="Manrope,Arial,sans-serif" fill="#1f3433" text-anchor="middle">
+    <text x="242" y="116" font-size="43" font-weight="700">.org</text>
+    <text x="502" y="226" font-size="40" font-weight="700">example</text>
+    <text x="757" y="337" font-size="42" font-weight="700">blog</text>
+    <text x="1073" y="329" font-size="28" font-weight="700">платформа</text>
+    <text x="940" y="298" font-size="23" fill="#355b59">CNAME</text>
+    <text x="600" y="468" font-size="25" fill="#5f7473">Учебная схема: CNAME указывает на другое имя, а не перенаправляет страницу</text>
+  </g>
+</svg>

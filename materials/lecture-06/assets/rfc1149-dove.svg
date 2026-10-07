@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 560" role="img" aria-label="Голубь мира вместо оливковой ветви несёт бумажную IP-датаграмму">
+  <defs>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M1 1l10 5-10 5" fill="none" stroke="#355b59" stroke-width="2"/></marker>
+  </defs>
+  <g font-family="Manrope,Arial,sans-serif" fill="#1f3433">
+    <text x="110" y="83" font-size="24" letter-spacing="2" fill="#5f7473">НЕОБЫЧНЫЙ НОСИТЕЛЬ</text>
+    <path d="M120 447h960" fill="none" stroke="#788786" stroke-width="3" stroke-dasharray="10 14" marker-end="url(#arrow)"/>
+    <text x="120" y="485" font-size="24" fill="#5f7473">отправитель</text>
+    <text x="926" y="485" font-size="24" fill="#5f7473">получатель</text>
+    <path d="M404 290c-38-17-73-39-112-74 12 44 40 83 85 110-58-8-105-30-148-69 19 54 68 92 141 109" fill="#eae7d6" stroke="#667f7b" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M355 288c98-15 171-4 250 36 58 29 115 24 162-17 31-27 47-64 35-100-7-22-25-36-47-37-31-2-46 26-40 49 3 12 14 24 27 27-47 4-83 27-120 31-44 5-103-13-156-29-43-13-79-1-111 40z" fill="#f8f8f1" stroke="#667f7b" stroke-width="5" stroke-linejoin="round"/>
+    <path d="M495 290c31-84 98-142 178-177-20 48-31 82-35 111 41-38 95-61 153-70-40 43-81 82-117 128-53 67-112 88-179 8z" fill="#eae7d6" stroke="#667f7b" stroke-width="5" stroke-linejoin="round"/>
+    <path d="M536 288c25-52 64-94 111-126m-81 141c45-57 102-98 164-122m-134 137c39-38 81-65 125-84" fill="none" stroke="#a4b7ae" stroke-width="3" stroke-linecap="round"/>
+    <circle cx="766" cy="206" r="6" fill="#1f3433"/>
+    <path d="M793 235l45 12-40 18z" fill="#c6a081" stroke="#667f7b" stroke-width="3" stroke-linejoin="round"/>
+    <path d="M805 263l48 25" fill="none" stroke="#667f7b" stroke-width="3"/>
+    <path d="M851 270l149 30-17 89-149-30z" fill="#eae7d6" stroke="#667f7b" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M851 270l64 64 85-34" fill="none" stroke="#667f7b" stroke-width="3"/>
+    <text x="918" y="349" text-anchor="middle" font-size="19" font-weight="700" fill="#355b59" transform="rotate(11 918 349)">IP-датаграмма</text>
+    <text x="600" y="532" text-anchor="middle" font-size="24" fill="#5f7473">Задержка высокая · пропускная способность низкая · настроение отличное</text>
+  </g>
+</svg>

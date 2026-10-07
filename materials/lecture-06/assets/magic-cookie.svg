@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 560" role="img" aria-label="От термина magic cookie к web cookies: сервер задаёт значение, браузер возвращает его позже">
+  <defs>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M1 1l10 5-10 5" fill="none" stroke="#355b59" stroke-width="2"/></marker>
+  </defs>
+  <g font-family="Manrope,Arial,sans-serif" fill="#1f3433">
+    <text x="80" y="62" font-size="24" letter-spacing="2" fill="#5f7473">НАЗВАНИЕ ПРИШЛО ИЗ ИНФОРМАТИКИ</text>
+    <rect x="76" y="95" width="420" height="370" rx="24" fill="#eae7d6" stroke="#788786" stroke-width="3"/>
+    <text x="112" y="156" font-size="36" font-weight="700">magic cookie</text>
+    <text x="112" y="202" font-size="25">кусочек данных</text>
+    <text x="112" y="239" font-size="25">для повторного предъявления</text>
+    <circle cx="285" cy="350" r="75" fill="#cfb78d" stroke="#866f57" stroke-width="3"/>
+    <g fill="#866f57"><circle cx="250" cy="315" r="7"/><circle cx="318" cy="323" r="8"/><circle cx="279" cy="355" r="6"/><circle cx="328" cy="376" r="7"/><circle cx="246" cy="386" r="8"/></g>
+    <text x="582" y="199" text-anchor="middle" font-size="25" font-weight="700" fill="#355b59">Netscape</text>
+    <text x="582" y="232" text-anchor="middle" font-size="25" font-weight="700" fill="#355b59">1994</text>
+    <path d="M515 279h130" fill="none" stroke="#355b59" stroke-width="5" marker-end="url(#arrow)"/>
+    <rect x="670" y="95" width="455" height="370" rx="24" fill="#bdd3ba" stroke="#788786" stroke-width="3"/>
+    <text x="710" y="156" font-size="36" font-weight="700">web cookie</text>
+    <text x="710" y="212" font-size="26">сайт → браузер</text>
+    <rect x="710" y="230" width="370" height="64" rx="11" fill="#f8f8f1"/>
+    <text x="731" y="273" font-size="27" font-family="Menlo,Consolas,monospace">Set-Cookie: id=42</text>
+    <text x="710" y="346" font-size="26">браузер → сайт позже</text>
+    <rect x="710" y="364" width="370" height="64" rx="11" fill="#f8f8f1"/>
+    <text x="731" y="407" font-size="27" font-family="Menlo,Consolas,monospace">Cookie: id=42</text>
+    <rect x="76" y="481" width="1049" height="66" rx="14" fill="#f8f8f1" stroke="#cbb7b4" stroke-width="3"/>
+    <text x="102" y="524" font-size="26" font-weight="700">«Разрешить cookies» = позволить сохранять и использовать их в браузере.</text>
+  </g>
+</svg>
