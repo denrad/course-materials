@@ -172,15 +172,15 @@ repository: https://github.com/denrad-dev/lab05-pages-walkthrough</code></pre>
 
         <div class="step">
           <h3><span class="step-number">11.</span> Укажите поддомен в настройках GitHub Pages</h3>
-          <p>Вернитесь в репозиторий сайта и откройте <strong>Settings → Pages → Custom domain</strong>. Введите полный адрес, например <code>ivan-primerov.softdevtools.ru</code>, и нажмите <strong>Save</strong>. Это нужно сделать <strong>до принятия PR преподавателем</strong>.</p>
+          <p>Вернитесь в репозиторий сайта и откройте <strong>Settings → Pages → Custom domain</strong>. Введите полный адрес, например <code>ivan-primerov.softdevtools.ru</code>, и нажмите <strong>Save</strong>. Это нужно сделать <strong>до принятия PR преподавателем</strong> и появления DNS-записи. Проверьте, что полное имя сохранилось в настройках Pages.</p>
           <figure><a href="assets/13-custom-domain-filled.jpg"><img src="assets/13-custom-domain-filled.jpg" alt="В поле Custom domain настроек Pages введён учебный поддомен" loading="lazy"></a><figcaption><strong>Поле Custom domain.</strong> Введите то же имя, которое указано в YAML-заявке.</figcaption></figure>
-          <p>До появления DNS-записи GitHub может показать <em>DNS Check in Progress</em> или <em>DNS check unsuccessful</em>. Это ожидаемо: заявка ещё рассматривается. Не удаляйте домен из настройки. Флажок <strong>Enforce HTTPS</strong> может пока быть недоступен.</p>
+          <div class="note-box"><p><strong>Ожидаемый результат сейчас.</strong> Пока PR не принят и DNS-запись не появилась, GitHub может показать <em>DNS Check in Progress</em> или <em>DNS check unsuccessful / InvalidDNSError</em>. Такое сообщение само по себе не означает ошибку в заявке: GitHub ещё не находит запись. Не удаляйте сохранённый домен из Pages и продолжайте работу с PR. Флажок <strong>Enforce HTTPS</strong> может пока быть недоступен.</p></div>
           <figure><a href="assets/13-custom-domain-dns-not-yet.jpg"><img src="assets/13-custom-domain-dns-not-yet.jpg" alt="GitHub Pages пока не находит DNS-запись, HTTPS ещё недоступен" loading="lazy"></a><figcaption><strong>Ожидание DNS.</strong> Такой статус до принятия заявки не означает, что вы неправильно настроили Pages.</figcaption></figure>
         </div>
 
         <div class="step">
           <h3><span class="step-number">12.</span> После решения преподавателя проверьте адрес</h3>
-          <p>Следите за PR и ответьте на замечания, если они появятся. После принятия PR автоматизация публикует CNAME-запись. Когда запись появится, откройте <code>http://&lt;ваш-поддомен&gt;.softdevtools.ru/</code> и проверьте, что загрузилась ваша страница.</p>
+          <p>Следите за PR и ответьте на замечания, если они появятся. После принятия PR автоматизация публикует CNAME-запись. Вернитесь в <strong>Settings → Pages</strong> и повторно посмотрите результат проверки DNS. Когда запись появится, откройте <code>http://&lt;ваш-поддомен&gt;.softdevtools.ru/</code> и проверьте, что загрузилась ваша страница.</p>
           <div class="note-box"><p><strong>Ожидание может занять время.</strong> Сначала может появиться DNS-запись, затем GitHub сопоставит домен с сайтом. Если страница пока не открылась, отправьте преподавателю ссылку на PR и репозиторий сайта. Не создавайте повторную DNS-заявку.</p></div>
           <p>На занятии достаточно проверить страницу по HTTP. Позже откройте обычный HTTPS-адрес с проверкой сертификата. Когда он работает без предупреждения браузера, в настройках Pages можно включить <strong>Enforce HTTPS</strong>. Не обходите предупреждение о сертификате ради отметки о готовом HTTPS.</p>
         </div>
