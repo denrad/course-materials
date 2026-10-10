@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Опубликуйте учебную страницу через GitHub Pages, подайте заявку на поддомен и проверьте DNS и HTTP.">
+    <title>Лабораторная работа № 5 · GitHub Pages и поддомен</title>
+    <link rel="stylesheet" href="../../assets/styles.css?v=20261010">
+    <style>
+      .browser-guide figure { margin: 26px 0 36px; }
+      .browser-guide figure img { display: block; width: 100%; height: auto; border: 1px solid var(--line); border-radius: 8px; background: white; }
+      .browser-guide figure a { display: block; }
+      .browser-guide figcaption { margin-top: 10px; color: var(--muted); font-size: .96rem; line-height: 1.55; }
+      .browser-guide code { overflow-wrap: anywhere; }
+      .browser-guide pre { overflow-x: auto; padding: 20px 24px; border-radius: 5px; background: var(--deep); color: white; font-size: .96rem; line-height: 1.55; }
+      .browser-guide .note-box { margin: 24px 0; padding: 20px 24px; border-left: 4px solid var(--accent); background: #efeee8; }
+      .browser-guide .note-box p:last-child { margin-bottom: 0; }
+      .browser-guide .step { padding-top: 34px; border-top: 1px solid var(--line); }
+      .browser-guide .step h3 { margin: 0 0 16px; font-size: 1.35rem; }
+      .browser-guide .step-number { color: var(--accent); font-weight: 800; }
+      .browser-guide .small { color: var(--muted); font-size: .96rem !important; }
+      .browser-guide .flow { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 10px; margin: 26px 0; padding: 0; list-style: none; }
+      .browser-guide .flow li { min-height: 112px; padding: 16px; color: white; background: var(--deep); font-size: .96rem; font-weight: 650; }
+      .browser-guide .flow span { display: block; margin-bottom: 8px; color: #b9d3cc; font-size: .78rem; letter-spacing: .08em; }
+      @media (max-width: 800px) { .browser-guide .flow { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+      @media (max-width: 520px) { .browser-guide .flow { grid-template-columns: 1fr; } }
+    </style>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="/">denrad.dev <span>/ course</span></a>
+      <nav aria-label="Навигация по заданию">
+        <a href="/">Материалы</a>
+        <a href="#steps">Порядок работы</a>
+        <a href="#result">Сдача</a>
+      </nav>
+    </header>
+
+    <main class="lab-page browser-guide">
+      <section class="lab-intro" aria-labelledby="page-title">
+        <p class="eyebrow">Лабораторная работа № 5 · после лекции № 6</p>
+        <h1 id="page-title">Опубликуйте страницу на своём поддомене</h1>
+        <p class="lead">Создайте простую страницу, опубликуйте её через GitHub Pages и предложите DNS-запись через pull request.</p>
+        <p>Работа выполняется индивидуально. Всё необходимое можно сделать в браузере: терминал, Git Bash, <code>curl</code> и <code>dig</code> не требуются. Оформление сайта и знание сложной вёрстки не оцениваются.</p>
+        <a class="button" href="#steps">Перейти к шагам</a>
+      </section>
+
+      <section class="lab-section" aria-labelledby="goal-title">
+        <p class="eyebrow">Цель работы</p>
+        <h2 id="goal-title">Проследить путь от файла до страницы в браузере</h2>
+        <p>Вы разместите HTML-файл в GitHub, включите GitHub Pages, предложите имя в учебной DNS-зоне и проверите страницу по этому адресу. Так вы увидите, как связаны репозиторий, публикация, DNS и HTTP.</p>
+        <ol class="flow" aria-label="Этапы публикации сайта">
+          <li><span>01 · ФАЙЛ</span>Репозиторий GitHub</li>
+          <li><span>02 · ПУБЛИКАЦИЯ</span>GitHub Pages</li>
+          <li><span>03 · ИМЯ</span>Заявка на CNAME</li>
+          <li><span>04 · DNS</span>Поддомен ведёт к GitHub</li>
+          <li><span>05 · HTTP</span>Браузер получает страницу</li>
+        </ol>
+      </section>
+
+      <section class="lab-section" aria-labelledby="before-title">
+        <p class="eyebrow">Перед началом</p>
+        <h2 id="before-title">Подготовьте учётную запись GitHub</h2>
+        <ul class="lab-checklist">
+          <li>Войдите в собственную учётную запись GitHub. Кадр входа не приводится: это обычный экран авторизации.</li>
+          <li>Для страницы потребуется отдельный <strong>публичный</strong> репозиторий.</li>
+          <li>Для заявки нужен ваш fork репозитория <a href="https://github.com/denrad/softdevtools-dns">DNS-заявок</a>. Если fork уже существует, используйте его.</li>
+        </ul>
+        <div class="note-box"><p><strong>Безопасность.</strong> Не публикуйте пароли, токены, личный телефон, адрес электронной почты и другие сведения, не нужные для страницы. Не вводите учётные данные GitHub в сторонние формы.</p></div>
+      </section>
+
+      <section class="lab-section" id="steps" aria-labelledby="steps-title">
+        <p class="eyebrow">Порядок работы</p>
+        <h2 id="steps-title">Выполните шаги по порядку</h2>
+
+        <div class="step">
+          <h3><span class="step-number">1.</span> Создайте публичный репозиторий для сайта</h3>
+          <p>На GitHub нажмите <strong>New repository</strong>, задайте имя, выберите видимость <strong>Public</strong> и создайте репозиторий. Например, можно назвать его <code>my-first-page</code>. В этом примере репозиторий пустой: так проще найти ссылку для первого файла.</p>
+          <figure><a href="assets/02-new-repository-filled.jpg"><img src="assets/02-new-repository-filled.jpg" alt="Форма GitHub для создания публичного репозитория" loading="lazy"></a><figcaption><strong>Форма создания репозитория.</strong> Проверьте имя и отметку Public перед созданием.</figcaption></figure>
+          <figure><a href="assets/02-repository-created-empty.jpg"><img src="assets/02-repository-created-empty.jpg" alt="Новый пустой репозиторий и ссылка creating a new file" loading="lazy"></a><figcaption><strong>Пустой репозиторий.</strong> Ссылка <em>creating a new file</em> откроет редактор файла прямо на GitHub.</figcaption></figure>
+        </div>
+
+        <div class="step">
+          <h3><span class="step-number">2.</span> Добавьте файл <code>index.html</code></h3>
+          <p>Нажмите <strong>creating a new file</strong>. Если при создании репозитория вы добавили README, используйте <strong>Add file → Create new file</strong>. Назовите файл <code>index.html</code>, затем вставьте простой HTML, например:</p>
+          <pre><code>&lt;!doctype html&gt;
+&lt;html lang="ru"&gt;
+&lt;head&gt;
+  &lt;meta charset="utf-8"&gt;
+  &lt;title&gt;Моя учебная страница&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;Привет!&lt;/h1&gt;
+  &lt;p&gt;Эта страница опубликована через GitHub Pages.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+          <figure><a href="assets/04-index-html-editor.jpg"><img src="assets/04-index-html-editor.jpg" alt="Редактор GitHub с файлом index.html" loading="lazy"></a><figcaption><strong>Редактор файла.</strong> Достаточно заголовка и нескольких строк текста.</figcaption></figure>
+          <p>Нажмите <strong>Commit changes…</strong>, оставьте коммит в ветке <code>main</code> и подтвердите сохранение. Проверьте, что файл появился в репозитории.</p>
+          <figure><a href="assets/04-index-html-commit-dialog.jpg"><img src="assets/04-index-html-commit-dialog.jpg" alt="Окно подтверждения коммита index.html" loading="lazy"></a><figcaption><strong>Сохранение файла.</strong> Commit записывает изменение в историю репозитория.</figcaption></figure>
+          <figure><a href="assets/04-index-html-committed.jpg"><img src="assets/04-index-html-committed.jpg" alt="Список файлов репозитория с добавленным index.html" loading="lazy"></a><figcaption><strong>Результат коммита.</strong> В корне репозитория появился <code>index.html</code>.</figcaption></figure>
+          <p class="small">Не размещайте на странице данные, которые не готовы показать всем. Вы можете использовать свой текст или разрешённый генератор; сложный дизайн не нужен.</p>
+        </div>
+
+        <div class="step">
+          <h3><span class="step-number">3.</span> Включите GitHub Pages</h3>
+          <p>Откройте <strong>Settings → Pages</strong>. В разделе <strong>Build and deployment</strong> выберите <strong>Deploy from a branch</strong>, ветку <code>main</code> и папку <code>/(root)</code>, затем нажмите <strong>Save</strong>.</p>
+          <figure><a href="assets/05-pages-main-root-selected.jpg"><img src="assets/05-pages-main-root-selected.jpg" alt="В настройках GitHub Pages выбраны main и корневая папка" loading="lazy"></a><figcaption><strong>Источник публикации.</strong> Здесь выбраны ветка <code>main</code> и корень репозитория.</figcaption></figure>
+          <figure><a href="assets/05-pages-source-saved.jpg"><img src="assets/05-pages-source-saved.jpg" alt="Настройки GitHub Pages после сохранения источника" loading="lazy"></a><figcaption><strong>Настройки сохранены.</strong> Первое развёртывание может занять несколько минут.</figcaption></figure>
+        </div>
+
+        <div class="step">
+          <h3><span class="step-number">4.</span> Проверьте исходный адрес страницы</h3>
+          <p>Когда GitHub Pages закончит публикацию, откройте адрес вида <code>https://&lt;ваш-логин&gt;.github.io/&lt;имя-репозитория&gt;/</code>. На странице должен отображаться текст из <code>index.html</code>. Это исходный адрес сайта; он не зависит от учебного поддомена.</p>
+          <figure><a href="assets/06-pages-live-github-io.jpg"><img src="assets/06-pages-live-github-io.jpg" alt="Опубликованная учебная страница по исходному адресу GitHub Pages" loading="lazy"></a><figcaption><strong>Страница опубликована.</strong> Откройте собственный адрес Pages и убедитесь, что видите свой текст.</figcaption></figure>
+        </div>
+
+        <div class="step">
+          <h3><span class="step-number">5.</span> Выберите имя учебного поддомена</h3>
+          <p>Предпочтительный формат — <code>imya-familiya.softdevtools.ru</code>, например <code>ivan-primerov.softdevtools.ru</code>. До суффикса <code>.softdevtools.ru</code> используйте строчные латинские буквы, цифры и дефисы. Дефис не должен стоять в начале или конце; длина имени — не более 47 символов.</p>
+          <p>Настоящие имя и фамилию указывать не обязательно. Если имя занято, предложите вариант с числом, например <code>ivan-primerov-2</code>, или согласуйте псевдоним с преподавателем. До принятия PR имя ещё не закреплено.</p>
+        </div>
+
+        <div class="step">
+          <h3><span class="step-number">6.</span> Откройте свой fork DNS-репозитория</h3>
+          <p>Откройте <a href="https://github.com/denrad/softdevtools-dns">исходный репозиторий DNS-заявок</a> и нажмите <strong>Fork</strong>. На странице созданной копии проверьте, что в адресе указан ваш логин и написано <em>forked from denrad/softdevtools-dns</em>. Работайте в своём fork, а не в исходном репозитории преподавателя.</p>
+          <figure><a href="assets/08-upstream-fork-button.jpg"><img src="assets/08-upstream-fork-button.jpg" alt="Кнопка Fork в репозитории DNS-заявок" loading="lazy"></a><figcaption><strong>Кнопка Fork.</strong> Она создаёт копию репозитория в вашей учётной записи.</figcaption></figure>
+          <figure><a href="assets/08-own-fork.jpg"><img src="assets/08-own-fork.jpg" alt="DNS-репозиторий в учётной записи пользователя" loading="lazy"></a><figcaption><strong>Ваш fork.</strong> Если копия уже есть, откройте её. Если GitHub сообщает, что она отстаёт, выберите <strong>Sync fork → Update branch</strong>.</figcaption></figure>
+        </div>
+
+        <div class="step">
+          <h3><span class="step-number">7.</span> Создайте файл DNS-заявки</h3>
+          <p>В своём fork откройте папку <code>records/</code>, нажмите <strong>Add file → Create new file</strong> и назовите файл по выбранному имени, например <code>ivan-primerov.yaml</code>.</p>
+          <figure><a href="assets/09-records-folder.jpg"><img src="assets/09-records-folder.jpg" alt="Папка records в DNS-репозитории" loading="lazy"></a><figcaption><strong>Папка records.</strong> Заявки хранятся в отдельных YAML-файлах.</figcaption></figure>
+          <figure><a href="assets/09-add-file-menu.jpg"><img src="assets/09-add-file-menu.jpg" alt="Меню добавления нового файла в GitHub" loading="lazy"></a><figcaption><strong>Создание файла.</strong> Выберите пункт <em>Create new file</em>.</figcaption></figure>
+          <p>Заполните поля своими значениями:</p>
+          <pre><code>subdomain: ivan-primerov
+type: CNAME
+target: denrad-dev.github.io
+repository: https://github.com/denrad-dev/lab05-pages-walkthrough</code></pre>
+          <ul>
+            <li><code>subdomain</code> — часть адреса до <code>.softdevtools.ru</code>; она же используется в имени файла.</li>
+            <li><code>type</code> — оставьте <code>CNAME</code>.</li>
+            <li><code>target</code> — <code>&lt;ваш-логин&gt;.github.io</code>, без <code>https://</code> и без имени репозитория.</li>
+            <li><code>repository</code> — полный URL вашего публичного репозитория со страницей.</li>
+          </ul>
+          <p>Замените в примере логин и имя репозитория на свои. Значения <code>target</code> и <code>repository</code> должны относиться к одной учётной записи.</p>
+          <figure><a href="assets/09-record-editor-filled.jpg"><img src="assets/09-record-editor-filled.jpg" alt="Заполненный пример YAML-файла DNS-заявки" loading="lazy"></a><figcaption><strong>Файл заявки.</strong> Сверьте имя файла и значение <code>subdomain</code>; подставьте собственный GitHub-логин и URL репозитория.</figcaption></figure>
+        </div>
+
+        <div class="step">
+          <h3><span class="step-number">8.</span> Сохраните заявку в своём fork</h3>
+          <p>Нажмите <strong>Commit changes…</strong>. В этом сценарии оставьте выбранным <strong>Commit directly to the main branch</strong> своего fork и подтвердите коммит. Изменение должно содержать только ваш новый файл <code>records/*.yaml</code>.</p>
+          <figure><a href="assets/10-record-commit-dialog.jpg"><img src="assets/10-record-commit-dialog.jpg" alt="Окно GitHub для коммита DNS-заявки прямо в main своего fork" loading="lazy"></a><figcaption><strong>Коммит в своём fork.</strong> Убедитесь, что выбран ваш репозиторий и ветка <code>main</code>.</figcaption></figure>
+          <figure><a href="assets/10-record-committed.jpg"><img src="assets/10-record-committed.jpg" alt="DNS-заявка появилась в fork после коммита" loading="lazy"></a><figcaption><strong>Заявка сохранена.</strong> Новый YAML-файл находится в папке <code>records/</code>.</figcaption></figure>
+        </div>
+
+        <div class="step">
+          <h3><span class="step-number">9.</span> Создайте pull request</h3>
+          <p>На странице своего fork нажмите <strong>Contribute → Open pull request</strong>. Проверьте направление: <strong>base repository</strong> — <code>denrad/softdevtools-dns</code>, ветка <code>main</code>; <strong>head repository</strong> — ваш fork, ветка <code>main</code>. В изменениях должен быть только ваш YAML-файл.</p>
+          <figure><a href="assets/11-pr-compare-filled.jpg"><img src="assets/11-pr-compare-filled.jpg" alt="Экран GitHub compare с исходным DNS-репозиторием и fork" loading="lazy"></a><figcaption><strong>Направление PR.</strong> Слева — исходный репозиторий преподавателя, справа — ваш fork.</figcaption></figure>
+          <p>Укажите понятное название. В описании можно оставить ссылку на опубликованную страницу и написать, что изменено. Нажмите <strong>Create pull request</strong>. Студент не принимает PR самостоятельно: решение принимает преподаватель.</p>
+          <figure><a href="assets/11-pr-created.jpg"><img src="assets/11-pr-created.jpg" alt="Созданный pull request с DNS-заявкой" loading="lazy"></a><figcaption><strong>Pull request открыт.</strong> Сохраните его ссылку, чтобы вернуться к проверкам и обратной связи.</figcaption></figure>
+          <figure><a href="assets/11-pr-one-file.jpg"><img src="assets/11-pr-one-file.jpg" alt="В списке Files changed показан один файл DNS-заявки" loading="lazy"></a><figcaption><strong>Проверьте изменения.</strong> Во вкладке <em>Files changed</em> должен быть только ваш новый файл заявки.</figcaption></figure>
+        </div>
+
+        <div class="step">
+          <h3><span class="step-number">10.</span> Посмотрите автоматическую проверку</h3>
+          <p>Откройте вкладку <strong>Checks</strong> в PR. Проверка заявки называется <code>validate-student-request</code>. Успешный результат означает, что формат YAML прошёл проверку; он ещё не подтверждает создание DNS-записи или доступность страницы.</p>
+          <figure><a href="assets/12-pr-check-passed.jpg"><img src="assets/12-pr-check-passed.jpg" alt="Успешно завершилась автоматическая проверка DNS-заявки в pull request" loading="lazy"></a><figcaption><strong>Проверка прошла.</strong> Другие проверки могут отображаться как <em>Skipped</em> — смотрите на результат <code>validate-student-request</code>.</figcaption></figure>
+          <p>Если проверка не прошла, откройте сообщение об ошибке и исправьте файл в своём fork. Изменение появится в том же PR, новый PR создавать не нужно. При первом запуске GitHub может попросить преподавателя разрешить workflow — дождитесь решения.</p>
+        </div>
+
+        <div class="step">
+          <h3><span class="step-number">11.</span> Укажите поддомен в настройках GitHub Pages</h3>
+          <p>Вернитесь в репозиторий сайта и откройте <strong>Settings → Pages → Custom domain</strong>. Введите полный адрес, например <code>ivan-primerov.softdevtools.ru</code>, и нажмите <strong>Save</strong>. Это нужно сделать <strong>до принятия PR преподавателем</strong>.</p>
+          <figure><a href="assets/13-custom-domain-filled.jpg"><img src="assets/13-custom-domain-filled.jpg" alt="В поле Custom domain настроек Pages введён учебный поддомен" loading="lazy"></a><figcaption><strong>Поле Custom domain.</strong> Введите то же имя, которое указано в YAML-заявке.</figcaption></figure>
+          <p>До появления DNS-записи GitHub может показать <em>DNS Check in Progress</em> или <em>DNS check unsuccessful</em>. Это ожидаемо: заявка ещё рассматривается. Не удаляйте домен из настройки. Флажок <strong>Enforce HTTPS</strong> может пока быть недоступен.</p>
+          <figure><a href="assets/13-custom-domain-dns-not-yet.jpg"><img src="assets/13-custom-domain-dns-not-yet.jpg" alt="GitHub Pages пока не находит DNS-запись, HTTPS ещё недоступен" loading="lazy"></a><figcaption><strong>Ожидание DNS.</strong> Такой статус до принятия заявки не означает, что вы неправильно настроили Pages.</figcaption></figure>
+        </div>
+
+        <div class="step">
+          <h3><span class="step-number">12.</span> После решения преподавателя проверьте адрес</h3>
+          <p>Следите за PR и ответьте на замечания, если они появятся. После принятия PR автоматизация публикует CNAME-запись. Когда запись появится, откройте <code>http://&lt;ваш-поддомен&gt;.softdevtools.ru/</code> и проверьте, что загрузилась ваша страница.</p>
+          <div class="note-box"><p><strong>Ожидание может занять время.</strong> Сначала может появиться DNS-запись, затем GitHub сопоставит домен с сайтом. Если страница пока не открылась, отправьте преподавателю ссылку на PR и репозиторий сайта. Не создавайте повторную DNS-заявку.</p></div>
+          <p>На занятии достаточно проверить страницу по HTTP. Позже откройте обычный HTTPS-адрес с проверкой сертификата. Когда он работает без предупреждения браузера, в настройках Pages можно включить <strong>Enforce HTTPS</strong>. Не обходите предупреждение о сертификате ради отметки о готовом HTTPS.</p>
+          <p class="small">Скриншоты принятого PR, созданной DNS-записи, страницы по учебному адресу и готового HTTPS будут добавлены после завершения соответствующих этапов пилота. Сейчас показаны проверенные экраны до принятия заявки.</p>
+        </div>
+      </section>
+
+      <section class="lab-section" id="result" aria-labelledby="result-title">
+        <p class="eyebrow">Что предъявить</p>
+        <h2 id="result-title">Покажите результат и объясните цепочку</h2>
+        <ul class="lab-deliverables">
+          <li>Ссылку на открытый pull request с DNS-заявкой.</li>
+          <li>Ссылку на публичный репозиторий страницы и исходный адрес GitHub Pages.</li>
+          <li>Страницу по учебному поддомену после появления DNS либо ссылки и статус этапа, который ещё ожидается.</li>
+          <li>Короткое объяснение роли репозитория, GitHub Pages, CNAME и HTTP-запроса.</li>
+        </ul>
+        <p>ФИО и номер группы не добавляйте в публичный DNS-файл, описание PR или страницу. Способ связать работу с учебной группой преподаватель сообщит отдельно.</p>
+        <p>Работа считается технически завершённой, когда страница опубликована через GitHub Pages, PR принят, поддомен открывает именно эту страницу, а вы можете объяснить путь запроса. Если DNS или HTTPS ещё ожидаются по внешним причинам, сообщите об этом преподавателю: подтверждённые этапы сохраняются и проверяются отдельно.</p>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>Материалы курса · <a href="https://course.denrad.dev/">course.denrad.dev</a></p>
+    </footer>
+  </body>
+</html>
