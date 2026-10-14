@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 420" role="img" aria-labelledby="title desc">
+  <title id="title">Две части хирографа</title>
+  <desc id="desc">Левая и правая части документа разделены неровным разрезом; форма краёв совпадает.</desc>
+  <rect width="1200" height="420" fill="none"/>
+  <path d="M85 80 H530 L548 110 L520 145 L550 180 L526 216 L553 250 L520 286 L546 320 L528 350 H85 Z" fill="#eae7d6" stroke="#788786" stroke-width="4"/>
+  <path d="M675 80 H1115 V350 H675 L693 320 L667 286 L700 250 L673 216 L697 180 L667 145 L695 110 Z" fill="#eae7d6" stroke="#788786" stroke-width="4"/>
+  <g stroke="#788786" stroke-width="6" stroke-linecap="round" opacity=".7">
+    <path d="M145 145 H430 M145 190 H395 M145 235 H420 M145 280 H380"/>
+    <path d="M765 145 H1055 M765 190 H1020 M765 235 H1045 M765 280 H1000"/>
+  </g>
+  <path d="M575 216 H625" stroke="#355b59" stroke-width="5" stroke-dasharray="12 12"/>
+  <path d="M610 202 L630 216 L610 230" fill="none" stroke="#355b59" stroke-width="5"/>
+</svg>
