@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Лекция 9. REST API, OpenAPI и Swagger</title>
+  <link rel="stylesheet" href="theme.css?v=926347cf3021">
+</head>
+<body>
+  <section class="slide layout-statement" data-index="1"><div class="grid"></div><div class="content"><h1>Как программы договариваются друг с другом?</h1><p>REST API, OpenAPI и Swagger UI на примере службы доставки.</p><blockquote>Один сервис. Разные клиенты. Общие правила обмена.</blockquote></div><span class="page">01</span></section>
+<section class="slide layout-diagram" data-index="2"><div class="grid"></div><img class="slide-image" src="assets/clients-api.svg" alt="Клиенты обращаются к одному Delivery API, который использует данные службы доставки"><div class="content"><h1>Одним API пользуются разные клиенты</h1><p>Сайт, приложение, бот и Swagger UI обращаются к одной службе доставки.</p></div><span class="page">02</span></section>
+<section class="slide layout-flow" data-index="3"><div class="grid"></div><div class="content"><h1>Путь одного запроса</h1><p>Клиент → HTTP-запрос → Delivery API → HTTP-ответ</p><p><code>GET /shipments/125</code> → данные о посылке № 125 в JSON</p><blockquote>Swagger UI в этой цепочке — ещё один клиент.</blockquote></div><span class="page">03</span></section>
+<section class="slide layout-three" data-index="4"><div class="grid"></div><div class="content"><h1>Что фиксирует контракт API</h1><div class="concept"><h2>Запрос</h2><p>Метод, адрес, параметры, заголовки и тело.</p></div><div class="concept"><h2>Ответ</h2><p>Статус, структура данных и типы полей.</p></div><div class="concept"><h2>Правила</h2><p>Авторизация, ограничения и возможные ошибки.</p></div></div><span class="page">04</span></section>
+<section class="slide layout-code" data-index="5"><div class="grid"></div><div class="content"><h1>HTTP-запрос: что отправляет клиент</h1><pre><code>GET /shipments/125 HTTP/1.1
+Host: delivery.example.edu
+Authorization: Bearer &lt;token&gt;
+Accept: application/json</code></pre><blockquote>Где здесь метод, адрес ресурса и подтверждение доступа?</blockquote></div><span class="page">05</span></section>
+<section class="slide layout-mapping" data-index="6"><div class="grid"></div><div class="content"><h1>Ресурсы и методы</h1><table><tr><th>Метод</th><th>Пример</th><th>Смысл</th></tr><tr><td><code>GET</code></td><td><code>/shipments</code></td><td>Получить список.</td></tr><tr><td><code>GET</code></td><td><code>/shipments/125</code></td><td>Получить одну посылку.</td></tr><tr><td><code>POST</code></td><td><code>/shipments</code></td><td>Создать посылку.</td></tr><tr><td><code>PATCH</code></td><td><code>/shipments/125</code></td><td>Изменить часть данных.</td></tr><tr><td><code>POST</code></td><td><code>/shipments/125/cancel</code></td><td>Выполнить действие «отменить».</td></tr></table></div><span class="page">06</span></section>
+<section class="slide layout-code" data-index="7"><div class="grid"></div><div class="content"><h1>JSON: число и строка различаются</h1><pre><code>{ "id": 125,   "weight_grams": 2500 }
+{ "id": "125", "weight_grams": "2500" }</code></pre><p>Для человека ответы похожи. Программа может ожидать именно числа.</p></div><span class="page">07</span></section>
+<section class="slide layout-mapping" data-index="8"><div class="grid"></div><div class="content"><h1>HTTP-ответ: данные и результат операции</h1><table><tr><th>Статус</th><th>Что это означает в примере</th></tr><tr><td><code>200</code></td><td>Посылка найдена; данные в ответе.</td></tr><tr><td><code>201</code></td><td>Новая посылка создана.</td></tr><tr><td><code>401</code></td><td>Запрос не аутентифицирован.</td></tr><tr><td><code>403</code></td><td>Доступ к операции запрещён.</td></tr><tr><td><code>404</code></td><td>Такой посылки не нашли.</td></tr><tr><td><code>500</code></td><td>Сбой на стороне сервера.</td></tr></table><blockquote>Сервер ответил — ещё не значит, что операция удалась.</blockquote></div><span class="page">08</span></section>
+<section class="slide layout-three" data-index="9"><div class="grid"></div><div class="content"><h1>Токен связывает запрос с пользователем</h1><div class="concept"><h2>Получить</h2><p>Клиент проходит предусмотренный сервисом вход.</p></div><div class="concept"><h2>Передать</h2><p><code>Authorization: Bearer &lt;token&gt;</code> в заголовке запроса.</p></div><div class="concept"><h2>Проверить</h2><p>Сервер определяет пользователя и разрешённые действия.</p></div></div><span class="page">09</span></section>
+<section class="slide layout-four" data-index="10"><div class="grid"></div><div class="content"><h1>Четыре разных понятия</h1><div class="concept"><h2>API</h2><p>Работающий интерфейс сервера.</p></div><div class="concept"><h2>Контракт</h2><p>Правила запросов, ответов и ошибок.</p></div><div class="concept"><h2>OpenAPI</h2><p>Машиночитаемое описание HTTP API.</p></div><div class="concept"><h2>Swagger UI</h2><p>Веб-клиент, который читает описание и выполняет запросы.</p></div></div><span class="page">10</span></section>
+<section class="slide layout-code" data-index="11"><div class="grid"></div><div class="content"><h1>OpenAPI описывает операцию</h1><pre><code>openapi: 3.1.0
+paths:
+  /shipments:
+    get:
+      summary: Список посылок
+      responses:
+        '200':
+          description: Список получен</code></pre><p>Один и тот же документ можно открыть как <code>/openapi.json</code> и через Swagger UI.</p></div><span class="page">11</span></section>
+<section class="slide layout-flow" data-index="12"><div class="grid"></div><div class="content"><h1>Что делает Swagger UI</h1><p>Читает OpenAPI → строит форму → отправляет HTTP-запрос → показывает ответ</p><p><code>Authorize</code> · <code>Try it out</code> · <code>Execute</code> · статус и JSON</p><blockquote>Видимая документация помогает, но правильность API проверяет реальный ответ.</blockquote></div><span class="page">12</span></section>
+<section class="slide layout-checks" data-index="13"><div class="grid"></div><div class="content"><h1>Демонстрация: найти и отменить посылку</h1><ul><li>Получить тестовый токен и открыть Swagger UI.</li><li>Вызвать <code>GET /shipments</code>.</li><li>Найти получателя и прочитать <code>id</code> из JSON.</li><li>Вызвать <code>POST /shipments/{id}/cancel</code>.</li><li>Повторно запросить посылку и проверить статус.</li></ul><blockquote>Нужный <code>id</code> сначала неизвестен: его надо найти в ответе.</blockquote></div><span class="page">13</span></section>
+<section class="slide layout-closing" data-index="14"><div class="grid"></div><div class="content"><h1>Что остаётся после лекции</h1><p>Один HTTP API может обслуживать разные интерфейсы.</p><p>Контракт задаёт методы, данные, доступ и возможные исходы.</p><p>OpenAPI делает правила читаемыми для инструментов; Swagger UI позволяет проверить их запросом.</p><blockquote>Следующий шаг — использовать тот же контракт для создания клиента и проверки его работы.</blockquote></div><span class="page">14</span></section>
+  <div class="help">← → листать · F полный экран</div>
+  <script>
+    const slides = [...document.querySelectorAll('.slide')]; let current = 0;
+    function show(index) { current = Math.max(0, Math.min(slides.length - 1, index)); slides.forEach((s, i) => s.classList.toggle('active', i === current)); location.hash = current + 1; }
+    function fromHash() { const n = Number(location.hash.slice(1)); show(Number.isInteger(n) && n > 0 ? n - 1 : 0); }
+    document.addEventListener('keydown', e => { if (['ArrowRight','PageDown',' '].includes(e.key)) show(current + 1); if (['ArrowLeft','PageUp'].includes(e.key)) show(current - 1); if (e.key.toLowerCase() === 'n') document.body.classList.toggle('show-notes'); if (e.key.toLowerCase() === 'f') document.documentElement.requestFullscreen?.(); });
+    window.addEventListener('hashchange', fromHash); fromHash();
+  </script>
+</body>
+</html>
