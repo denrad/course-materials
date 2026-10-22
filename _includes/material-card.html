@@ -1,0 +1,6 @@
+<a class="card" href="{{ include.material.permalink | remove_first: '/' }}" aria-label="{{ include.material.aria_label | escape }}">
+  <p class="card-number">{{ include.material.card_label | escape }}</p>
+  <h3>{{ include.material.title | escape }}</h3>
+  <p>{{ include.material.description | escape }}</p>
+  <span class="status">{{ include.material.card_action | escape }}</span>
+</a>

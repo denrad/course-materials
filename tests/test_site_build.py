@@ -1,0 +1,149 @@
+from pathlib import Path
+import os
+import unittest
+from html.parser import HTMLParser
+from urllib.parse import urlsplit
+import subprocess
+import tempfile
+
+
+ROOT = Path(__file__).resolve().parents[1]
+SITE = Path(os.environ.get("JEKYLL_DESTINATION", ROOT / "_site"))
+MATERIAL_IDS = [
+    "lecture-01", "lecture-02", "lecture-04", "lecture-05", "lecture-06",
+    "lecture-07", "lecture-08", "lecture-09", "lab-01", "lab-02",
+    "lab-03", "lab-04", "lab-05", "lab-06", "lab-07", "agentic-development",
+]
+ROUTE_IDS = [*MATERIAL_IDS, "lab-17"]
+FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSdgdPOyAVhxgs54HWq-LN-gbz8miZepvuuwGyuDiCX-cMN_Cg/viewform"
+
+
+class MaterialLinks(HTMLParser):
+    def __init__(self):
+        super().__init__()
+        self.material_ids = []
+        self.form_links = []
+        self.card_links = []
+
+    def handle_starttag(self, tag, attrs):
+        if tag != "a":
+            return
+        href = dict(attrs).get("href", "")
+        if "card" in dict(attrs).get("class", "").split():
+            self.card_links.append(href)
+        if href.startswith("materials/") and href.endswith("/"):
+            self.material_ids.append(href.removeprefix("materials/").removesuffix("/"))
+        if href == FORM_URL:
+            self.form_links.append(href)
+
+
+class LocalReferences(HTMLParser):
+    def __init__(self):
+        super().__init__()
+        self.references = []
+
+    def handle_starttag(self, tag, attrs):
+        for key, value in attrs:
+            if key in ("href", "src") and value:
+                self.references.append(value)
+
+
+class SiteBuildTests(unittest.TestCase):
+    def test_build_contains_public_routes_and_assets(self):
+        expected = (
+            "index.html",
+            "materials/lab-01/index.html",
+            "materials/lecture-09/index.html",
+            "CNAME",
+            "assets/styles.css",
+            "assets/qr-lab-01.svg",
+            *(f"materials/{material_id}/index.html" for material_id in ROUTE_IDS),
+        )
+        missing = [path for path in expected if not (SITE / path).is_file()]
+        self.assertEqual([], missing, f"Missing from Jekyll output: {missing}")
+
+    def test_catalogue_keeps_all_materials_in_the_existing_order(self):
+        parser = MaterialLinks()
+        parser.feed((SITE / "index.html").read_text(encoding="utf-8"))
+        self.assertEqual(MATERIAL_IDS, parser.material_ids)
+        self.assertEqual([FORM_URL], parser.form_links)
+        self.assertEqual(FORM_URL, parser.card_links[8])
+
+    def test_material_pages_have_card_metadata_and_preserve_html_body(self):
+        required = ("id", "kind", "title", "description", "order")
+        expected_order = {material_id: order for order, material_id in enumerate(MATERIAL_IDS, start=1)}
+        expected_order["lab-17"] = 17
+        for material_id in ROUTE_IDS:
+            with self.subTest(material=material_id):
+                source = ROOT / "materials" / material_id / "index.html"
+                output = SITE / "materials" / material_id / "index.html"
+                text = source.read_text(encoding="utf-8")
+                self.assertTrue(text.startswith("---\n"), f"Missing front matter: {source}")
+                front_matter, body = text.split("---\n", 2)[1:]
+                for key in required:
+                    self.assertRegex(front_matter, rf"(?m)^{key}:\s*.+$")
+                self.assertRegex(front_matter, rf'(?m)^id: "{material_id}"$')
+                self.assertIn(f"order: {expected_order[material_id]}", front_matter)
+                self.assertEqual(body, output.read_text(encoding="utf-8"))
+
+    def test_material_assets_are_copied_to_the_site(self):
+        for source in (ROOT / "materials").rglob("*"):
+            if source.is_file() and "assets" in source.parts:
+                output = SITE / source.relative_to(ROOT)
+                with self.subTest(asset=source.relative_to(ROOT)):
+                    self.assertTrue(output.is_file())
+
+    def test_local_html_references_resolve_in_the_built_site(self):
+        for page in SITE.rglob("*.html"):
+            parser = LocalReferences()
+            parser.feed(page.read_text(encoding="utf-8"))
+            for reference in parser.references:
+                parsed = urlsplit(reference)
+                if parsed.scheme or parsed.netloc or not parsed.path or parsed.path.startswith("#"):
+                    continue
+                if parsed.path.startswith("/"):
+                    target = SITE / parsed.path.lstrip("/")
+                else:
+                    target = page.parent / parsed.path
+                if parsed.path.endswith("/"):
+                    target = target / "index.html"
+                with self.subTest(page=page.relative_to(SITE), reference=reference):
+                    self.assertTrue(target.is_file(), f"Unresolved local reference: {reference}")
+
+    def test_markdown_material_uses_the_shared_layout_and_permalink(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            source = Path(temporary) / "source"
+            destination = Path(temporary) / "site"
+            (source / "_layouts").mkdir(parents=True)
+            (source / "assets").mkdir()
+            (source / "materials").mkdir()
+            (source / "_config.yml").write_text("url: https://course.denrad.dev\n", encoding="utf-8")
+            (source / "_layouts" / "material.html").write_bytes(
+                (ROOT / "_layouts" / "material.html").read_bytes()
+            )
+            (source / "assets" / "styles.css").write_bytes(
+                (ROOT / "assets" / "styles.css").read_bytes()
+            )
+            (source / "materials" / "fixture.md").write_text(
+                "---\nlayout: material\nid: fixture\nkind: lab\n"
+                "title: Fixture\ndescription: Build fixture\norder: 99\n"
+                "permalink: /materials/fixture/\n---\n# Fixture body\n",
+                encoding="utf-8",
+            )
+            subprocess.run(
+                ["bundle", "exec", "jekyll", "build", "--source", str(source), "--destination", str(destination)],
+                cwd=ROOT,
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+            output = destination / "materials" / "fixture" / "index.html"
+            self.assertTrue(output.is_file())
+            rendered = output.read_text(encoding="utf-8")
+            self.assertIn("<title>Fixture · Материалы курса</title>", rendered)
+            self.assertIn('<h1 id="fixture-body">Fixture body</h1>', rendered)
+            self.assertIn('href="/assets/styles.css"', rendered)
+
+
+if __name__ == "__main__":
+    unittest.main()

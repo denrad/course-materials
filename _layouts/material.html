@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="{{ page.description | escape }}">
+    <title>{{ page.title | escape }} · Материалы курса</title>
+    <link rel="stylesheet" href="/assets/styles.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="/">denrad.dev <span>/ course</span></a>
+      <nav aria-label="Основная навигация">
+        <a href="/">Материалы</a>
+      </nav>
+    </header>
+    <main class="lab-page">
+      {{ content }}
+    </main>
+    <footer class="site-footer">
+      <p>Материалы курса · <a href="https://denrad.dev">denrad.dev</a></p>
+    </footer>
+  </body>
+</html>

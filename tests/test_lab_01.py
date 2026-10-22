@@ -1,16 +1,18 @@
 from pathlib import Path
+import os
 import unittest
 
 
 ROOT = Path(__file__).resolve().parents[1]
-PAGE = ROOT / "materials" / "lab-01" / "index.html"
-INDEX = ROOT / "index.html"
-QR = ROOT / "assets" / "qr-lab-01.svg"
+SITE = Path(os.environ.get("JEKYLL_DESTINATION", ROOT / "_site"))
+BUILT_PAGE = SITE / "materials" / "lab-01" / "index.html"
+INDEX = SITE / "index.html"
+QR = SITE / "assets" / "qr-lab-01.svg"
 
 
 class LabOnePublicationTests(unittest.TestCase):
     def test_assignment_page_states_student_facing_requirements(self):
-        content = PAGE.read_text(encoding="utf-8")
+        content = BUILT_PAGE.read_text(encoding="utf-8")
 
         self.assertIn("<h1 id=\"page-title\">Лабораторная работа № 1", content)
         self.assertIn("каталогом книг", content)

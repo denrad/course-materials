@@ -1,0 +1,11 @@
+url: https://course.denrad.dev
+baseurl: ""
+markdown: kramdown
+plugins: []
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - Makefile
+  - README.md
+  - tests
+  - vendor
