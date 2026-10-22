@@ -32,3 +32,7 @@ make test
 а `make test` собирает сайт во временный каталог и проверяет маршруты, карточки,
 ресурсы и локальные ссылки. Эти же проверки выполняются в GitHub Actions; workflow
 не публикует сайт.
+
+Для буквального синтаксиса Liquid в новом Markdown-материале заключайте
+пример в `{% raw %}` и `{% endraw %}`. GitHub Pages использует Jekyll 3.10,
+где `render_with_liquid: false` из front matter не отключает обработку Liquid.

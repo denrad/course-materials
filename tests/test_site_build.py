@@ -127,7 +127,7 @@ class SiteBuildTests(unittest.TestCase):
             (source / "materials" / "fixture.md").write_text(
                 "---\nlayout: material\nid: fixture\nkind: lab\n"
                 "title: Fixture\ndescription: Build fixture\norder: 99\n"
-                "permalink: /materials/fixture/\n---\n# Fixture body\n",
+                "permalink: /materials/fixture/\n---\n# Fixture body\n\n{% raw %}{{ name }}{% endraw %}\n",
                 encoding="utf-8",
             )
             subprocess.run(
@@ -142,6 +142,7 @@ class SiteBuildTests(unittest.TestCase):
             rendered = output.read_text(encoding="utf-8")
             self.assertIn("<title>Fixture · Материалы курса</title>", rendered)
             self.assertIn('<h1 id="fixture-body">Fixture body</h1>', rendered)
+            self.assertIn("{{ name }}", rendered)
             self.assertIn('href="/assets/styles.css"', rendered)
 
 
