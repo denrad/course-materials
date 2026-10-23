@@ -75,8 +75,12 @@ class SiteBuildTests(unittest.TestCase):
         expected_order["lab-17"] = 17
         for material_id in ROUTE_IDS:
             with self.subTest(material=material_id):
-                source = ROOT / "materials" / material_id / "index.html"
+                source_directory = ROOT / "materials" / material_id
+                source = source_directory / "index.html"
+                if not source.is_file():
+                    source = source_directory / "index.md"
                 output = SITE / "materials" / material_id / "index.html"
+                self.assertTrue(source.is_file(), f"Missing source material: {source}")
                 text = source.read_text(encoding="utf-8")
                 self.assertTrue(text.startswith("---\n"), f"Missing front matter: {source}")
                 front_matter, body = text.split("---\n", 2)[1:]
@@ -84,7 +88,8 @@ class SiteBuildTests(unittest.TestCase):
                     self.assertRegex(front_matter, rf"(?m)^{key}:\s*.+$")
                 self.assertRegex(front_matter, rf'(?m)^id: "{material_id}"$')
                 self.assertIn(f"order: {expected_order[material_id]}", front_matter)
-                self.assertEqual(body, output.read_text(encoding="utf-8"))
+                if source.suffix == ".html":
+                    self.assertEqual(body, output.read_text(encoding="utf-8"))
 
     def test_material_assets_are_copied_to_the_site(self):
         for source in (ROOT / "materials").rglob("*"):
