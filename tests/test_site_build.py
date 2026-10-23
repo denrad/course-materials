@@ -1,5 +1,7 @@
 from pathlib import Path
+from html import unescape
 import os
+import re
 import unittest
 from html.parser import HTMLParser
 from urllib.parse import urlsplit
@@ -48,6 +50,39 @@ class LocalReferences(HTMLParser):
                 self.references.append(value)
 
 
+class RenderedText(HTMLParser):
+    def __init__(self):
+        super().__init__()
+        self.parts = []
+
+    def handle_data(self, data):
+        self.parts.append(data)
+
+
+def markdown_text_lines(body):
+    lines = []
+    for line in body.splitlines():
+        line = line.strip()
+        if not line or line.startswith("```") or re.fullmatch(r"[-*_]{3,}", line):
+            continue
+        line = re.sub(r"^#{1,6}\s+", "", line)
+        line = re.sub(r"^>\s?", "", line)
+        line = re.sub(r"^(?:[-*+]\s+|\d+[.)]\s+)", "", line)
+        if re.fullmatch(r"[-*_]{3,}", line):
+            continue
+        line = re.sub(r"!\[([^\]]*)\]\([^)]+\)", r"\1", line)
+        line = re.sub(r"\[([^\]]+)\]\([^)]+\)", r"\1", line)
+        line = re.sub(r"<[^>]+>", "", line)
+        line = re.sub(r"[*_`~|]", "", line)
+        if re.fullmatch(r"[-:]{3,}", line):
+            continue
+        line = " ".join(unescape(line).split())
+        line = re.sub(r"\s+([,.;:!?])", r"\1", line)
+        if line:
+            lines.append(line)
+    return lines
+
+
 class SiteBuildTests(unittest.TestCase):
     def test_build_contains_public_routes_and_assets(self):
         expected = (
@@ -88,8 +123,19 @@ class SiteBuildTests(unittest.TestCase):
                     self.assertRegex(front_matter, rf"(?m)^{key}:\s*.+$")
                 self.assertRegex(front_matter, rf'(?m)^id: "{material_id}"$')
                 self.assertIn(f"order: {expected_order[material_id]}", front_matter)
+                rendered = output.read_text(encoding="utf-8")
                 if source.suffix == ".html":
-                    self.assertEqual(body, output.read_text(encoding="utf-8"))
+                    self.assertEqual(body, rendered)
+                else:
+                    parser = RenderedText()
+                    parser.feed(rendered)
+                    rendered_text = " ".join(" ".join(parser.parts).split())
+                    rendered_text = re.sub(r"\s+([,.;:!?])", r"\1", rendered_text)
+                    expected_lines = markdown_text_lines(body)
+                    self.assertTrue(expected_lines, f"Markdown body is empty: {source}")
+                    for line in expected_lines:
+                        with self.subTest(material=material_id, markdown_line=line):
+                            self.assertIn(line, rendered_text)
 
     def test_material_assets_are_copied_to_the_site(self):
         for source in (ROOT / "materials").rglob("*"):
