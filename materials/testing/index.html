@@ -1,0 +1,53 @@
+---
+id: "testing"
+kind: "lecture"
+title: "Тестирование: от «кажется, работает» к проверке"
+description: "Как тестировщик исследует систему, находит крайние случаи и сообщает о дефектах."
+order: 19
+permalink: "/materials/testing/"
+card_label: "Тестирование"
+card_action: "Открыть презентацию"
+aria_label: "Открыть презентацию о тестировании"
+render_with_liquid: false
+---
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Тестирование: от «кажется, работает» к проверке</title>
+  <link rel="stylesheet" href="theme.css?v=4d1ff4817cc0">
+</head>
+<body>
+  <section class="slide layout-statement" data-index="1"><div class="grid"></div><div class="content"><h1>Тестирование: от «кажется, работает» к проверке</h1><p>Как тестировщик задаёт вопросы системе и обосновывает вывод.</p><blockquote>Заказ создался. Можно выпускать?</blockquote></div><span class="page">01</span></section>
+<section class="slide layout-split" data-index="2"><div class="grid"></div><img class="slide-image" src="assets/bar.png" alt="Тестировщик проверяет необычные заказы, пока посетитель спрашивает, где туалет"><div class="content"><h1>Тестировщик заходит в бар</h1><p>Он проверил один бокал, два, пустой и даже «−1».</p><p>Но первый посетитель спрашивает, где туалет.</p></div><span class="page">02</span></section>
+<section class="slide layout-checks" data-index="3"><div class="grid"></div><div class="content"><h1>Пользователь не должен первым платить за ошибку</h1><ul><li>На балансе 100 долларов.</li><li>Проверка баланса списывает доллар.</li><li>Человек видит 100 и пытается снять 100.</li><li>После повторных проверок доступно всё меньше.</li></ul><blockquote>Отдельные операции могут работать по правилу, а весь путь всё равно мешает человеку достичь цели.</blockquote></div><span class="page">03</span></section>
+<section class="slide layout-three" data-index="4"><div class="grid"></div><div class="content"><h1>Путь студента за эту лекцию</h1><div class="concept"><h2>В начале</h2><p>«Проверить, работает ли».</p></div><div class="concept"><h2>По пути</h2><p>Выбрать вопрос и случай для проверки.</p></div><div class="concept"><h2>В конце</h2><p>Обосновать вывод и сообщить о расхождении.</p></div></div><span class="page">04</span></section>
+<section class="slide layout-mapping" data-index="5"><div class="grid"></div><div class="content"><h1>Тестировщик участвует в цикле разработки</h1><table><tr><th>Этап работы</th><th>Вклад тестировщика</th></tr><tr><td>Уточняют задачу</td><td>Разбирается в контексте, замечает неясные правила.</td></tr><tr><td>Проектируют и пишут код</td><td>Продумывает важные проверки, данные и окружение.</td></tr><tr><td>Проверяют изменение</td><td>Исследует поведение и фиксирует расхождения.</td></tr><tr><td>Исправляют и выпускают</td><td>Проверяет исправление, сообщает о проверенном и рисках.</td></tr></table></div><span class="page">05</span></section>
+<section class="slide layout-flow" data-index="6"><div class="grid"></div><div class="content"><h1>Отмена доставки: вопросы до проверки</h1><p>Кто может отменить заказ? На каких этапах?</p><p>Что происходит с оплатой и курьером?</p><blockquote>Тестировщик помогает сделать правило проверяемым.</blockquote></div><span class="page">06</span></section>
+<section class="slide layout-flow" data-index="7"><div class="grid"></div><div class="content"><h1>Система отвечает на наши действия</h1><p>Входные данные и действия. Поведение системы. Ответ и новое состояние.</p><p>Чёрный ящик: внутреннее устройство нам неизвестно.</p><p>Серый ящик: часть устройства или данных нам известна.</p></div><span class="page">07</span></section>
+<section class="slide layout-split" data-index="8"><div class="grid"></div><img class="slide-image" src="assets/elevator.png" alt="Пять обычных пассажиров и три стронгмена в двух лифтах с индикаторами веса"><div class="content"><h1>В лифте действуют два ограничения</h1><p>Не более 5 человек.</p><p>Не более 400 кг.</p><p>Пять обычных пассажиров и трое стронгменов проверяют разные сочетания условий.</p></div><span class="page">08</span></section>
+<section class="slide layout-flow" data-index="9"><div class="grid"></div><div class="content"><h1>Крайнее значение проверяет границу правила</h1><p>Количество товара: <strong>целое число от 1 до доступного остатка</strong>.</p><p><strong>Допустимые:</strong> 1 ... остаток.</p><p><strong>Рядом с границами:</strong> −1, 0 и остаток + 1.</p><p>Проверяем границы и соседние значения, затем смотрим на состояние корзины.</p></div><span class="page">09</span></section>
+<section class="slide layout-split" data-index="10"><div class="grid"></div><img class="slide-image" src="assets/sofa.png" alt="Диван проходят через дверь, лестничный поворот и лифт, рядом вариант разобрать его"><div class="content"><h1>Пройдёт ли диван весь маршрут?</h1><p>Он помещается в комнате.</p><p>Но пройдёт ли в дверь, повернёт ли на лестничной площадке и войдёт ли в лифт?</p></div><span class="page">10</span></section>
+<section class="slide layout-mapping" data-index="11"><div class="grid"></div><div class="content"><h1>Из правила получаются разные проверки</h1><table><tr><th>Случай</th><th>Пример количества в корзине</th></tr><tr><td>Обычный</td><td>3 товара при достаточном остатке.</td></tr><tr><td>Граничный</td><td>1 товар или всё доступное количество.</td></tr><tr><td>За границей</td><td>0, −1 или больше остатка.</td></tr><tr><td>Сочетание</td><td>Повтор запроса при остатке в 1 товар.</td></tr></table></div><span class="page">11</span></section>
+<section class="slide layout-mapping" data-index="12"><div class="grid"></div><div class="content"><h1>У одной проверки несколько характеристик</h1><table><tr><th>Вопрос</th><th>Вариант ответа</th></tr><tr><td>Где проверяем?</td><td>Модуль, интеграция, система, приёмка.</td></tr><tr><td>Как выполняем?</td><td>Вручную или автоматически.</td></tr><tr><td>Что исследуем?</td><td>Функцию, удобство, совместимость, безопасность, скорость.</td></tr></table></div><span class="page">12</span></section>
+<section class="slide layout-checks" data-index="13"><div class="grid"></div><div class="content"><h1>Телефон разработчика не показывает все условия</h1><ul><li>Размер экрана и ориентация.</li><li>Клавиатура и системный шрифт.</li><li>Версия ОС и поддержка складного устройства.</li><li>Потеря сети или возврат из фонового режима.</li></ul><blockquote>Все сочетания не перебрать. Выбираем важные операции, изменённые места и дорогие ошибки.</blockquote></div><span class="page">13</span></section>
+<section class="slide layout-split" data-index="14"><div class="grid"></div><img class="slide-image" src="assets/crm.png" alt="Схематичная карта города с объектами и фильтром поиска, не реальная карта CRM"><div class="content"><h1>В CRM нашли 12 объектов. Это ошибка?</h1><p>В Уфе поиск аренды коммерческой недвижимости вернул всего 12 объектов.</p><p>Что мы пока знаем? Чего ещё не знаем?</p></div><span class="page">14</span></section>
+<section class="slide layout-three" data-index="15"><div class="grid"></div><div class="content"><h1>Наблюдение ещё не доказывает дефект</h1><div class="concept"><h2>Наблюдение</h2><p>В выдаче 12 объектов.</p></div><div class="concept"><h2>Ожидание</h2><p>Кажется, должно быть больше.</p></div><div class="concept"><h2>Основание</h2><p>Какие объекты пропущены и почему они должны попасть в выдачу?</p></div></div><span class="page">15</span></section>
+<section class="slide layout-code" data-index="16"><div class="grid"></div><div class="content"><h1>До запроса запишите ожидаемый результат</h1><pre><code>Правило: количество от 1 до доступного остатка
+Данные: количество = −1
+Ожидаю: отказ в запросе
+После отказа: корзина и цена не меняются</code></pre><p>После действия сравните ответ и состояние системы с ожиданием.</p></div><span class="page">16</span></section>
+<section class="slide layout-checks" data-index="17"><div class="grid"></div><div class="content"><h1>Баг-репорт помогает повторить расхождение</h1><ul><li>Основание ожидания: требование или согласованное правило.</li><li>Условия и данные, при которых возникла проблема.</li><li>Короткие шаги воспроизведения.</li><li>Ожидаемый и фактический результат.</li><li>Доказательства: запрос, ответ и состояние после действия.</li></ul><blockquote>Сообщение о проблеме должно помочь другому человеку её увидеть.</blockquote></div><span class="page">17</span></section>
+<section class="slide layout-flow" data-index="18"><div class="grid"></div><div class="content"><h1>«Все тесты зелёные». Что это доказывает?</h1><p>Проверки основаны на правилах?</p><p>Какие границы и сочетания включены?</p><p>Что запускалось и что осталось непроверенным?</p></div><span class="page">18</span></section>
+<section class="slide layout-closing" data-index="19"><div class="grid"></div><div class="content"><h1>От «кажется, работает» к обоснованной проверке</h1><p>Тестировщик понимает правила, выбирает случаи, наблюдает результат и сообщает, что действительно проверено.</p><p>В ЛР №8 вы исследуете службу доставки и напишете баг-репорты.</p><blockquote>Ценность не в числе нажатий. Ценность в обоснованном выводе.</blockquote></div><span class="page">19</span></section>
+  <div class="help">← → листать · F полный экран</div>
+  <script>
+    const slides = [...document.querySelectorAll('.slide')]; let current = 0;
+    function show(index) { current = Math.max(0, Math.min(slides.length - 1, index)); slides.forEach((s, i) => s.classList.toggle('active', i === current)); location.hash = current + 1; }
+    function fromHash() { const n = Number(location.hash.slice(1)); show(Number.isInteger(n) && n > 0 ? n - 1 : 0); }
+    document.addEventListener('keydown', e => { if (['ArrowRight','PageDown',' '].includes(e.key)) show(current + 1); if (['ArrowLeft','PageUp'].includes(e.key)) show(current - 1); if (e.key.toLowerCase() === 'n') document.body.classList.toggle('show-notes'); if (e.key.toLowerCase() === 'f') document.documentElement.requestFullscreen?.(); });
+    window.addEventListener('hashchange', fromHash); fromHash();
+  </script>
+</body>
+</html>
