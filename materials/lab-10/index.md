@@ -3,15 +3,15 @@ layout: "material"
 id: "lab-10"
 kind: "lab"
 title: "Выбираем место для офиса по геоданным"
-description: "Оцените доступность офиса для сотрудников по CSV, GeoJSON и карте."
+description: "Практикум к лекции 10: оцените доступность офиса для сотрудников по CSV, GeoJSON и карте."
 order: 18
 permalink: "/materials/lab-10/"
-card_label: "ЛР 10"
+card_label: "К лекции 10"
 card_action: "Открыть задание"
-aria_label: "Открыть лабораторную работу № 10"
+aria_label: "Открыть практикум к лекции № 10"
 render_with_liquid: false
 ---
-# Лабораторная работа № 10. Выбираем место для офиса по геоданным
+# Практикум к лекции № 10. Выбираем место для офиса по геоданным
 
 ![Восемь условных сотрудников и способы их передвижения](office-location-pilot/assets/employee-avatars.png)
 
