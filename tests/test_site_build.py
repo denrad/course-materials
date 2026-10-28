@@ -121,6 +121,11 @@ class SiteBuildTests(unittest.TestCase):
         self.assertIn("Практикум к лекции № 10", rendered)
         self.assertNotIn("Лабораторная работа № 10", rendered)
 
+    def test_homepage_explains_that_labs_8_and_9_are_upcoming(self):
+        rendered = (SITE / "index.html").read_text(encoding="utf-8")
+        self.assertIn("Лабораторные работы № 8 и 9 готовятся", rendered)
+        self.assertIn("Практикум по геоданным — отдельное продолжение лекции 10", rendered)
+
     def test_material_pages_have_card_metadata_and_preserve_html_body(self):
         required = ("id", "kind", "title", "description", "order")
         expected_order = {material_id: order for order, material_id in enumerate(MATERIAL_IDS, start=1)}
