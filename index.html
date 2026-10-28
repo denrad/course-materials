@@ -8,18 +8,30 @@
     <meta name="description" content="Материалы курса «Инструментальные средства разработки программного обеспечения».">
     <title>Инструментальные средства разработки программного обеспечения</title>
     <link rel="icon" type="image/png" href="/assets/favicon.png">
-    <link rel="stylesheet" href="assets/styles.css?v=20261028-1">
+    <link rel="stylesheet" href="assets/styles.css?v=20261028-2">
   </head>
   <body>
     <header class="site-header">
       <a class="brand" href="/">denrad.dev <span>/ course</span></a>
       <nav aria-label="Основная навигация">
+        <a href="#project">Проект</a>
         <a href="#materials">Материалы</a>
         <a href="#about">О курсе</a>
       </nav>
     </header>
 
     <main>
+      <section class="section project-callout" id="project" aria-labelledby="project-title">
+        <p class="eyebrow">Командная работа</p>
+        <h2 id="project-title">Проект: Telegram-канал</h2>
+        <p>За две лабораторные работы команда из 4–5 человек создаёт Telegram-канал. В заявке укажите название и короткое описание проекта, ФИО и группу участников, а также контакт в Telegram. Форму отправляет один участник от команды.</p>
+        <p>На защите каждый участник рассказывает, чем занимался и какой вклад внёс в общий результат. Преподаватель фиксирует вклад для внутреннего учёта курса.</p>
+        <p class="project-actions">
+          <a class="button" href="https://docs.google.com/forms/d/e/1FAIpQLSdgdPOyAVhxgs54HWq-LN-gbz8miZepvuuwGyuDiCX-cMN_Cg/viewform">Подать заявку на проект</a>
+          <a class="button" href="https://forms.yandex.ru/cloud/6ae1ced56d2d7354508d63ec/">Указать GitHub-репозиторий для ЛР № 3 и № 5</a>
+        </p>
+      </section>
+
       <section class="hero" aria-labelledby="page-title">
         <p class="eyebrow">Осень 2026</p>
         <h1 id="page-title">Инструментальные средства<br>разработки программного обеспечения</h1>
@@ -35,9 +47,6 @@
         <div class="cards">
           {% assign materials = site.pages | where_exp: "item", "item.id" | sort: "order" %}
           {% for material in materials %}
-            {% if material.order == 9 %}
-              {% include external-card.html %}
-            {% endif %}
             {% unless material.kind == 'redirect' %}
               {% include material-card.html material=material %}
             {% endunless %}
