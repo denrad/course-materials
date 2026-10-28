@@ -125,6 +125,15 @@ class SiteBuildTests(unittest.TestCase):
         self.assertIn(FORM_URL, rendered)
         self.assertIn("https://forms.yandex.ru/cloud/6ae1ced56d2d7354508d63ec/", rendered)
 
+    def test_testing_material_is_labeled_as_lecture_11(self):
+        source = (ROOT / "materials/testing/index.html").read_text(encoding="utf-8")
+        rendered = (SITE / "materials/testing/index.html").read_text(encoding="utf-8")
+        self.assertIn('kind: "lecture"', source)
+        self.assertIn('card_label: "11"', source)
+        self.assertIn("Открыть презентацию лекции 11 о тестировании", source)
+        self.assertIn('<span class="lecture-number">Лекция 11</span>', rendered)
+        self.assertIn("<title>Лекция 11. Тестирование:", rendered)
+
     def test_geojson_practicum_is_linked_to_lecture_10_not_numbered_as_lab_10(self):
         source = (ROOT / "materials/lab-10/index.md").read_text(encoding="utf-8")
         rendered = (SITE / "materials/lab-10/index.html").read_text(encoding="utf-8")
