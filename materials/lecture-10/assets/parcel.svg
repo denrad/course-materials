@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 180" role="img" aria-label="Посылка">
+  <path d="m20 45 78-35 82 35v92l-80 36-80-36Z" fill="#eae7d6" stroke="#788786" stroke-width="2"/>
+  <path d="m20 45 80 38 80-38M100 83v90M62 26l82 38v36l-28 12V77L36 38" fill="none" stroke="#788786" stroke-width="2"/>
+  <path d="m20 45 80 38v90l-80-36Z" fill="#bdd3ba" fill-opacity=".55"/>
+</svg>

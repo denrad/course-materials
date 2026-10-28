@@ -1,0 +1,251 @@
+---
+id: "lecture-10"
+kind: "lecture"
+title: "Форматы данных: обмен, хранение и конфигурация"
+description: "Как согласовать представление данных для API, таблиц, документов и настроек."
+order: 10
+permalink: "/materials/lecture-10/"
+card_label: "10"
+card_action: "Открыть презентацию"
+aria_label: "Открыть презентацию десятой лекции"
+render_with_liquid: false
+---
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Лекция 10. Форматы данных: обмен, хранение и конфигурация</title>
+  <link rel="stylesheet" href="theme.css?v=e9af7193e336">
+</head>
+<body data-public="true">
+  <main class="stage" aria-label="Презентация лекции 10">
+    <section class="slide layout-cover" data-index="1" aria-label="Слайд 1" aria-hidden="true"><div class="slide-body"><p class="cover-kicker">Лекция 10</p>
+<h1>Форматы<br>данных</h1>
+<p class="subtitle">Как сохранить, передать<br>и правильно прочитать</p>
+<svg class="cover-mark" viewBox="0 0 320 320" role="img" aria-label="Посылка с номером заказа 125">
+<path d="M35 92 154 31 280 92 280 231 160 296 35 228Z" fill="#eae7d6" stroke="#788786" stroke-width="3"/>
+<path d="m35 92 125 64 120-64M160 156v140M95 62l125 63v54l-38 20v-55L58 81" fill="none" stroke="#788786" stroke-width="3"/>
+<path d="m35 92 125 64v140L35 228Z" fill="#bdd3ba" fill-opacity=".55"/>
+<path d="m185 206 62-33v39l-62 33Z" fill="#eef4f4" stroke="#788786" stroke-width="2"/>
+<text x="203" y="225" font-family="ui-monospace,monospace" font-size="25" fill="#1f3433" transform="rotate(-28 203 225)">125</text>
+</svg>
+<p class="cover-foot">Обмен · хранение · конфигурация</p></div><span class="slide-number">01 <i>/ 23</i></span></section>
+<section class="slide layout-flow" data-index="2" aria-label="Слайд 2" aria-hidden="true"><div class="slide-body"><h1>Один заказ — несколько задач</h1><p>Те же данные понадобятся разным получателям.</p><svg class="diagram" viewBox="0 0 1424 420" role="img" aria-label="Данные заказа из памяти программы идут в API, выгрузку и хранилище">
+<defs><marker id="arrow2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 10 5 0 10" fill="#788786"/></marker></defs>
+<rect x="30" y="115" width="370" height="205" fill="#bdd3ba" stroke="#788786" stroke-width="2"/>
+<text x="62" y="165" font-size="23" fill="#5f7473">В ПАМЯТИ ПРОГРАММЫ</text>
+<text x="62" y="224" font-size="43" font-weight="650">Заказ №125</text>
+<text x="62" y="273" font-size="28">Анна · книга × 2</text>
+<path d="M400 218H610V75H860M610 218H860M610 218V360H860" fill="none" stroke="#788786" stroke-width="3" marker-end="url(#arrow2)"/>
+<path d="M610 75H860M610 218H860" stroke="#788786" stroke-width="3" marker-end="url(#arrow2)"/>
+<text x="910" y="69" font-size="36" font-weight="650">Мобильное приложение</text><text x="910" y="108" font-size="25">получить ответ API</text>
+<text x="910" y="212" font-size="36" font-weight="650">Бухгалтерия</text><text x="910" y="251" font-size="25">прочитать выгрузку</text>
+<text x="910" y="354" font-size="36" font-weight="650">Следующий запуск</text><text x="910" y="393" font-size="25">восстановить данные</text>
+</svg><p class="takeaway">Как записать заказ, чтобы его правильно прочитали?</p></div><span class="slide-number">02 <i>/ 23</i></span></section>
+<section class="slide layout-wardrobe" data-index="3" aria-label="Слайд 3" aria-hidden="true"><div class="slide-body"><h1>Как упаковать данные для передачи?</h1><img class="wardrobe" src="assets/serialization-wardrobe.png" alt="Собранный шкаф, его панели в коробке и шкаф после сборки: метафора сериализации и десериализации">
+<div class="caption-row"><span>Объект в программе</span><span><strong>Сериализация</strong><br>представление для передачи</span><span><strong>Десериализация</strong><br>данные у получателя</span></div><p class="takeaway">Получателю нужны данные и правила чтения.</p></div><span class="slide-number">03 <i>/ 23</i></span></section>
+<section class="slide layout-terms" data-index="4" aria-label="Слайд 4" aria-hidden="true"><div class="slide-body"><h1>Четыре договорённости</h1><div class="four-terms">
+<div class="term"><h2>HTTP <span class="muted">· протокол</span></h2><p>Как отправить запрос<br>и получить ответ?</p></div>
+<div class="term"><h2>JSON <span class="muted">· формат</span></h2><p>Как записать поля,<br>значения и вложенность?</p></div>
+<div class="term"><h2>UTF-8 <span class="muted">· кодировка</span></h2><p>Как представить символы<br>текста байтами?</p></div>
+<div class="term"><h2>Схема</h2><p>Какие поля, типы<br>и ограничения допустимы?</p></div>
+</div><p class="takeaway">Файл открылся. Значит ли это, что данные поняты правильно?</p></div><span class="slide-number">04 <i>/ 23</i></span></section>
+<section class="slide layout-fixed" data-index="5" aria-label="Слайд 5" aria-hidden="true"><div class="slide-body"><h1>Мы придумали свой формат</h1><p>Номер — 5 знаков. Имя — 20. Масса — 5.</p><div class="spacer"></div>
+<div class="record"><span class="id">00125</span><span class="name">Анна                </span><span class="weight">01500</span></div>
+<div class="record-labels"><span>номер заказа</span><span>получатель</span><span>масса, г</span></div>
+<p class="small muted">Учебная запись фиксированной длины. Позиции считаем в знаках.</p>
+<div class="spacer"></div><p class="takeaway">Без описания полей последовательность трудно прочитать.</p></div><span class="slide-number">05 <i>/ 23</i></span></section>
+<section class="slide layout-add-field" data-index="6" aria-label="Слайд 6" aria-hidden="true"><div class="slide-body"><h1>А теперь добавим телефон</h1><p>Старая программа продолжает читать по прежним позициям.</p><div class="two-col" style="margin-top:24px">
+<div class="col"><p class="label">Первая версия</p><pre class="code-block">номер → имя → масса</pre><p>Читатель знает порядок<br>и длину полей.</p></div>
+<div class="col"><p class="label">Новое требование</p><pre class="code-block">номер → имя → <span class="wrong">телефон</span> → масса</pre><p class="question">Что он прочитает<br>вместо массы?</p></div>
+</div>
+<p class="takeaway" data-reveal>Изменение записи требует договориться<br>о совместимости старого и нового читателя.</p></div><span class="slide-number">06 <i>/ 23</i></span></section>
+<section class="slide layout-history" data-index="7" aria-label="Слайд 7" aria-hidden="true"><div class="slide-body"><h1>Файл переживает свою программу</h1><div class="history-row"><h2>DBF</h2><p><strong>Описание структуры внутри файла.</strong><br>Какие колонки записаны и как их читать?</p></div>
+<div class="history-row"><h2>ZIP64</h2><p><strong>Расширение существующего формата.</strong><br>Как поддержать объёмы, которых раньше не ожидали?</p></div>
+<div class="history-row"><h2>Версии</h2><p><strong>Несколько правил чтения.</strong><br>Какие старые данные продолжит понимать новая программа?</p></div><p class="takeaway">Формат становится обязательством перед его пользователями.</p></div><span class="slide-number">07 <i>/ 23</i></span></section>
+<section class="slide layout-container" data-index="8" aria-label="Слайд 8" aria-hidden="true"><div class="slide-body"><h1>Что внутри DOCX?</h1><div class="two-col wide-right">
+<div class="col"><div class="paper"><h2>Заказ №125</h2><p>Получатель: Анна<br>Товар: книга, 2 шт.</p><img class="paper-parcel" src="assets/parcel.svg" alt="Изображение посылки внутри учебного документа"></div><p class="small muted">Документ: текст + изображение</p></div>
+<div class="col"><pre class="code-block tree">example.docx
+├── [Content_Types].xml
+├── _rels/
+└── word/
+    ├── <span class="highlight">document.xml</span>
+    └── media/
+        └── <span class="highlight">parcel.png</span></pre><p class="small"><a href="demo/example.docx" download>Скачать учебный DOCX</a> · <a href="demo/example.zip" download>Открыть как ZIP</a></p></div>
+</div><p class="takeaway">Контейнер объединяет файлы. Форматы внутри описывают содержимое.</p></div><span class="slide-number">08 <i>/ 23</i></span></section>
+<section class="slide layout-encoding" data-index="9" aria-label="Слайд 9" aria-hidden="true"><div class="slide-body"><h1>Буквы тоже становятся байтами</h1><div class="two-col" style="margin-top:24px">
+<div class="col"><p class="encoding-good">Привет</p><p class="encoding-foot">6 букв · 12 байтов в UTF-8</p><pre class="code-block code-small">len("Привет")                 # 6
+len("Привет".encode("utf-8"))  # 12</pre></div>
+<div class="col rule-left" data-reveal><p class="label">Те же байты, другое чтение</p><p class="encoding-bad">РџСЂРёРІРµС‚</p><p>UTF-8 ошибочно прочитан<br>как Windows-1251.</p><p class="small muted">Файл мог сохраниться без повреждений.</p></div>
+</div><p class="takeaway">При записи и чтении кодировка должна быть согласована.</p></div><span class="slide-number">09 <i>/ 23</i></span></section>
+<section class="slide layout-csv" data-index="10" aria-label="Слайд 10" aria-hidden="true"><div class="slide-body"><h1>Бухгалтерии нужна таблица</h1><p>Договоримся о колонках, разделителе и правилах чтения.</p><pre class="code-block" style="margin-top:20px">order_id;city;postal_code;amount_rub
+125;Москва;<span class="highlight">001250</span>;1500
+126;Чебоксары;428000;2200</pre>
+<div class="row spread rule-top"><p>CSV — текстовая таблица.</p><p>TSV — разделитель табуляция.</p></div>
+<p class="demo-link"><a href="demo/orders.csv" download>Учебная выгрузка orders.csv</a></p><p class="takeaway">Какие сведения нужно передать вместе с файлом?</p></div><span class="slide-number">10 <i>/ 23</i></span></section>
+<section class="slide layout-zeros" data-index="11" aria-label="Слайд 11" aria-hidden="true"><div class="slide-body"><h1>Куда исчезли нули?</h1><p>Почтовый индекс состоит из цифр. Нужно ли делать его числом?</p><div class="row spread" style="margin:30px 0 10px">
+<div><p class="label">В файле</p><p class="large-value">001250</p></div>
+<span class="arrow">→</span>
+<div><p class="label">Прочитан как число</p><p class="large-value"><span class="wrong">1250</span></p></div>
+</div>
+<div class="rule-top" data-reveal><p>Для идентификатора явно сохраняем текстовый тип:</p><pre class="code-block code-small" style="margin-top:16px">pd.read_csv("orders.csv", sep=";",
+            dtype={"postal_code": "string"})</pre></div><p class="takeaway">Автоматическое распознавание типа может изменить данные.</p></div><span class="slide-number">11 <i>/ 23</i></span></section>
+<section class="slide layout-quoting" data-index="12" aria-label="Слайд 12" aria-hidden="true"><div class="slide-body"><h1>Разделитель встретился внутри адреса</h1><pre class="code-block" style="font-size:43px;margin-top:28px">125;001250;"Москва; склад 2"</pre>
+<p class="question">Сколько здесь полей?</p>
+<div data-reveal><div class="fields"><span>125</span><span>001250</span><span>Москва; склад 2</span></div><div class="fields-labels"><span>заказ</span><span>индекс</span><span>адрес</span></div></div>
+<p class="takeaway" data-reveal>Кавычки позволяют сохранить разделитель внутри одного поля.</p></div><span class="slide-number">12 <i>/ 23</i></span></section>
+<section class="slide layout-xml" data-index="13" aria-label="Слайд 13" aria-hidden="true"><div class="slide-body"><h1>В заказе несколько товаров</h1><p>XML показывает структуру с помощью тегов и вложенности.</p><div class="two-col wide-left">
+<pre class="code-block xml-code">&lt;order id="125"&gt;
+  &lt;recipient&gt;Анна&lt;/recipient&gt;
+  <span class="highlight">&lt;items&gt;</span>
+    &lt;item quantity="2"&gt;
+      Книга
+    &lt;/item&gt;
+  <span class="highlight">&lt;/items&gt;</span>
+&lt;/order&gt;</pre>
+<div class="col rule-left"><p><strong>Элемент</strong><br><code>recipient</code></p><p><strong>Атрибут</strong><br><code>quantity="2"</code></p><p><strong>Вложенность</strong><br>товар внутри списка</p></div>
+</div></div><span class="slide-number">13 <i>/ 23</i></span></section>
+<section class="slide layout-svg" data-index="14" aria-label="Слайд 14" aria-hidden="true"><div class="slide-body"><h1>Текст, который рисует картинку</h1><p>SVG — пример специализированного языка на основе XML.</p><div class="two-col wide-left">
+<pre class="code-block code-small">&lt;svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 200 120"&gt;
+  &lt;rect x="30" y="20"
+        width="140" height="80"
+        fill="<span class="highlight">#BDD3BA</span>"
+        stroke="#1F3433" /&gt;
+&lt;/svg&gt;</pre>
+<div class="col"><div class="svg-preview"><img src="assets/rectangle.svg" alt="Шалфейный прямоугольник с тёмным контуром, нарисованный приведённым SVG-кодом"></div><p class="small muted">Один файл можно прочитать как текст<br>и показать как изображение.</p></div>
+</div></div><span class="slide-number">14 <i>/ 23</i></span></section>
+<section class="slide layout-json" data-index="15" aria-label="Слайд 15" aria-hidden="true"><div class="slide-body"><h1>Знакомый заказ в JSON</h1><div class="two-col wide-left">
+<pre class="code-block" style="font-size:28px">{
+  <span class="key">"id"</span>: <span class="number">125</span>,
+  <span class="key">"recipient"</span>: <span class="string">"Анна"</span>,
+  <span class="key">"items"</span>: [
+    {"title": "Книга", "quantity": 2}
+  ],
+  <span class="key">"paid"</span>: <span class="number">true</span>
+}</pre>
+<div class="col rule-left"><p><code>{ }</code> объект</p><p><code>[ ]</code> массив</p><p><code>"Анна"</code> строка</p><p><code>125</code> число</p><p><code>true</code> логическое значение</p></div>
+</div><p class="takeaway">Читаемая структура ещё не гарантирует правильность данных.</p></div><span class="slide-number">15 <i>/ 23</i></span></section>
+<section class="slide layout-errors" data-index="16" aria-label="Слайд 16" aria-hidden="true"><div class="slide-body"><h1>Три ошибки — три проверки</h1><div class="error-list">
+<div class="error-row"><span class="error-index">01</span><pre class="code-block">{"weight_grams": 1500</pre><div data-reveal><span class="label">Синтаксис</span><p>Объект не закрыт.</p></div></div>
+<div class="error-row"><span class="error-index">02</span><pre class="code-block">{"weight_grams": <span class="wrong">"1500"</span>}</pre><div data-reveal><span class="label">Схема</span><p>Ожидалось число,<br>пришла строка.</p></div></div>
+<div class="error-row"><span class="error-index">03</span><pre class="code-block">{"weight_grams": <span class="wrong">1.5</span>}</pre><div data-reveal><span class="label">Смысл</span><p>Отправитель имел в виду<br>1,5 кг. Поле — в граммах.</p></div></div>
+</div><p class="takeaway">Что обнаружит парсер? Что — схема? Что требует знания задачи?</p></div><span class="slide-number">16 <i>/ 23</i></span></section>
+<section class="slide layout-schema" data-index="17" aria-label="Слайд 17" aria-hidden="true"><div class="slide-body"><h1>Что проверяет схема?</h1><div class="two-col wide-left">
+<pre class="code-block schema-code">{
+  "type": "object",
+  "properties": {
+    "weight_grams": {
+      "type": <span class="highlight">"integer"</span>,
+      "minimum": <span class="highlight">1</span>
+    }
+  },
+  "required": [<span class="highlight">"weight_grams"</span>]
+}</pre>
+<div class="col rule-left"><p><strong>Целое число</strong><br>Строка "1500" не подходит.</p><p><strong>Не меньше 1</strong><br>Ноль не подходит.</p><p><strong>Обязательное поле</strong><br>Его нельзя пропустить.</p></div>
+</div></div><span class="slide-number">17 <i>/ 23</i></span></section>
+<section class="slide layout-compatibility" data-index="18" aria-label="Слайд 18" aria-hidden="true"><div class="slide-body"><h1>Новое поле: старый клиент выживет?</h1><div class="two-col">
+<div class="col"><p class="label">Первый ответ API</p><pre class="code-block">{
+  "id": 125,
+  "status": "created"
+}</pre></div>
+<div class="col"><p class="label">После обновления</p><pre class="code-block">{
+  "id": 125,
+  "status": "created",
+  <span class="highlight">"courier_phone": null</span>
+}</pre></div>
+</div>
+<div class="rule-top" data-reveal><p><strong>Зависит от правил клиента:</strong> допускает ли он новые поля<br>и сохранился ли смысл прежних?</p></div><p class="takeaway">Совместимость нужно проектировать и проверять.</p></div><span class="slide-number">18 <i>/ 23</i></span></section>
+<section class="slide layout-lab" data-index="19" aria-label="Слайд 19" aria-hidden="true"><div class="slide-body"><h1>Вы уже писали YAML</h1><p>Заявка на поддомен из лабораторной №5.</p><div class="two-col wide-left">
+<div class="col"><pre class="code-block yaml-code" style="font-size:23px">subdomain: ivan-ivanov
+type: CNAME
+target: ivan123.github.io
+repository: https://github.com/ivan123/my-lab-site</pre><p class="small muted">Ключи, значения и автоматическая проверка.</p><a class="demo-link" href="demo/record.yaml" download>Учебная заявка record.yaml</a></div>
+<div class="col"><img class="lab-shot" src="assets/lab05-record-editor.jpg" alt="Редактирование YAML-заявки на поддомен в GitHub, иллюстрация из лабораторной 5"><p class="small">Человек заполняет поля.<br>Проверка PR сверяет правила.</p></div>
+</div></div><span class="slide-number">19 <i>/ 23</i></span></section>
+<section class="slide layout-yaml" data-index="20" aria-label="Слайд 20" aria-hidden="true"><div class="slide-body"><h1>Читается легко — ошибиться всё ещё можно</h1><div class="two-col">
+<div class="col"><p class="label">Порт относится к api</p><pre class="code-block yaml-code">services:
+  api:
+    image: example/api:latest
+    <span class="highlight">ports:</span>
+      - "8080:8000"</pre></div>
+<div class="col"><p class="label">Изменили отступ</p><pre class="code-block yaml-code">services:
+  api:
+    image: example/api:latest
+  <span class="wrong">ports:</span>
+    - "8080:8000"</pre></div>
+</div>
+<div class="rule-top" data-reveal><p>Справа изменилось дерево: <code>ports</code> больше не внутри <code>api</code>.<br>Корректный YAML может нарушать правила Docker Compose.</p></div><p class="takeaway">Проверяем синтаксис, правила программы и результат применения.</p></div><span class="slide-number">20 <i>/ 23</i></span></section>
+<section class="slide layout-formats" data-index="21" aria-label="Слайд 21" aria-hidden="true"><div class="slide-body"><h1>Почему существуют разные представления?</h1><div class="format-list">
+<div><h2>GZIP / Zstandard</h2><p>Уменьшить размер уже выбранного представления.</p></div>
+<div><h2>Protobuf</h2><p>Передавать бинарные сообщения по схеме.<br>Соблюдать правила её изменения.</p></div>
+<div><h2>Parquet</h2><p>Хранить таблицу по колонкам<br>для аналитической обработки.</p></div>
+</div><p class="takeaway">Выбор зависит от задачи: читаемость, размер, обработка, совместимость.</p></div><span class="slide-number">21 <i>/ 23</i></span></section>
+<section class="slide layout-formats-map" data-index="22" aria-label="Слайд 22" aria-hidden="true"><div class="slide-body"><h1>В одной системе живут разные форматы</h1><p>Формат зависит от того, кто и для чего использует данные.</p><div class="system-map">
+<div class="system-center"><span class="label">СИСТЕМА ДОСТАВКИ</span><strong>Заказ №125</strong><span>Анна · книга × 2</span></div>
+<div class="system-branch"><strong>База данных</strong><code>shipments</code><span>сохранить заказ</span></div>
+<div class="system-branch"><strong>API</strong><code>{ "id": 125 }</code><span>вернуть приложению</span></div>
+<div class="system-branch"><strong>CSV</strong><code>125;Москва;1500</code><span>выгрузить отчёт</span></div>
+<div class="system-branch"><strong>YAML</strong><code>type: CNAME</code><span>проверить настройку</span></div>
+</div>
+<p class="takeaway">Одна система может использовать разные форматы<br>для разных задач.</p></div><span class="slide-number">22 <i>/ 23</i></span></section>
+<section class="slide layout-final" data-index="23" aria-label="Слайд 23" aria-hidden="true"><div class="slide-body"><h1>Что выберете вы?</h1><p>Для каждого случая назовите подход и одну важную договорённость.</p><div class="choices">
+<div class="choice"><h2>Ответ мобильному приложению</h2><p data-reveal><strong>JSON + контракт API</strong><br>Поля, типы и условия совместимости.</p></div>
+<div class="choice"><h2>Таблица для коллеги</h2><p data-reveal><strong>CSV или XLSX</strong><br>Типы, кодировка, правила импорта.</p></div>
+<div class="choice"><h2>Настройки сервиса</h2><p data-reveal><strong>Поддерживаемый формат</strong><br>YAML / TOML / JSON и проверка правил.</p></div>
+<div class="choice"><h2>Векторная графика</h2><p data-reveal><strong>SVG / XML</strong><br>Изображение остаётся чётким при масштабировании.</p></div>
+</div><p class="takeaway">Передать байты мало — нужно согласовать, как их понимать.</p></div><span class="slide-number">23 <i>/ 23</i></span></section>
+    <div class="progress" aria-hidden="true"><div></div></div>
+  </main>
+  <nav class="controls" aria-label="Управление презентацией">
+    <button type="button" data-action="prev" aria-label="Назад">←</button>
+    <span class="counter" aria-live="polite"></span>
+    <button type="button" data-action="next" aria-label="Следующее раскрытие или слайд">→</button>
+    <span class="control-separator"></span>
+    <button type="button" data-action="reveal" aria-label="Показать все ответы на слайде (A)">A <span>ответы</span></button>
+    <button type="button" data-action="fullscreen" aria-label="Полный экран (F)">F <span>полный экран</span></button>
+  </nav>
+  <script>
+  (() => {
+    const slides=[...document.querySelectorAll('.slide')];
+    const stage=document.querySelector('.stage');
+    let current=0;
+    const reveals=s=>[...s.querySelectorAll('[data-reveal]')];
+    function resize(){stage.style.setProperty('--scale',Math.min(innerWidth/1600,(innerHeight-58)/900));}
+    function show(index,reset=false){
+      current=Math.max(0,Math.min(slides.length-1,index));
+      slides.forEach((s,i)=>{s.classList.toggle('active',i===current);s.setAttribute('aria-hidden',String(i!==current));});
+      if(reset)reveals(slides[current]).forEach(x=>{x.classList.remove('revealed');x.setAttribute('aria-hidden','true');});
+      document.querySelector('.counter').textContent=`${current+1} / ${slides.length}`;
+      document.querySelector('.progress > div').style.width=`${(current+1)/slides.length*100}%`;
+      document.querySelector('[data-action="prev"]').disabled=current===0&&!reveals(slides[current]).some(x=>x.classList.contains('revealed'));
+      document.querySelector('[data-action="next"]').disabled=current===slides.length-1&&reveals(slides[current]).every(x=>x.classList.contains('revealed'));
+      history.replaceState(null,'',`#${current+1}`);
+    }
+    function next(){const x=reveals(slides[current]).find(x=>!x.classList.contains('revealed'));if(x){x.classList.add('revealed');x.setAttribute('aria-hidden','false');show(current);}else show(current+1,true);}
+    function prev(){const x=reveals(slides[current]).filter(x=>x.classList.contains('revealed')).at(-1);if(x){x.classList.remove('revealed');x.setAttribute('aria-hidden','true');show(current);}else show(current-1);}
+    function all(){reveals(slides[current]).forEach(x=>{x.classList.add('revealed');x.setAttribute('aria-hidden','false');});show(current);}
+    function notes(){if(document.body.dataset.public!=='true')document.body.classList.toggle('show-notes');}
+    async function fullscreen(){try{if(document.fullscreenElement)await document.exitFullscreen();else await document.documentElement.requestFullscreen();}catch{}}
+    const actions={next,prev,reveal:all,notes,fullscreen};
+    document.querySelectorAll('[data-action]').forEach(b=>b.addEventListener('click',()=>actions[b.dataset.action]()));
+    document.addEventListener('keydown',e=>{
+      if(e.ctrlKey||e.metaKey||e.altKey||/INPUT|TEXTAREA|SELECT/.test(e.target.tagName))return;
+      if(['ArrowRight','PageDown',' '].includes(e.key)){e.preventDefault();next();}
+      else if(['ArrowLeft','PageUp'].includes(e.key)){e.preventDefault();prev();}
+      else if(e.key==='Home'){e.preventDefault();show(0,true);}
+      else if(e.key==='End'){e.preventDefault();show(slides.length-1,true);}
+      else if(e.key.toLowerCase()==='a')all();
+      else if(e.key.toLowerCase()==='n')notes();
+      else if(e.key.toLowerCase()==='f')fullscreen();
+      else if(e.key==='Escape')document.body.classList.remove('show-notes');
+    });
+    function fromHash(){const n=Number(location.hash.slice(1));show(Number.isInteger(n)&&n>0?n-1:0,true);}
+    window.addEventListener('resize',resize);window.addEventListener('hashchange',fromHash);
+    document.querySelectorAll('[data-reveal]').forEach(x=>x.setAttribute('aria-hidden','true'));
+    resize();fromHash();
+  })();
+  </script>
+</body>
+</html>

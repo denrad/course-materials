@@ -1,0 +1,7 @@
+{
+  "type": "object",
+  "properties": {
+    "weight_grams": {"type": "integer", "minimum": 1}
+  },
+  "required": ["weight_grams"]
+}
