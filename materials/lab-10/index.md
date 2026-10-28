@@ -4,7 +4,7 @@ id: "lab-10"
 kind: "lab"
 title: "Выбираем место для офиса по геоданным"
 description: "Практикум к лекции 10: оцените доступность офиса для сотрудников по CSV, GeoJSON и карте."
-order: 18
+order: 19
 permalink: "/materials/lab-10/"
 card_label: "К лекции 10"
 card_action: "Открыть задание"

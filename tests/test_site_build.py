@@ -13,9 +13,9 @@ ROOT = Path(__file__).resolve().parents[1]
 SITE = Path(os.environ.get("JEKYLL_DESTINATION", ROOT / "_site"))
 MATERIAL_IDS = [
     "lecture-01", "lecture-02", "lecture-04", "lecture-05", "lecture-06",
-    "lecture-07", "lecture-08", "lecture-09", "lecture-10", "lab-01", "lab-02",
-    "lab-03", "lab-04", "lab-05", "lab-06", "lab-07", "agentic-development", "lab-10",
-    "testing",
+    "lecture-07", "lecture-08", "lecture-09", "lecture-10", "testing", "lab-01",
+    "lab-02", "lab-03", "lab-04", "lab-05", "lab-06", "lab-07",
+    "agentic-development", "lab-10",
 ]
 ROUTE_IDS = [*MATERIAL_IDS, "lab-17"]
 FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSdgdPOyAVhxgs54HWq-LN-gbz8miZepvuuwGyuDiCX-cMN_Cg/viewform"
@@ -113,7 +113,17 @@ class SiteBuildTests(unittest.TestCase):
         parser.feed((SITE / "index.html").read_text(encoding="utf-8"))
         self.assertEqual(MATERIAL_IDS, parser.material_ids)
         self.assertEqual([FORM_URL], parser.form_links)
-        self.assertEqual(FORM_URL, parser.card_links[8])
+        self.assertNotIn(FORM_URL, parser.card_links)
+
+    def test_project_information_precedes_the_course_hero_and_links_both_forms(self):
+        rendered = (SITE / "index.html").read_text(encoding="utf-8")
+        project = rendered.index('id="project"')
+        hero = rendered.index('class="hero"')
+        materials = rendered.index('id="materials"')
+        self.assertLess(project, hero)
+        self.assertLess(project, materials)
+        self.assertIn(FORM_URL, rendered)
+        self.assertIn("https://forms.yandex.ru/cloud/6ae1ced56d2d7354508d63ec/", rendered)
 
     def test_geojson_practicum_is_linked_to_lecture_10_not_numbered_as_lab_10(self):
         source = (ROOT / "materials/lab-10/index.md").read_text(encoding="utf-8")
