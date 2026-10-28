@@ -13,7 +13,7 @@ ROOT = Path(__file__).resolve().parents[1]
 SITE = Path(os.environ.get("JEKYLL_DESTINATION", ROOT / "_site"))
 MATERIAL_IDS = [
     "lecture-01", "lecture-02", "lecture-04", "lecture-05", "lecture-06",
-    "lecture-07", "lecture-08", "lecture-09", "lab-01", "lab-02",
+    "lecture-07", "lecture-08", "lecture-09", "lecture-10", "lab-01", "lab-02",
     "lab-03", "lab-04", "lab-05", "lab-06", "lab-07", "agentic-development",
 ]
 ROUTE_IDS = [*MATERIAL_IDS, "lab-17"]
@@ -107,7 +107,7 @@ class SiteBuildTests(unittest.TestCase):
     def test_material_pages_have_card_metadata_and_preserve_html_body(self):
         required = ("id", "kind", "title", "description", "order")
         expected_order = {material_id: order for order, material_id in enumerate(MATERIAL_IDS, start=1)}
-        expected_order["lab-17"] = 17
+        expected_order["lab-17"] = len(MATERIAL_IDS) + 1
         for material_id in ROUTE_IDS:
             with self.subTest(material=material_id):
                 source_directory = ROOT / "materials" / material_id

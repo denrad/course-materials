@@ -1,0 +1,6 @@
+{
+  "id": 125,
+  "recipient": "Анна",
+  "items": [{"title": "Книга", "quantity": 2}],
+  "paid": true
+}
