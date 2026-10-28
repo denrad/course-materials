@@ -114,6 +114,13 @@ class SiteBuildTests(unittest.TestCase):
         self.assertEqual([FORM_URL], parser.form_links)
         self.assertEqual(FORM_URL, parser.card_links[8])
 
+    def test_geojson_practicum_is_linked_to_lecture_10_not_numbered_as_lab_10(self):
+        source = (ROOT / "materials/lab-10/index.md").read_text(encoding="utf-8")
+        rendered = (SITE / "materials/lab-10/index.html").read_text(encoding="utf-8")
+        self.assertIn('card_label: "К лекции 10"', source)
+        self.assertIn("Практикум к лекции № 10", rendered)
+        self.assertNotIn("Лабораторная работа № 10", rendered)
+
     def test_material_pages_have_card_metadata_and_preserve_html_body(self):
         required = ("id", "kind", "title", "description", "order")
         expected_order = {material_id: order for order, material_id in enumerate(MATERIAL_IDS, start=1)}
