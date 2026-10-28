@@ -89,6 +89,11 @@ def markdown_text_lines(body):
 
 
 class SiteBuildTests(unittest.TestCase):
+    def test_images_cannot_expand_material_pages_beyond_the_viewport(self):
+        stylesheet = (ROOT / "assets/styles.css").read_text(encoding="utf-8")
+        self.assertRegex(stylesheet, r"(?m)^img\s*\{[^}]*max-width:\s*100%")
+        self.assertRegex(stylesheet, r"(?m)^img\s*\{[^}]*height:\s*auto")
+
     def test_build_contains_public_routes_and_assets(self):
         expected = (
             "index.html",
@@ -199,7 +204,7 @@ class SiteBuildTests(unittest.TestCase):
             self.assertIn("<title>Fixture · Материалы курса</title>", rendered)
             self.assertIn('<h1 id="fixture-body">Fixture body</h1>', rendered)
             self.assertIn("{{ name }}", rendered)
-            self.assertIn('href="/assets/styles.css"', rendered)
+        self.assertIn('href="/assets/styles.css?v=20261028-1"', rendered)
 
 
 if __name__ == "__main__":

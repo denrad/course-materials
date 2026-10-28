@@ -21,6 +21,8 @@ body {
 
 a { color: inherit; }
 
+img { max-width: 100%; height: auto; }
+
 .site-header, main, .site-footer {
   width: min(1120px, calc(100% - 40px));
   margin: 0 auto;
