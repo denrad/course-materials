@@ -102,7 +102,7 @@ class SiteBuildTests(unittest.TestCase):
         parser.feed((SITE / "index.html").read_text(encoding="utf-8"))
         self.assertEqual(MATERIAL_IDS, parser.material_ids)
         self.assertEqual([FORM_URL], parser.form_links)
-        self.assertEqual(FORM_URL, parser.card_links[9])
+        self.assertEqual(FORM_URL, parser.card_links[8])
 
     def test_material_pages_have_card_metadata_and_preserve_html_body(self):
         required = ("id", "kind", "title", "description", "order")
