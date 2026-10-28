@@ -14,7 +14,7 @@ SITE = Path(os.environ.get("JEKYLL_DESTINATION", ROOT / "_site"))
 MATERIAL_IDS = [
     "lecture-01", "lecture-02", "lecture-04", "lecture-05", "lecture-06",
     "lecture-07", "lecture-08", "lecture-09", "lecture-10", "lab-01", "lab-02",
-    "lab-03", "lab-04", "lab-05", "lab-06", "lab-07", "agentic-development",
+    "lab-03", "lab-04", "lab-05", "lab-06", "lab-07", "agentic-development", "lab-10",
 ]
 ROUTE_IDS = [*MATERIAL_IDS, "lab-17"]
 FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSdgdPOyAVhxgs54HWq-LN-gbz8miZepvuuwGyuDiCX-cMN_Cg/viewform"
@@ -61,16 +61,21 @@ class RenderedText(HTMLParser):
 
 def markdown_text_lines(body):
     lines = []
+    in_code_fence = False
     for line in body.splitlines():
         line = line.strip()
-        if not line or line.startswith("```") or re.fullmatch(r"[-*_]{3,}", line):
+        if line.startswith("```"):
+            in_code_fence = not in_code_fence
+            continue
+        if in_code_fence or not line or re.fullmatch(r"[-*_]{3,}", line):
             continue
         line = re.sub(r"^#{1,6}\s+", "", line)
         line = re.sub(r"^>\s?", "", line)
         line = re.sub(r"^(?:[-*+]\s+|\d+[.)]\s+)", "", line)
         if re.fullmatch(r"[-*_]{3,}", line):
             continue
-        line = re.sub(r"!\[([^\]]*)\]\([^)]+\)", r"\1", line)
+        if re.search(r"!\[[^\]]*\]\([^)]+\)", line):
+            continue
         line = re.sub(r"\[([^\]]+)\]\([^)]+\)", r"\1", line)
         line = re.sub(r"<[^>]+>", "", line)
         line = re.sub(r"[*_`~|]", "", line)
