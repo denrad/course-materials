@@ -134,17 +134,17 @@ class SiteBuildTests(unittest.TestCase):
         self.assertIn('<span class="lecture-number">Лекция 11</span>', rendered)
         self.assertIn("<title>Лекция 11. Тестирование:", rendered)
 
-    def test_geojson_practicum_is_linked_to_lecture_10_not_numbered_as_lab_10(self):
+    def test_geojson_practicum_is_numbered_as_lab_8(self):
         source = (ROOT / "materials/lab-10/index.md").read_text(encoding="utf-8")
         rendered = (SITE / "materials/lab-10/index.html").read_text(encoding="utf-8")
-        self.assertIn('card_label: "К лекции 10"', source)
-        self.assertIn("Практикум к лекции № 10", rendered)
+        self.assertIn('card_label: "Лабораторная работа №8"', source)
+        self.assertIn("Лабораторная работа № 8", rendered)
         self.assertNotIn("Лабораторная работа № 10", rendered)
 
-    def test_homepage_explains_that_labs_8_and_9_are_upcoming(self):
+    def test_homepage_lists_lab_8_and_says_lab_9_is_upcoming(self):
         rendered = (SITE / "index.html").read_text(encoding="utf-8")
-        self.assertIn("Лабораторные работы № 8 и 9 готовятся", rendered)
-        self.assertIn("Практикум по геоданным — отдельное продолжение лекции 10", rendered)
+        self.assertIn("Лабораторная работа № 8 посвящена выбору места для офиса по геоданным", rendered)
+        self.assertIn("лабораторная работа № 9 готовится", rendered)
 
     def test_material_pages_have_card_metadata_and_preserve_html_body(self):
         required = ("id", "kind", "title", "description", "order")
