@@ -137,8 +137,8 @@ class SiteBuildTests(unittest.TestCase):
     def test_geojson_practicum_is_numbered_as_lab_8(self):
         source = (ROOT / "materials/lab-10/index.md").read_text(encoding="utf-8")
         rendered = (SITE / "materials/lab-10/index.html").read_text(encoding="utf-8")
-        self.assertIn('card_label: "Лабораторная работа №8"', source)
-        self.assertIn("Лабораторная работа № 8", rendered)
+        self.assertIn('card_label: "ЛР 08"', source)
+        self.assertIn("ЛР 08", rendered)
         self.assertNotIn("Лабораторная работа № 10", rendered)
 
     def test_homepage_lists_lab_8_and_says_lab_9_is_upcoming(self):
