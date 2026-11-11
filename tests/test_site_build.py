@@ -15,7 +15,7 @@ MATERIAL_IDS = [
     "lecture-01", "lecture-02", "agentic-development", "lecture-04", "lecture-05", "lecture-06",
     "lecture-07", "lecture-08", "lecture-09", "lecture-10", "testing", "lab-01",
     "lab-02", "lab-03", "lab-04", "lab-05", "lab-06", "lab-07",
-    "lab-10",
+    "lab-10", "lab-09",
 ]
 ROUTE_IDS = [*MATERIAL_IDS, "lab-17"]
 FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSdgdPOyAVhxgs54HWq-LN-gbz8miZepvuuwGyuDiCX-cMN_Cg/viewform"
@@ -68,7 +68,7 @@ def markdown_text_lines(body):
         if line.startswith("```"):
             in_code_fence = not in_code_fence
             continue
-        if in_code_fence or not line or re.fullmatch(r"[-*_]{3,}", line):
+        if in_code_fence or not line or re.fullmatch(r"[-*_]{3,}", line) or re.fullmatch(r"[|:\s-]+", line):
             continue
         line = re.sub(r"^#{1,6}\s+", "", line)
         line = re.sub(r"^>\s?", "", line)
@@ -79,7 +79,9 @@ def markdown_text_lines(body):
             continue
         line = re.sub(r"\[([^\]]+)\]\([^)]+\)", r"\1", line)
         line = re.sub(r"<[^>]+>", "", line)
-        line = re.sub(r"[*_`~|]", "", line)
+        # Underscores inside inline code are literal API identifiers.
+        line = re.sub(r"`([^`]+)`", lambda m: m.group(1).replace("_", "\x00"), line)
+        line = re.sub(r"[*_`~|]", "", line).replace("\x00", "_")
         if re.fullmatch(r"[-:]{3,}", line):
             continue
         line = " ".join(unescape(line).split())
@@ -141,10 +143,10 @@ class SiteBuildTests(unittest.TestCase):
         self.assertIn("ЛР 08", rendered)
         self.assertNotIn("Лабораторная работа № 10", rendered)
 
-    def test_homepage_lists_lab_8_and_says_lab_9_is_upcoming(self):
+    def test_homepage_lists_lab_8_and_lab_9(self):
         rendered = (SITE / "index.html").read_text(encoding="utf-8")
         self.assertIn("Лабораторная работа № 8 посвящена выбору места для офиса по геоданным", rendered)
-        self.assertIn("лабораторная работа № 9 готовится", rendered)
+        self.assertIn("лабораторная работа № 9 — проверке поведения службы доставки", rendered)
 
     def test_material_pages_have_card_metadata_and_preserve_html_body(self):
         required = ("id", "kind", "title", "description", "order")
