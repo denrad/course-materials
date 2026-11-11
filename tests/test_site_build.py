@@ -15,7 +15,7 @@ MATERIAL_IDS = [
     "lecture-01", "lecture-02", "agentic-development", "lecture-04", "lecture-05", "lecture-06",
     "lecture-07", "lecture-08", "lecture-09", "lecture-10", "testing", "lab-01",
     "lab-02", "lab-03", "lab-04", "lab-05", "lab-06", "lab-07",
-    "lab-10", "lab-09",
+    "lab-10", "lab-09", "ai-agents-opencode",
 ]
 ROUTE_IDS = [*MATERIAL_IDS, "lab-17"]
 FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSdgdPOyAVhxgs54HWq-LN-gbz8miZepvuuwGyuDiCX-cMN_Cg/viewform"
@@ -175,6 +175,8 @@ class SiteBuildTests(unittest.TestCase):
                     parser.feed(rendered)
                     rendered_text = " ".join(" ".join(parser.parts).split())
                     rendered_text = re.sub(r"\s+([,.;:!?])", r"\1", rendered_text)
+                    rendered_text = re.sub(r"\(\s+", "(", rendered_text)
+                    rendered_text = re.sub(r"\s+\)", ")", rendered_text)
                     expected_lines = markdown_text_lines(body)
                     self.assertTrue(expected_lines, f"Markdown body is empty: {source}")
                     for line in expected_lines:
