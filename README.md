@@ -30,7 +30,7 @@ GitHub Pages собирает содержимое ветки `main` из кор
 
 ## Локальная сборка
 
-Нужны Ruby 3.3.4, Bundler, Python 3.11+ и Make.
+Нужны Ruby 3.3.13, Bundler, Python 3.11+ и Make.
 
 ```sh
 bundle install
