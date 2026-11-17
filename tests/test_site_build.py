@@ -155,6 +155,7 @@ class SiteBuildTests(unittest.TestCase):
         rendered = (SITE / "index.html").read_text(encoding="utf-8")
         self.assertIn("Лабораторная работа № 8 посвящена выбору места для офиса по геоданным", rendered)
         self.assertIn("лабораторная работа № 9 — проверке поведения службы доставки", rendered)
+        self.assertIn("лабораторная работа № 11 — расследованию ошибок в базе данных", rendered)
 
     def test_material_pages_have_card_metadata_and_preserve_html_body(self):
         required = ("id", "kind", "title", "description", "order")
