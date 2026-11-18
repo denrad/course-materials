@@ -4,7 +4,7 @@ id: "ai-agents-opencode"
 kind: "lecture"
 title: "AI-агенты для разработки: знакомство с OpenCode"
 description: "Как AI-агент работает с проектом и как начать знакомство с OpenCode."
-order: 12
+order: 11.5
 permalink: "/materials/ai-agents-opencode/"
 card_label: "12"
 card_action: "Читать лекцию"
