@@ -33,8 +33,9 @@
   panel.hidden = true; panel.innerHTML = '<h2>Подключить телефон</h2><div class="remote-qr"></div><button type="button" class="remote-stop">Закрыть сессию</button>';
   panel.append(status); document.body.append(panel);
   button.addEventListener('click', async () => {
-    if (!panel.hidden) return;
+    if (!panel.hidden) { panel.hidden = true; return; }
     panel.hidden = false;
+    if (socket && active) return;
     if (location.protocol === 'file:') { status.textContent = 'Откройте презентацию через веб-сервер: file:// не поддерживается.'; return; }
     status.textContent = 'Создаём комнату…';
     try {
