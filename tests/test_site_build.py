@@ -166,7 +166,8 @@ class SiteBuildTests(unittest.TestCase):
         expected_order["ai-agents-opencode"] = "11.5"
         expected_order["lab-11"] = 22
         expected_order["lab-12"] = 23
-        expected_order["lab-17"] = 22
+        expected_order["lecture-14"] = 24
+        expected_order["lab-17"] = 25
         for material_id in ROUTE_IDS:
             with self.subTest(material=material_id):
                 source_directory = ROOT / "materials" / material_id
