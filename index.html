@@ -47,9 +47,14 @@
         <div class="cards">
           {% assign materials = site.pages | where_exp: "item", "item.id" | sort: "order" %}
           {% for material in materials %}
-            {% unless material.kind == 'redirect' %}
+            {% unless material.kind == 'redirect' or material.kind == 'lab' %}
               {% include material-card.html material=material %}
             {% endunless %}
+          {% endfor %}
+          {% for material in materials %}
+            {% if material.kind == 'lab' %}
+              {% include material-card.html material=material %}
+            {% endif %}
           {% endfor %}
         </div>
       </section>
