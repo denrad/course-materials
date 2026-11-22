@@ -1,0 +1,73 @@
+---
+id: "lecture-14"
+kind: "lecture"
+title: "У меня всё работает! Сопровождение и логи"
+description: "Как расследовать сбои приложений, читать логи и бережно обращаться с данными."
+order: 24
+permalink: "/materials/lecture-14/"
+card_label: "Логи"
+card_action: "Открыть презентацию"
+aria_label: "Открыть презентацию о сопровождении и логировании"
+render_with_liquid: false
+---
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>У меня всё работает! Сопровождение и логи</title>
+  <link rel="stylesheet" href="theme.css?v=23c425a781be">
+</head>
+<body>
+  <section class="slide layout-statement" data-index="1"><div class="grid"></div><div class="content"><h1>«У меня всё работает!»</h1><p>Что происходит с приложением после выпуска?</p></div><span class="page">01</span></section>
+<section class="slide layout-split" data-index="2"><div class="grid"></div><img class="slide-image" src="assets/cat-laptop-public.png" alt="Кот рядом с ноутбуком"><div class="content"><h1>Что-то не так</h1><p>В комнате пахнет. Кот смотрит невозмутимо.</p><blockquote>Где искать причину?</blockquote></div><span class="page">02</span></section>
+<section class="slide layout-investigation" data-index="3"><div class="grid"></div><div class="content"><h1>Расследование: от симптома к причине</h1><table><tr><th>Шаг</th><th>Что выяснили</th></tr><tr><td>Симптом</td><td>В комнате пахнет</td></tr><tr><td>Поиск</td><td>Где источник?</td></tr><tr><td>Находка</td><td>Источник под ковром</td></tr><tr><td>Причина</td><td>Коту не открыли туалет</td></tr><tr><td>Предотвращение</td><td>Проверять дверь</td></tr></table></div><span class="page">03</span></section>
+<section class="slide layout-turnstile" data-index="4"><div class="grid"></div><img class="slide-image" src="assets/turnstile.svg" alt="Учебная схема турникета и журнала событий"><div class="content"><h1>Пропуск не сработал</h1><p>Турникет сломан? Что проверим дальше?</p></div><span class="page">04</span></section>
+<section class="slide layout-rotation" data-index="5"><div class="grid"></div><div class="content"><h1>Сколько хранить записи?</h1><p>Вчера пропуск не сработал. А если человек обратится через неделю?</p><p><strong>Ротация</strong> — создаём новый файл по времени или размеру.</p><p><strong>Срок хранения</strong> — решаем, когда старые записи удалить или архивировать.</p><blockquote>Как в видеорегистраторе: старые записи могут заменяться новыми.</blockquote></div><span class="page">05</span></section>
+<section class="slide layout-lifecycle" data-index="6"><div class="grid"></div><img class="slide-image" src="assets/lifecycle.svg" alt="Идея и разработка ведут к циклу: выпуск, эксплуатация, изменения и новый выпуск"><div class="content"><h1>У приложения есть жизнь после запуска</h1></div><span class="page">06</span></section>
+<section class="slide layout-hero" data-index="7"><div class="grid"></div><img class="slide-image" src="assets/catgo-concept.png" alt="Концепт CatGo: карта, карточка кота и ошибка загрузки"><div class="content"><h1>Знакомьтесь: CatGo</h1></div><span class="page">07</span></section>
+<section class="slide layout-statement" data-index="8"><div class="grid"></div><div class="content"><h1>Кот появился. Фото — нет</h1><p>Пользователь добавил кота, но фотография не загрузилась.</p><blockquote>Что произошло?</blockquote></div><span class="page">08</span></section>
+<section class="slide layout-alert-options" data-index="9"><div class="grid"></div><div class="content"><h1>Как узнать о проблеме?</h1><h2>Сообщение пользователя</h2><p>«Фотография кота не появилась»</p><h2>Алерт: автоматический сигнал</h2><p>«Много ошибок загрузки фото»</p><blockquote>О проблеме узнали. Как найти причину?</blockquote></div><span class="page">09</span></section>
+<section class="slide layout-upload-path" data-index="10"><div class="grid"></div><img class="slide-image" src="assets/catgo-upload.svg" alt="Телефон отправляет фото и сведения через Nginx в API; API сохраняет фото в S3, сведения и ссылку в базе и возвращает ответ"><div class="content"><h1>Как CatGo добавляет кота?</h1><p>Пользователь фотографирует кота, добавляет сведения и нажимает «Сохранить».</p></div><span class="page">10</span></section>
+<section class="slide layout-code" data-index="11"><div class="grid"></div><div class="content"><h1>Что такое лог?</h1><pre><code>10:14:01  Запрос получен
+10:14:02  Начата загрузка фотографии
+10:14:04  Ошибка загрузки</code></pre><p>Журнал содержит записанные события, а не всю историю программы.</p></div><span class="page">11</span></section>
+<section class="slide layout-compact" data-index="12"><div class="grid"></div><div class="content"><h1>Caddy: реальный формат access log</h1><pre><code>{
+  "logger": "http.log.access",
+  "request": {"method": "POST", "uri": "/api/cats/42/photo"},
+  "status": 500,
+  "duration": 1.8
+}</code></pre><p>Учебные данные · сокращённая запись · время в секундах</p></div><span class="page">12</span></section>
+<section class="slide layout-code" data-index="13"><div class="grid"></div><div class="content"><h1>Кто ищет /wp-admin?</h1><pre><code>GET /wp-admin  → 404
+GET /.env      → 404</code></pre><blockquote>Попытка запроса — это уже взлом?</blockquote></div><span class="page">13</span></section>
+<section class="slide layout-code" data-index="14"><div class="grid"></div><div class="content"><h1>Два взгляда Nginx</h1><pre><code>access.log  запрос → 504
+error.log   upstream timed out</code></pre><p>Ответ пользователю и сообщение веб-сервера.</p></div><span class="page">14</span></section>
+<section class="slide layout-code" data-index="15"><div class="grid"></div><div class="content"><h1>Что записывает приложение?</h1><pre><code>Получена фотография кота
+Начата загрузка в хранилище
+Не удалось загрузить фотографию</code></pre><p>Приложение может знать то, чего не видит Nginx.</p></div><span class="page">15</span></section>
+<section class="slide layout-mapping" data-index="16"><div class="grid"></div><div class="content"><h1>Уровни сообщений</h1><table><tr><th>Уровень</th><th>Пример</th></tr><tr><td>DEBUG</td><td>Подробности выполнения</td></tr><tr><td>INFO</td><td>Фотография получена</td></tr><tr><td>WARNING</td><td>Хранилище отвечает медленно</td></tr><tr><td>ERROR</td><td>Загрузка не удалась</td></tr></table></div><span class="page">16</span></section>
+<section class="slide layout-request-id" data-index="17"><div class="grid"></div><div class="content"><h1>Один запрос среди тысяч</h1><p>1. Nginx присваивает запросу идентификатор.</p><p>2. Передаёт его приложению в <code>X-Request-ID</code>.</p><p>3. Оба записывают его в свои журналы.</p><pre><code>Nginx  request_id=abc123  POST /api/cats/42/photo → 500
+API    request_id=abc123  ошибка загрузки в хранилище</code></pre><blockquote>Один ID помогает найти записи об одном запросе.</blockquote></div><span class="page">17</span></section>
+<section class="slide layout-code" data-index="18"><div class="grid"></div><div class="content"><h1>Как искать в журнале?</h1><pre><code>grep 'ERROR' app.log
+grep 'abc123' app.log</code></pre><p>Подсчитать события: <code>awk</code> → <code>sort</code> → <code>uniq</code></p></div><span class="page">18</span></section>
+<section class="slide layout-grafana-example" data-index="19"><div class="grid"></div><img class="slide-image" src="assets/grafana-catgo.svg" alt="Учебный макет Grafana Explore: поиск по request ID в журналах Nginx и API"><div class="content"><h1>А если серверов много?</h1><p>Один поиск — записи разных компонентов.</p><p>Учебный макет · вымышленные данные</p></div><span class="page">19</span></section>
+<section class="slide layout-crash-example" data-index="20"><div class="grid"></div><img class="slide-image" src="assets/catgo-crash.png" alt="Учебная иллюстрация: Android сообщает об остановке CatGo"><div class="content"><h1>А если ошибка на телефоне?</h1><p>Сервер ответил успешно, но CatGo закрылось.</p><p><strong>В журнале разработчика:</strong></p><pre><code>TypeError: photoUrl is null
+  at showPhoto (CatCard.js:42)
+  at openCat (CatScreen.js:18)</code></pre><p>Учебная иллюстрация и вымышленный stack trace</p></div><span class="page">20</span></section>
+<section class="slide layout-logcat-example" data-index="21"><div class="grid"></div><img class="slide-image" src="assets/logcat-catgo.svg" alt="Учебный макет Logcat с выбором устройства и приложения, фильтром ошибок и stack trace"><div class="content"><h1>Logcat: журнал Android</h1><p>Выбираем устройство и приложение, фильтруем ошибки, читаем стек.</p><p>Учебный макет · вымышленная ошибка</p></div><span class="page">21</span></section>
+<section class="slide layout-flow" data-index="22"><div class="grid"></div><div class="content"><h1>Телефон пользователя далеко</h1><p>Телефон → отчёт об ошибке → сервис → разработчик</p><p>Версия приложения · устройство · стек ошибки</p></div><span class="page">22</span></section>
+<section class="slide layout-privacy-example" data-index="23"><div class="grid"></div><div class="content"><h1>Что не должно попасть в логи?</h1><p><strong>Пароли и токены сессий</strong></p><p><strong>Полные номера карт и CVV</strong></p><p><strong>Email и другие личные данные — без необходимости</strong></p><p>Журнал приложения → общий поиск → внешний сервис</p><blockquote>Сохраняйте только то, что нужно для расследования.</blockquote></div><span class="page">23</span></section>
+<section class="slide layout-checks" data-index="24"><div class="grid"></div><div class="content"><h1>Найдём пропавшую фотографию</h1><ul><li>Что мы знаем, а что предполагаем?</li><li>Где найти запрос?</li><li>Как связать записи компонентов?</li><li>Как проверить исправление?</li></ul><blockquote>Логи помогают понять, что проверять дальше.</blockquote></div><span class="page">24</span></section>
+<section class="slide layout-closing" data-index="25"><div class="grid"></div><div class="content"><h1>Что мы узнали?</h1><p>Приложение живёт и после выпуска — за ним нужно следить.</p><p>Логи помогают найти свидетельства и связать их по Request ID.</p><p>На телефоне разработчику помогает Logcat и отчёт об ошибке.</p><p>Паролям, токенам и полным данным карт не место в обычных логах.</p><blockquote>Заметили проблему → нашли свидетельства → проверили исправление.</blockquote></div><span class="page">25</span></section>
+  <div class="help">← → листать · F полный экран</div>
+  <script>
+    const slides = [...document.querySelectorAll('.slide')]; let current = 0;
+    function show(index) { current = Math.max(0, Math.min(slides.length - 1, index)); slides.forEach((s, i) => s.classList.toggle('active', i === current)); location.hash = current + 1; }
+    function fromHash() { const n = Number(location.hash.slice(1)); show(Number.isInteger(n) && n > 0 ? n - 1 : 0); }
+    document.addEventListener('keydown', e => { if (['ArrowRight','PageDown',' '].includes(e.key)) show(current + 1); if (['ArrowLeft','PageUp'].includes(e.key)) show(current - 1); if (e.key.toLowerCase() === 'n') document.body.classList.toggle('show-notes'); if (e.key.toLowerCase() === 'f') document.documentElement.requestFullscreen?.(); });
+    if (!new URL(location.href).searchParams.has('remote')) { window.addEventListener('hashchange', fromHash); fromHash(); }
+  </script>
+  <script src="assets/qrcode.js"></script>
+  <script src="assets/remote.js"></script>
+</body>
+</html>

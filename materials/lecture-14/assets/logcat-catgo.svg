@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 650" role="img" aria-labelledby="t d">
+<title id="t">Учебный макет Logcat</title><desc id="d">Выбор устройства и приложения CatGo, фильтр ошибок и учебный stack trace.</desc>
+<rect width="1280" height="650" rx="16" fill="#20242b"/><rect width="1280" height="60" rx="16" fill="#303641"/><text x="28" y="39" fill="#f2f4f7" font-size="26" font-weight="bold" font-family="Arial">Android Studio  /  Logcat</text>
+<g font-family="Arial" font-size="20" fill="#e6e9ed"><rect x="30" y="86" width="265" height="55" rx="6" fill="#373f4b"/><text x="45" y="120">① Pixel API 35 ▾</text><rect x="312" y="86" width="305" height="55" rx="6" fill="#373f4b"/><text x="328" y="120">② com.example.catgo ▾</text><rect x="635" y="86" width="610" height="55" rx="6" fill="#373f4b"/><text x="650" y="120">③ Фильтр: level:error</text></g>
+<path d="M30 172 H1245" stroke="#5e6978"/><g font-family="monospace" font-size="22"><text x="40" y="224" fill="#e2a0a0">10:14:02.311  E  CatGo  TypeError: photoUrl is null</text><text x="40" y="273" fill="#e9edf1">                         at showPhoto (CatCard.js:42)</text><text x="40" y="318" fill="#e9edf1">                         at openCat (CatScreen.js:18)</text></g>
+<rect x="35" y="380" width="1200" height="150" rx="9" fill="#313945"/><g font-family="Arial" fill="#e5e8eb" font-size="23"><text x="60" y="422">④ Найдите сообщение об ошибке</text><text x="60" y="461">⑤ Посмотрите функции и строки в stack trace</text><text x="60" y="500">⑥ Откройте указанное место в коде и проверьте причину</text></g>
+<text x="40" y="600" fill="#b4bdc7" font-family="Arial" font-size="19">Упрощённый учебный макет · данные и ошибка вымышлены</text>
+</svg>

@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 610" role="img" aria-labelledby="t d">
+<title id="t">Учебный макет поиска логов в Grafana</title><desc id="d">Поиск abc123 показывает учебные записи Nginx и API CatGo.</desc>
+<rect width="1280" height="610" rx="16" fill="#171b23"/><rect x="0" y="0" width="1280" height="58" rx="16" fill="#242932"/><text x="25" y="38" fill="#f2a43a" font-size="25" font-weight="bold" font-family="Arial">Grafana</text><text x="165" y="38" fill="#f3f4f5" font-size="23" font-family="Arial">Explore / Логи CatGo</text>
+<g font-family="Arial" fill="#d7dce2"><text x="30" y="105" font-size="20">Источник: Loki</text><text x="1020" y="105" font-size="20">Последние 15 минут</text></g>
+<rect x="30" y="125" width="1220" height="65" rx="7" fill="#292f39" stroke="#6c7684"/><text x="53" y="166" fill="#f0f2f4" font-size="24" font-family="monospace">{app="catgo"} |= "abc123"</text>
+<text x="31" y="239" fill="#c5cbd3" font-family="Arial" font-size="20">Найденные записи</text><path d="M32 265 H1248" stroke="#404957"/>
+<g font-family="monospace" font-size="22" fill="#e3e6eb"><text x="40" y="325">10:14:01</text><text x="205" y="325" fill="#9dcbb3">nginx</text><text x="370" y="325">request_id=abc123  POST /api/cats/42/photo → 500</text><text x="40" y="395">10:14:01</text><text x="205" y="395" fill="#9dcbb3">api</text><text x="370" y="395">request_id=abc123  загрузка фотографии начата</text><text x="40" y="465">10:14:02</text><text x="205" y="465" fill="#e9a184">api ERROR</text><text x="370" y="465">request_id=abc123  ошибка загрузки в S3</text></g>
+<g stroke="#373f4a"><path d="M32 350 H1248"/><path d="M32 420 H1248"/><path d="M32 490 H1248"/></g>
+<text x="35" y="559" fill="#aab4bf" font-size="20" font-family="Arial">3 записи · данные вымышлены · интерфейс упрощён</text>
+</svg>
