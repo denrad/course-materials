@@ -15,7 +15,7 @@ MATERIAL_IDS = [
     "lecture-01", "lecture-02", "agentic-development", "lecture-04", "lecture-05", "lecture-06",
     "lecture-07", "lecture-08", "lecture-09", "lecture-10", "testing", "ai-agents-opencode", "lecture-14", "lab-01",
     "lab-02", "lab-03", "lab-04", "lab-05", "lab-06", "lab-07",
-    "lab-10", "lab-09", "lab-11", "lab-12",
+    "lab-10", "lab-09", "lab-11", "lab-12", "lab-13",
 ]
 ROUTE_IDS = [*MATERIAL_IDS, "lab-17"]
 FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSdgdPOyAVhxgs54HWq-LN-gbz8miZepvuuwGyuDiCX-cMN_Cg/viewform"
@@ -144,6 +144,16 @@ class SiteBuildTests(unittest.TestCase):
         self.assertIn('<span class="lecture-number">Лекция 11</span>', rendered)
         self.assertIn("<title>Лекция 11. Тестирование:", rendered)
 
+    def test_logging_lecture_precedes_labs_and_lab13_has_stand_link(self):
+        source = (ROOT / "materials/lecture-14/index.html").read_text(encoding="utf-8")
+        self.assertIn('kind: "lecture"', source)
+        self.assertIn('card_label: "14"', source)
+        page = (SITE / "index.html").read_text(encoding="utf-8")
+        self.assertLess(page.index('href="materials/lecture-14/"'), page.index('href="materials/lab-13/"'))
+        lab = (SITE / "materials/lab-13/index.html").read_text(encoding="utf-8")
+        self.assertIn('https://lab-13.course.denrad.dev/', lab)
+        self.assertIn('https://my.course.denrad.dev/', lab)
+
     def test_geojson_practicum_is_numbered_as_lab_8(self):
         source = (ROOT / "materials/lab-10/index.md").read_text(encoding="utf-8")
         rendered = (SITE / "materials/lab-10/index.html").read_text(encoding="utf-8")
@@ -167,6 +177,7 @@ class SiteBuildTests(unittest.TestCase):
         expected_order["lab-12"] = 23
         expected_order["lecture-14"] = 24
         expected_order["lab-17"] = 25
+        expected_order["lab-13"] = 26
         for material_id in ROUTE_IDS:
             with self.subTest(material=material_id):
                 source_directory = ROOT / "materials" / material_id
