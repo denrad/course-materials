@@ -16,6 +16,7 @@ MATERIAL_IDS = [
     "lecture-07", "lecture-08", "lecture-09", "lecture-10", "testing", "ai-agents-opencode", "lab-01",
     "lab-02", "lab-03", "lab-04", "lab-05", "lab-06", "lab-07",
     "lab-10", "lab-09", "lab-11", "lab-12",
+    "lecture-14",
 ]
 ROUTE_IDS = [*MATERIAL_IDS, "lab-17"]
 FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSdgdPOyAVhxgs54HWq-LN-gbz8miZepvuuwGyuDiCX-cMN_Cg/viewform"

@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 420" role="img" aria-labelledby="title desc">
+<title id="title">Жизнь приложения</title><desc id="desc">Идея и разработка ведут к циклу: выпуск, эксплуатация, изменения, новый выпуск.</desc>
+<defs><marker id="arrow" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="9" markerHeight="9" orient="auto"><path d="M1 1 L11 6 L1 11 Z" fill="#426b66"/></marker></defs>
+<g font-family="Arial, sans-serif" font-size="35" font-weight="600" text-anchor="middle" fill="#1f3433">
+<rect x="20" y="85" width="150" height="76" rx="18" fill="#eae7d6"/><text x="95" y="133">Идея</text>
+<rect x="225" y="85" width="230" height="76" rx="18" fill="#eae7d6"/><text x="340" y="133">Разработка</text>
+<rect x="535" y="85" width="190" height="76" rx="18" fill="#bdd3ba"/><text x="630" y="133">Выпуск</text>
+<rect x="875" y="85" width="260" height="76" rx="18" fill="#bdd3ba"/><text x="1005" y="133">Эксплуатация</text>
+<rect x="705" y="300" width="220" height="76" rx="18" fill="#bdd3ba"/><text x="815" y="348">Изменения</text>
+</g>
+<g fill="none" stroke="#426b66" stroke-width="5" marker-end="url(#arrow)" stroke-linecap="round"><path d="M175 123 H214"/><path d="M460 123 H524"/><path d="M730 123 H863"/><path d="M1005 170 V244 Q1005 338 937 338"/><path d="M693 338 Q630 338 630 255 V172"/></g>
+</svg>

@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 510" role="img" aria-labelledby="title desc">
+<title id="title">Добавление кота в CatGo</title><desc id="desc">Телефон отправляет фото и сведения через Nginx в API. API сохраняет фото в S3, данные и ссылку на файл в базе, затем отвечает телефону.</desc>
+<defs><marker id="arrow" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="8" markerHeight="8" orient="auto"><path d="M1 1 L11 6 L1 11 Z" fill="#426b66"/></marker></defs>
+<g font-family="Arial, sans-serif" text-anchor="middle" fill="#1f3433">
+<rect x="10" y="105" width="230" height="145" rx="18" fill="#eae7d6"/><text x="125" y="151" font-size="29" font-weight="700">Телефон</text><text x="125" y="188" font-size="23">Фото и сведения</text><text x="125" y="219" font-size="23">о коте</text>
+<rect x="335" y="125" width="170" height="100" rx="18" fill="#dbe8dc"/><text x="420" y="184" font-size="29" font-weight="700">Nginx</text>
+<rect x="600" y="125" width="195" height="100" rx="18" fill="#bdd3ba"/><text x="697" y="170" font-size="29" font-weight="700">API CatGo</text><text x="697" y="202" font-size="20">обрабатывает запрос</text>
+<rect x="935" y="25" width="240" height="100" rx="18" fill="#eae7d6"/><text x="1055" y="65" font-size="28" font-weight="700">S3</text><text x="1055" y="98" font-size="21">файл фотографии</text>
+<rect x="935" y="220" width="240" height="115" rx="18" fill="#eae7d6"/><text x="1055" y="262" font-size="28" font-weight="700">База данных</text><text x="1055" y="295" font-size="21">сведения и ссылка</text><text x="1055" y="321" font-size="21">на фотографию</text>
+<text x="430" y="340" font-size="23" fill="#426b66">Ответ: добавлено или произошла ошибка</text>
+</g>
+<g fill="none" stroke="#426b66" stroke-width="4" marker-end="url(#arrow)" stroke-linecap="round"><path d="M247 175 H323"/><path d="M512 175 H588"/><path d="M802 157 H855 Q880 157 880 75 H923"/><path d="M802 195 H855 Q880 195 880 275 H923"/><path d="M697 235 V382 H125 V263"/></g>
+</svg>
