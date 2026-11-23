@@ -13,7 +13,7 @@ ROOT = Path(__file__).resolve().parents[1]
 SITE = Path(os.environ.get("JEKYLL_DESTINATION", ROOT / "_site"))
 MATERIAL_IDS = [
     "lecture-01", "lecture-02", "agentic-development", "lecture-04", "lecture-05", "lecture-06",
-    "lecture-07", "lecture-08", "lecture-09", "lecture-10", "testing", "ai-agents-opencode", "lecture-14", "lab-01",
+    "lecture-07", "lecture-08", "lecture-09", "lecture-10", "testing", "ai-agents-opencode", "lecture-14", "mobile-release", "lab-01",
     "lab-02", "lab-03", "lab-04", "lab-05", "lab-06", "lab-07",
     "lab-10", "lab-09", "lab-11", "lab-12", "lab-13",
 ]
@@ -170,12 +170,13 @@ class SiteBuildTests(unittest.TestCase):
     def test_material_pages_have_card_metadata_and_preserve_html_body(self):
         required = ("id", "kind", "title", "description", "order")
         expected_order = {material_id: order for order, material_id in enumerate(
-            [item for item in MATERIAL_IDS if item not in ("ai-agents-opencode", "lecture-14")], start=1
+            [item for item in MATERIAL_IDS if item not in ("ai-agents-opencode", "lecture-14", "mobile-release")], start=1
         )}
         expected_order["ai-agents-opencode"] = "11.5"
         expected_order["lab-11"] = 22
         expected_order["lab-12"] = 23
         expected_order["lecture-14"] = 24
+        expected_order["mobile-release"] = 27
         expected_order["lab-17"] = 25
         expected_order["lab-13"] = 26
         for material_id in ROUTE_IDS:
