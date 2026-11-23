@@ -13,7 +13,7 @@ ROOT = Path(__file__).resolve().parents[1]
 SITE = Path(os.environ.get("JEKYLL_DESTINATION", ROOT / "_site"))
 MATERIAL_IDS = [
     "lecture-01", "lecture-02", "agentic-development", "lecture-04", "lecture-05", "lecture-06",
-    "lecture-07", "lecture-08", "lecture-09", "lecture-10", "testing", "ai-agents-opencode", "lecture-14", "mobile-release", "lab-01",
+    "lecture-07", "lecture-08", "lecture-09", "lecture-10", "testing", "ai-agents-opencode", "mobile-release", "lecture-14", "lab-01",
     "lab-02", "lab-03", "lab-04", "lab-05", "lab-06", "lab-07",
     "lab-10", "lab-09", "lab-11", "lab-12", "lab-13",
 ]
@@ -147,8 +147,9 @@ class SiteBuildTests(unittest.TestCase):
     def test_logging_lecture_precedes_labs_and_lab13_has_stand_link(self):
         source = (ROOT / "materials/lecture-14/index.html").read_text(encoding="utf-8")
         self.assertIn('kind: "lecture"', source)
-        self.assertIn('card_label: "14"', source)
+        self.assertIn('card_label: "15"', source)
         page = (SITE / "index.html").read_text(encoding="utf-8")
+        self.assertLess(page.index('href="materials/mobile-release/"'), page.index('href="materials/lecture-14/"'))
         self.assertLess(page.index('href="materials/lecture-14/"'), page.index('href="materials/lab-13/"'))
         lab = (SITE / "materials/lab-13/index.html").read_text(encoding="utf-8")
         self.assertIn('https://lab-13.course.denrad.dev/', lab)
@@ -175,8 +176,8 @@ class SiteBuildTests(unittest.TestCase):
         expected_order["ai-agents-opencode"] = "11.5"
         expected_order["lab-11"] = 22
         expected_order["lab-12"] = 23
-        expected_order["lecture-14"] = 24
-        expected_order["mobile-release"] = 27
+        expected_order["lecture-14"] = 27
+        expected_order["mobile-release"] = 24
         expected_order["lab-17"] = 25
         expected_order["lab-13"] = 26
         for material_id in ROUTE_IDS:
