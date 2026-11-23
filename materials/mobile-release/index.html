@@ -1,0 +1,61 @@
+---
+id: "mobile-release"
+kind: "lecture"
+title: "Как приложение попадает к пользователям"
+description: "Сборка мобильного приложения, выпуск изменений и проверка результата."
+order: 25
+permalink: "/materials/mobile-release/"
+card_label: "Черновик"
+card_action: "Открыть презентацию"
+aria_label: "Открыть презентацию о выпуске приложения"
+render_with_liquid: false
+---
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Как приложение попадает к пользователям</title>
+  <link rel="stylesheet" href="theme.css?v=23c425a781be">
+</head>
+<body>
+  <section class="slide layout-statement" data-index="1"><div class="grid"></div><div class="content"><h1>«У меня работает на телефоне!»</h1><p>Как приложение попадает к пользователям и меняется после выпуска?</p></div><span class="page">01</span></section>
+<section class="slide layout-hero" data-index="2"><div class="grid"></div><img class="slide-image" src="assets/catgo-concept.png" alt="Учебный концепт приложения CatGo с картой и карточкой кота"><div class="content"><h1>Знакомьтесь: CatGo</h1></div><span class="page">02</span></section>
+<section class="slide layout-diagram" data-index="3"><div class="grid"></div><img class="slide-image" src="assets/path.svg" alt="Схема пути приложения от кода до установки"><div class="content"><h1>Как CatGo попадёт к другим?</h1><blockquote>Что происходит между кодом и телефоном пользователя?</blockquote></div><span class="page">03</span></section>
+<section class="slide layout-diagram" data-index="4"><div class="grid"></div><img class="slide-image" src="assets/platforms.svg" alt="Два телефона и отдельные сборки для Android и iOS"><div class="content"><h1>Одно приложение — разные платформы</h1><p>Для платформ могут понадобиться разные инструменты и сборки.</p></div><span class="page">04</span></section>
+<section class="slide layout-flow" data-index="5"><div class="grid"></div><div class="content"><h1>Загрузили в магазин. Уже готово?</h1><p>Сборка → проверка → публикация → установка</p><blockquote>На каком этапе пользователь получает обновление?</blockquote></div><span class="page">05</span></section>
+<section class="slide layout-statement" data-index="6"><div class="grid"></div><div class="content"><h1>Кот появился. Фото — нет</h1><p>Пользователь добавил кота, но фотография не загрузилась.</p><blockquote>Что произошло?</blockquote></div><span class="page">06</span></section>
+<section class="slide layout-flow" data-index="7"><div class="grid"></div><div class="content"><h1>Два изменения для одной проблемы</h1><p><strong>Сервер:</strong> исправить найденную ошибку.</p><p><strong>Приложение:</strong> понятнее сообщать о сбое.</p><p>Два изменения — два пути выпуска.</p></div><span class="page">07</span></section>
+<section class="slide layout-code" data-index="8"><div class="grid"></div><div class="content"><h1>Исправили. Можно выпускать?</h1><pre><code>воспроизвели ошибку
+→ добавили проверку
+→ исправили код
+→ запустили тесты</code></pre><blockquote>Зелёный тест означает, что проверенный сценарий прошёл.</blockquote></div><span class="page">08</span></section>
+<section class="slide layout-diagram" data-index="9"><div class="grid"></div><img class="slide-image" src="assets/environments.svg" alt="Три окружения: dev, stage и production"><div class="content"><h1>Где проверять изменение?</h1><p>Разные цели, настройки и данные.</p></div><span class="page">09</span></section>
+<section class="slide layout-code" data-index="10"><div class="grid"></div><div class="content"><h1>Один код — разные настройки</h1><pre><code>DEV    API_URL = адрес тестового API
+PROD   API_URL = адрес рабочего API</code></pre><p><code>.env</code> — один из способов задать настройки.</p></div><span class="page">10</span></section>
+<section class="slide layout-diagram" data-index="11"><div class="grid"></div><img class="slide-image" src="assets/secret.svg" alt="Телефон передаёт запрос по защищённому соединению; встроенный ключ доступен на устройстве"><div class="content"><h1>Можно ли спрятать API key в приложении?</h1><blockquote>Даже если используется HTTPS?</blockquote></div><span class="page">11</span></section>
+<section class="slide layout-mapping" data-index="12"><div class="grid"></div><div class="content"><h1>Что можно хранить на телефоне?</h1><table><tr><th>Данные</th><th>Где и зачем</th></tr><tr><td>Общий секрет сервиса</td><td>На доверенной серверной стороне</td></tr><tr><td>Токен пользователя</td><td>В защищённом хранилище устройства</td></tr><tr><td>Passkey</td><td>Закрытый ключ использует платформа</td></tr></table></div><span class="page">12</span></section>
+<section class="slide layout-statement" data-index="13"><div class="grid"></div><div class="content"><h1>«У меня запускается. На сервере — нет»</h1><p>Другая версия среды. Не хватает библиотеки.</p><blockquote>Как описать способ запуска вместе с проектом?</blockquote></div><span class="page">13</span></section>
+<section class="slide layout-diagram" data-index="14"><div class="grid"></div><img class="slide-image" src="assets/docker.svg" alt="Dockerfile описывает образ; Compose описывает запуск приложения и базы"><div class="content"><h1>Окружение можно описать в файлах</h1><p>Файлы можно хранить и изменять вместе с проектом.</p></div><span class="page">14</span></section>
+<section class="slide layout-flow" data-index="15"><div class="grid"></div><div class="content"><h1>Что такое deploy?</h1><p>Подготовили версию → запустили → направили запросы → проверили</p><p><strong>Новая версия стала доступна в нужном окружении.</strong></p></div><span class="page">15</span></section>
+<section class="slide layout-mapping" data-index="16"><div class="grid"></div><div class="content"><h1>Обновили код. А что с данными?</h1><table><tr><th>Изменение</th><th>Пример</th></tr><tr><td>Миграция</td><td>Добавили поле в таблицу</td></tr><tr><td>Обновление данных</td><td>Заполнили поле для существующих записей</td></tr></table><blockquote>Старый и новый код могут работать одновременно.</blockquote></div><span class="page">16</span></section>
+<section class="slide layout-diagram" data-index="17"><div class="grid"></div><img class="slide-image" src="assets/rollback.svg" alt="Переключение запросов между старой и новой версиями и общая база"><div class="content"><h1>Можно ли быстро вернуться назад?</h1><p>Переключение кода не отменяет изменения данных.</p></div><span class="page">17</span></section>
+<section class="slide layout-statement" data-index="18"><div class="grid"></div><div class="content"><h1>Пятница, 17:30. Выпускаем?</h1><p>Пользователи сталкиваются со сбоем.</p><p>Исправление подготовлено.</p><blockquote>Что нужно узнать перед решением?</blockquote></div><span class="page">18</span></section>
+<section class="slide layout-diagram" data-index="19"><div class="grid"></div><img class="slide-image" src="assets/api.svg" alt="Несколько версий CatGo обращаются к API с описанием OpenAPI"><div class="content"><h1>У пользователей разные версии</h1><p>OpenAPI описывает контракт. Swagger UI помогает его изучать.</p></div><span class="page">19</span></section>
+<section class="slide layout-mapping" data-index="20"><div class="grid"></div><div class="content"><h1>Предложить обновление или потребовать?</h1><table><tr><th>Предложить</th><th>Потребовать — force update</th></tr><tr><td>Можно продолжить со старой версией</td><td>Работа ограничена до обновления</td></tr></table><blockquote>Что будет, если человек не может обновиться сейчас?</blockquote></div><span class="page">20</span></section>
+<section class="slide layout-flow" data-index="21"><div class="grid"></div><div class="content"><h1>Каждый выпуск — снова те же шаги</h1><p>Тесты → сборка → подпись → передача тестировщикам</p><blockquote>Какие действия можно автоматизировать?</blockquote></div><span class="page">21</span></section>
+<section class="slide layout-diagram" data-index="22"><div class="grid"></div><img class="slide-image" src="assets/e2e.svg" alt="Учебный макет: экран CatGo и успешные шаги E2E-теста"><div class="content"><h1>E2E: проверка глазами пользователя</h1><p>Учебный макет · не результат реального запуска</p></div><span class="page">22</span></section>
+<section class="slide layout-diagram" data-index="23"><div class="grid"></div><img class="slide-image" src="assets/distribution.svg" alt="GitHub Actions запускает проверки и сборку; fastlane и интеграции доставляют сборки по каналам"><div class="content"><h1>Автоматизируем доставку сборки</h1><p>Загрузка сборки ≠ публикация ≠ установка пользователем.</p></div><span class="page">23</span></section>
+<section class="slide layout-closing" data-index="24"><div class="grid"></div><div class="content"><h1>Выпустили. Всё работает?</h1><p>Проверяем ключевой сценарий.</p><p>Смотрим на ошибки и слушаем пользователей.</p><blockquote>Как найти причину, если фото всё ещё не загружается?</blockquote></div><span class="page">24</span></section>
+  <div class="help">← → листать · F полный экран</div>
+  <script>
+    const slides = [...document.querySelectorAll('.slide')]; let current = 0;
+    function show(index) { current = Math.max(0, Math.min(slides.length - 1, index)); slides.forEach((s, i) => s.classList.toggle('active', i === current)); location.hash = current + 1; }
+    function fromHash() { const n = Number(location.hash.slice(1)); show(Number.isInteger(n) && n > 0 ? n - 1 : 0); }
+    document.addEventListener('keydown', e => { if (['ArrowRight','PageDown',' '].includes(e.key)) show(current + 1); if (['ArrowLeft','PageUp'].includes(e.key)) show(current - 1); if (e.key.toLowerCase() === 'n') document.body.classList.toggle('show-notes'); if (e.key.toLowerCase() === 'f') document.documentElement.requestFullscreen?.(); });
+    if (!new URL(location.href).searchParams.has('remote')) { window.addEventListener('hashchange', fromHash); fromHash(); }
+  </script>
+  <script src="assets/qrcode.js"></script>
+  <script src="assets/remote.js"></script>
+</body>
+</html>
