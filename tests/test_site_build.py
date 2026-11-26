@@ -18,26 +18,19 @@ MATERIAL_IDS = [
     "lab-10", "lab-09", "lab-11", "lab-12", "lab-13",
 ]
 ROUTE_IDS = [*MATERIAL_IDS, "lab-17"]
-FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSdgdPOyAVhxgs54HWq-LN-gbz8miZepvuuwGyuDiCX-cMN_Cg/viewform"
 
 
 class MaterialLinks(HTMLParser):
     def __init__(self):
         super().__init__()
         self.material_ids = []
-        self.form_links = []
-        self.card_links = []
 
     def handle_starttag(self, tag, attrs):
         if tag != "a":
             return
         href = dict(attrs).get("href", "")
-        if "card" in dict(attrs).get("class", "").split():
-            self.card_links.append(href)
         if href.startswith("materials/") and href.endswith("/"):
             self.material_ids.append(href.removeprefix("materials/").removesuffix("/"))
-        if href == FORM_URL:
-            self.form_links.append(href)
 
 
 class LocalReferences(HTMLParser):
@@ -122,18 +115,14 @@ class SiteBuildTests(unittest.TestCase):
         parser = MaterialLinks()
         parser.feed((SITE / "index.html").read_text(encoding="utf-8"))
         self.assertEqual(MATERIAL_IDS, parser.material_ids)
-        self.assertEqual([FORM_URL], parser.form_links)
-        self.assertNotIn(FORM_URL, parser.card_links)
 
-    def test_project_information_precedes_the_course_hero_and_links_both_forms(self):
+    def test_cabinet_callout_precedes_the_course_hero(self):
         rendered = (SITE / "index.html").read_text(encoding="utf-8")
-        project = rendered.index('id="project"')
+        callout = rendered.index('id="cabinet-title"')
         hero = rendered.index('class="hero"')
-        materials = rendered.index('id="materials"')
-        self.assertLess(project, hero)
-        self.assertLess(project, materials)
-        self.assertIn(FORM_URL, rendered)
-        self.assertIn("https://forms.yandex.ru/cloud/6ae1ced56d2d7354508d63ec/", rendered)
+        self.assertLess(callout, hero)
+        self.assertIn("Посмотреть свои сданные работы", rendered)
+        self.assertIn('href="https://my.course.denrad.dev/">Открыть личный кабинет</a>', rendered)
 
     def test_testing_material_is_labeled_as_lecture_11(self):
         source = (ROOT / "materials/testing/index.html").read_text(encoding="utf-8")
