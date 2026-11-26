@@ -119,8 +119,8 @@ h2 { font-size: clamp(2rem, 4vw, 3.4rem); line-height: 1.04; letter-spacing: -.0
 
 @media (max-width: 620px) {
   .site-header, main, .site-footer { width: min(100% - 32px, 1120px); }
-  .site-header { min-height: 64px; }
-  nav { gap: 14px; }
+  .site-header { min-height: 64px; flex-wrap: wrap; gap: 12px; padding: 16px 0; }
+  nav { flex-wrap: wrap; gap: 10px 14px; }
   .hero { padding-bottom: 70px; }
   .cards { grid-template-columns: 1fr; }
   .section { padding: 55px 0; }
